@@ -48,32 +48,8 @@ const algorithmMap: { [key: string]: AlgorithmDetails } = {
       worst: "O(n^2)",
     },
     code: {
-      javascript: `
-\`\`\`javascript
-function bubbleSort(arr) {
-  let n = arr.length;
-  for (let i = 0; i < n - 1; i++) {
-    for (let j = 0; j < n - i - 1; j++) {
-      if (arr[j] > arr[j + 1]) {
-        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-      }
-    }
-  }
-  return arr;
-}
-\`\`\`
-`,
-      python: `
-\`\`\`python
-def bubble_sort(arr):
-    n = len(arr)
-    for i in range(n):
-        for j in range(0, n - i - 1):
-            if arr[j] > arr[j + 1]:
-                arr[j], arr[j + 1] = arr[j + 1], arr[j]
-    return arr
-\`\`\`
-`,
+      javascript: "/codes/bubbleSort.js",
+      python: "/codes/bubbleSort.py",
     },
   },
   "selection-sort": {
@@ -88,36 +64,8 @@ def bubble_sort(arr):
       worst: "O(n^2)",
     },
     code: {
-      javascript: `
-\`\`\`javascript
-function selectionSort(arr) {
-  let n = arr.length;
-  for (let i = 0; i < n; i++) {
-    let minIdx = i;
-    for (let j = i + 1; j < n; j++) {
-      if (arr[j] < arr[minIdx]) {
-        minIdx = j;
-      }
-    }
-    [arr[i], arr[minIdx]] = [arr[minIdx], arr[i]];
-  }
-  return arr;
-}
-\`\`\`
-`,
-      python: `
-\`\`\`python
-def selection_sort(arr):
-    n = len(arr)
-    for i in range(n):
-        min_idx = i
-        for j in range(i + 1, n):
-            if arr[j] < arr[min_idx]:
-                min_idx = j
-        arr[i], arr[min_idx] = arr[min_idx], arr[i]
-    return arr
-\`\`\`
-`,
+      javascript: "/codes/selectionSort.js",
+      python: "/codes/selectionSort.py",
     },
   },
   "insertion-sort": {
@@ -132,36 +80,8 @@ def selection_sort(arr):
       worst: "O(n^2)",
     },
     code: {
-      javascript: `
-\`\`\`javascript
-function insertionSort(arr) {
-  let n = arr.length;
-  for (let i = 1; i < n; i++) {
-    let current = arr[i];
-    let j = i - 1;
-    while (j > -1 && current < arr[j]) {
-      arr[j + 1] = arr[j];
-      j--;
-    }
-    arr[j + 1] = current;
-  }
-  return arr;
-}
-\`\`\`
-`,
-      python: `
-\`\`\`python
-def insertion_sort(arr):
-    for i in range(1, len(arr)):
-        key = arr[i]
-        j = i - 1
-        while j >= 0 and key < arr[j]:
-            arr[j + 1] = arr[j]
-            j -= 1
-        arr[j + 1] = key
-    return arr
-\`\`\`
-`,
+      javascript: "/codes/insertionSort.js",
+      python: "/codes/insertionSort.py",
     },
   },
   "merge-sort": {
@@ -176,64 +96,8 @@ def insertion_sort(arr):
       worst: "O(n log n)",
     },
     code: {
-      javascript: `
-\`\`\`javascript
-function mergeSort(arr) {
-  if (arr.length <= 1) {
-    return arr;
-  }
-  const mid = Math.floor(arr.length / 2);
-  const left = mergeSort(arr.slice(0, mid));
-  const right = mergeSort(arr.slice(mid));
-  return merge(left, right);
-}
-
-function merge(left, right) {
-  let resultArray = [], leftIndex = 0, rightIndex = 0;
-  while (leftIndex < left.length && rightIndex < right.length) {
-    if (left[leftIndex] < right[rightIndex]) {
-      resultArray.push(left[leftIndex]);
-      leftIndex++;
-    } else {
-      resultArray.push(right[rightIndex]);
-      rightIndex++;
-    }
-  }
-  return resultArray
-    .concat(left.slice(leftIndex))
-    .concat(right.slice(rightIndex));
-}
-\`\`\`
-`,
-      python: `
-\`\`\`python
-def merge_sort(arr):
-    if len(arr) > 1:
-        mid = len(arr) // 2
-        L = arr[:mid]
-        R = arr[mid:]
-        merge_sort(L)
-        merge_sort(R)
-        i = j = k = 0
-        while i < len(L) and j < len(R):
-            if L[i] < R[j]:
-                arr[k] = L[i]
-                i += 1
-            else:
-                arr[k] = R[j]
-                j += 1
-            k += 1
-        while i < len(L):
-            arr[k] = L[i]
-            i += 1
-            k += 1
-        while j < len(R):
-            arr[k] = R[j]
-            j += 1
-            k += 1
-    return arr
-\`\`\`
-`,
+      javascript: "/codes/mergeSort.js",
+      python: "/codes/mergeSort.py",
     },
   },
   "quick-sort": {
@@ -248,43 +112,8 @@ def merge_sort(arr):
       worst: "O(n^2)",
     },
     code: {
-      javascript: `
-\`\`\`javascript
-function quickSort(arr, low, high) {
-  if (low < high) {
-    let pi = partition(arr, low, high);
-    quickSort(arr, low, pi - 1);
-    quickSort(arr, pi + 1, high);
-  }
-  return arr;
-}
-
-function partition(arr, low, high) {
-  let pivot = arr[high];
-  let i = low - 1;
-  for (let j = low; j < high; j++) {
-    if (arr[j] < pivot) {
-      i++;
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-  }
-  [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
-  return i + 1;
-}
-\`\`\`
-`,
-      python: `
-\`\`\`python
-def quick_sort(arr):
-    if len(arr) <= 1:
-        return arr
-    pivot = arr[len(arr) // 2]
-    left = [x for x in arr if x < pivot]
-    middle = [x for x in arr if x == pivot]
-    right = [x for x in arr if x > pivot]
-    return quick_sort(left) + middle + quick_sort(right)
-\`\`\`
-`,
+      javascript: "/codes/quickSort.js",
+      python: "/codes/quickSort.py",
     },
   },
   "heap-sort": {
@@ -299,61 +128,8 @@ def quick_sort(arr):
       worst: "O(n log n)",
     },
     code: {
-      javascript: `
-\`\`\`javascript
-function heapSort(arr) {
-  let n = arr.length;
-  for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
-    heapify(arr, n, i);
-  }
-  for (let i = n - 1; i > 0; i--) {
-    [arr[0], arr[i]] = [arr[i], arr[0]];
-    heapify(arr, i, 0);
-  }
-  return arr;
-}
-
-function heapify(arr, n, i) {
-  let largest = i;
-  let left = 2 * i + 1;
-  let right = 2 * i + 2;
-  if (left < n && arr[left] > arr[largest]) {
-    largest = left;
-  }
-  if (right < n && arr[right] > arr[largest]) {
-    largest = right;
-  }
-  if (largest !== i) {
-    [arr[i], arr[largest]] = [arr[largest], arr[i]];
-    heapify(arr, n, largest);
-  }
-}
-\`\`\`
-`,
-      python: `
-\`\`\`python
-def heap_sort(arr):
-    n = len(arr)
-    for i in range(n // 2 - 1, -1, -1):
-        heapify(arr, n, i)
-    for i in range(n - 1, 0, -1):
-        arr[i], arr[0] = arr[0], arr[i]
-        heapify(arr, i, 0)
-    return arr
-
-def heapify(arr, n, i):
-    largest = i
-    l = 2 * i + 1
-    r = 2 * i + 2
-    if l < n and arr[i] < arr[l]:
-        largest = l
-    if r < n and arr[largest] < arr[r]:
-        largest = r
-    if largest != i:
-        arr[i], arr[largest] = arr[largest], arr[i]
-        heapify(arr, n, largest)
-\`\`\`
-`,
+      javascript: "/codes/heapSort.js",
+      python: "/codes/heapSort.py",
     },
   },
 };
@@ -383,10 +159,18 @@ const AlgorithmPage: React.FC<AlgorithmPageProps> = ({ params }) => {
   useEffect(() => {
     const compileSource = async () => {
       const { code } = currentAlgorithm;
-      const js = await serialize(code.javascript, {
+
+      // ファイルからコードをフェッチ
+      const jsCodeResponse = await fetch(code.javascript);
+      const jsCode = await jsCodeResponse.text();
+
+      const pyCodeResponse = await fetch(code.python);
+      const pyCode = await pyCodeResponse.text();
+
+      const js = await serialize(jsCode, {
         mdxOptions: { rehypePlugins: [rehypePrettyCode] },
       });
-      const py = await serialize(code.python, {
+      const py = await serialize(pyCode, {
         mdxOptions: { rehypePlugins: [rehypePrettyCode] },
       });
       setJsSource(js);
