@@ -60,6 +60,41 @@ export default function RootLayout({
                 ヒープソート
               </a>
             </li>
+            <li>
+              <a href="/sort/counting-sort" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
+                カウントソート
+              </a>
+            </li>
+            <li>
+              <a href="/sort/radix-sort" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
+                基数ソート
+              </a>
+            </li>
+            <li>
+              <a href="/sort/bucket-sort" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
+                バケットソート
+              </a>
+            </li>
+            <li>
+              <a href="/sort/tim-sort" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
+                ティムソート
+              </a>
+            </li>
+            <li>
+              <a href="/sort/intro-sort" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
+                イントロソート
+              </a>
+            </li>
+            <li>
+              <a href="/sort/shell-sort" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
+                シェルソート
+              </a>
+            </li>
+            <li>
+              <a href="/sort/bogo-sort" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
+                ボゴソート
+              </a>
+            </li>
           </ul>
         </nav>
         <main className="flex-1 p-4 overflow-y-auto">

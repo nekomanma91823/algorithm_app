@@ -12,6 +12,13 @@ import {
   mergeSort,
   quickSort,
   heapSort,
+  countingSort,
+  radixSort,
+  bucketSort,
+  timSort,
+  introSort,
+  shellSort,
+  bogoSort,
 } from "@/utils/sortingAlgorithms";
 
 interface AlgorithmPageProps {
@@ -130,6 +137,118 @@ const algorithmMap: { [key: string]: AlgorithmDetails } = {
     code: {
       javascript: "/codes/heapSort.js",
       python: "/codes/heapSort.py",
+    },
+  },
+  "counting-sort": {
+    sortFunction: countingSort,
+    features:
+      "カウントソートは、要素が特定の範囲内の整数である場合に機能する非比較ソートアルゴリズムです。",
+    calculationMethod:
+      "各要素の出現回数をカウントし、そのカウントを配列に格納します。次に、カウント配列を変更して、各要素が最終的なソート済み配列での実際の位置を含むようにします。",
+    complexity: {
+      best: "O(n + k)",
+      average: "O(n + k)",
+      worst: "O(n + k)",
+    },
+    code: {
+      javascript: "/codes/countingSort.js",
+      python: "/codes/countingSort.py",
+    },
+  },
+  "radix-sort": {
+    sortFunction: radixSort,
+    features:
+      "基数ソートは、整数を個々の桁に基づいてソートする非比較ソートアルゴリズムです。",
+    calculationMethod:
+      "各桁（最下位桁から最上位桁まで）を個別にソートするために、カウントソートなどの安定したソートアルゴリズムを使用します。",
+    complexity: {
+      best: "O(nk)",
+      average: "O(nk)",
+      worst: "O(nk)",
+    },
+    code: {
+      javascript: "/codes/radixSort.js",
+      python: "/codes/radixSort.py",
+    },
+  },
+  "bucket-sort": {
+    sortFunction: bucketSort,
+    features:
+      "バケットソート（ビンソートとも呼ばれる）は、要素を複数のバケットに分散させるソートアルゴリズムです。各バケットは個別にソートされ、その後、ソートされたバケットが連結されます。",
+    calculationMethod:
+      "配列の要素をバケットに分散させ、各バケットを個別にソートし（通常は挿入ソートを使用）、最後にバケットを順番に連結します。",
+    complexity: {
+      best: "O(n + k)",
+      average: "O(n + k)",
+      worst: "O(n^2)",
+    },
+    code: {
+      javascript: "/codes/bucketSort.js",
+      python: "/codes/bucketSort.py",
+    },
+  },
+  "tim-sort": {
+    sortFunction: timSort,
+    features:
+      "ティムソートは、マージソートと挿入ソートを組み合わせたハイブリッドの安定したソートアルゴリズムです。",
+    calculationMethod:
+      "配列を小さなチャンクに分割し、それらを挿入ソートでソートし、次にマージソートの原則を使用してチャンクをマージします。",
+    complexity: {
+      best: "O(n)",
+      average: "O(n log n)",
+      worst: "O(n log n)",
+    },
+    code: {
+      javascript: "/codes/timSort.js",
+      python: "/codes/timSort.py",
+    },
+  },
+  "intro-sort": {
+    sortFunction: introSort,
+    features:
+      "イントロソートは、クイックソート、ヒープソート、挿入ソートを組み合わせたハイブリッドソートアルゴリズムです。",
+    calculationMethod:
+      "クイックソートから始まり、再帰の深さが特定のレベルを超えるとヒープソートに切り替わり、小さなパーティションでは挿入ソートを使用します。",
+    complexity: {
+      best: "O(n log n)",
+      average: "O(n log n)",
+      worst: "O(n log n)",
+    },
+    code: {
+      javascript: "/codes/introSort.js",
+      python: "/codes/introSort.py",
+    },
+  },
+  "shell-sort": {
+    sortFunction: shellSort,
+    features:
+      "シェルソートは、挿入ソートの一般化された形式です。",
+    calculationMethod:
+      "要素を特定のギャップでソートし、ギャップを徐々に減らして、最終的にギャップが1になると挿入ソートになります。",
+    complexity: {
+      best: "O(n log n)",
+      average: "O(n log^2 n)",
+      worst: "O(n log^2 n)",
+    },
+    code: {
+      javascript: "/codes/shellSort.js",
+      python: "/codes/shellSort.py",
+    },
+  },
+  "bogo-sort": {
+    sortFunction: bogoSort,
+    features:
+      "ボゴソート（またはパーミュテーションソート、愚かなソート、ストゥージソート）は、ソートアルゴリズムとしては非常に非効率的です。",
+    calculationMethod:
+      "配列がソートされるまで、配列の順序をランダムにシャッフルし、ソートされているかどうかを確認します。",
+    complexity: {
+      best: "O(n)",
+      average: "O((n+1)!)",
+      worst: "無限",
+    },
+    code: {
+      javascript: "/codes/bogoSort.js",
+      python: "/codes/bogoSort.py",
     },
   },
 };
