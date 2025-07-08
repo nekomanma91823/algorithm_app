@@ -96,6 +96,14 @@ export default function RootLayout({
               </a>
             </li>
           </ul>
+          <h2 className="text-xl font-bold mb-4 mt-8">機械学習</h2>
+          <ul>
+            <li>
+              <a href="/ml/linear-regression" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
+                線形回帰
+              </a>
+            </li>
+          </ul>
         </nav>
         <main className="flex-1 p-4 overflow-y-auto">
           {children}
