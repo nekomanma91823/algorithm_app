@@ -25,9 +25,46 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex h-screen`}
       >
-        {children}
+        <nav className="w-64 bg-gray-800 text-white p-4">
+          <h2 className="text-xl font-bold mb-4">アルゴリズム</h2>
+          <ul>
+            <li>
+              <a href="/sort/bubble-sort" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
+                バブルソート
+              </a>
+            </li>
+            <li>
+              <a href="/sort/selection-sort" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
+                選択ソート
+              </a>
+            </li>
+            <li>
+              <a href="/sort/insertion-sort" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
+                挿入ソート
+              </a>
+            </li>
+            <li>
+              <a href="/sort/merge-sort" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
+                マージソート
+              </a>
+            </li>
+            <li>
+              <a href="/sort/quick-sort" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
+                クイックソート
+              </a>
+            </li>
+            <li>
+              <a href="/sort/heap-sort" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
+                ヒープソート
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <main className="flex-1 p-4 overflow-y-auto">
+          {children}
+        </main>
       </body>
     </html>
   );
