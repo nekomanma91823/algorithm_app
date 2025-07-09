@@ -183,6 +183,193 @@ export default function RootLayout({
                 </a>
               </li>
             </ul>
+            <h2 className="text-xl font-bold mb-4 mt-8">デザインパターン</h2>
+            <ul>
+              <li>
+                <a
+                  href="/design-pattern/singleton"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Singleton
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/factory-method"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Factory Method
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/abstract-factory"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Abstract Factory
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/builder"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Builder
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/prototype"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Prototype
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/adapter"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Adapter
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/bridge"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Bridge
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/composite"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Composite
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/decorator"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Decorator
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/facade"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Facade
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/flyweight"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Flyweight
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/proxy"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Proxy
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/chain-of-responsibility"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Chain of Responsibility
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/command"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Command
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/iterator"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Iterator
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/mediator"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Mediator
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/memento"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Memento
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/observer"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Observer
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/state"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  State
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/strategy"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Strategy
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/template-method"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Template Method
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/visitor"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Visitor
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/design-pattern/interpreter"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  Interpreter
+                </a>
+              </li>
+            </ul>
           </nav>
           <main className="flex-1 p-4 overflow-y-auto">{children}</main>
         </ThemeProvider>
