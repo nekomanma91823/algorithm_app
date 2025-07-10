@@ -1,4 +1,3 @@
-```javascript
 async function shellSort(array, setArray, setComparingIndices, setSwappingIndices, setSortedIndices, speed, isSorting) {
     const n = array.length;
 
@@ -32,4 +31,3 @@ async function shellSort(array, setArray, setComparingIndices, setSwappingIndice
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-```

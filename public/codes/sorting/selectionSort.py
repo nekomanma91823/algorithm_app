@@ -1,4 +1,3 @@
-```python
 def selection_sort(arr):
     n = len(arr)
     for i in range(n):
@@ -8,4 +7,3 @@ def selection_sort(arr):
                 min_idx = j
         arr[i], arr[min_idx] = arr[min_idx], arr[i]
     return arr
-```

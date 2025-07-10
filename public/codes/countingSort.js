@@ -1,4 +1,3 @@
-```javascript
 async function countingSort(array, setArray, setComparingIndices, setSwappingIndices, setSortedIndices, speed, isSorting) {
     const n = array.length;
 
@@ -60,4 +59,3 @@ async function countingSort(array, setArray, setComparingIndices, setSwappingInd
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-```

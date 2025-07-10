@@ -1,4 +1,3 @@
-```python
 import random
 import time
 
@@ -29,4 +28,3 @@ def bogo_sort(array, set_array, set_comparing_indices, set_swapping_indices, set
 
     set_sorted_indices(list(range(n)))
     set_comparing_indices([])
-```

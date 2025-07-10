@@ -1,4 +1,3 @@
-```python
 def bubble_sort(arr):
     n = len(arr)
     for i in range(n):
@@ -6,4 +5,3 @@ def bubble_sort(arr):
             if arr[j] > arr[j + 1]:
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
     return arr
-```

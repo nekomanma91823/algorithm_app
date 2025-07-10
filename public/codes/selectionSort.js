@@ -1,4 +1,3 @@
-```javascript
 function selectionSort(arr) {
   let n = arr.length;
   for (let i = 0; i < n; i++) {
@@ -12,4 +11,3 @@ function selectionSort(arr) {
   }
   return arr;
 }
-```

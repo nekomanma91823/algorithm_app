@@ -1,22 +1,15 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import { serialize } from "next-mdx-remote/serialize";
-import rehypePrettyCode from "rehype-pretty-code";
 import SortVisualizer from "@/components/SortVisualizer";
 import { algorithmMap } from "@/data/algorithmMap";
+import CodeBlock from "@/components/CodeBlock";
 
 interface AlgorithmPageProps {
   params: Promise<{
     algorithmName: string;
   }>;
 }
-
-type Source = MDXRemoteSerializeResult<
-  Record<string, unknown>,
-  Record<string, unknown>
->;
 
 const AlgorithmPage: React.FC<AlgorithmPageProps> = ({ params }) => {
   const resolvedParams = React.use(params);
@@ -29,33 +22,27 @@ const AlgorithmPage: React.FC<AlgorithmPageProps> = ({ params }) => {
   const [speed, setSpeed] = useState<number>(50);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const [jsSource, setJsSource] = useState<Source | null>(null);
-  const [pySource, setPySource] = useState<Source | null>(null);
+  const [jsCode, setJsCode] = useState<string>("");
+  const [pyCode, setPyCode] = useState<string>("");
 
   const currentAlgorithm =
     algorithmMap[algorithmName] || algorithmMap["bubble-sort"];
 
   useEffect(() => {
-    const compileSource = async () => {
+    const loadCodeFiles = async () => {
       const { code } = currentAlgorithm;
 
       // ファイルからコードをフェッチ
       const jsCodeResponse = await fetch(code.javascript);
-      const jsCode = await jsCodeResponse.text();
+      const jsCodeText = await jsCodeResponse.text();
 
       const pyCodeResponse = await fetch(code.python);
-      const pyCode = await pyCodeResponse.text();
+      const pyCodeText = await pyCodeResponse.text();
 
-      const js = await serialize(jsCode, {
-        mdxOptions: { rehypePlugins: [rehypePrettyCode] },
-      });
-      const py = await serialize(pyCode, {
-        mdxOptions: { rehypePlugins: [rehypePrettyCode] },
-      });
-      setJsSource(js);
-      setPySource(py);
+      setJsCode(jsCodeText);
+      setPyCode(pyCodeText);
     };
-    compileSource();
+    loadCodeFiles();
     generateRandomArray(20);
   }, [algorithmName]);
 
@@ -168,11 +155,19 @@ const AlgorithmPage: React.FC<AlgorithmPageProps> = ({ params }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <h3 className="text-xl font-medium mb-2">JavaScript</h3>
-            {jsSource && <MDXRemote {...jsSource} />}
+            {jsCode && (
+              <CodeBlock>
+                <code className="language-javascript">{jsCode}</code>
+              </CodeBlock>
+            )}
           </div>
           <div>
             <h3 className="text-xl font-medium mb-2">Python</h3>
-            {pySource && <MDXRemote {...pySource} />}
+            {pyCode && (
+              <CodeBlock>
+                <code className="language-python">{pyCode}</code>
+              </CodeBlock>
+            )}
           </div>
         </div>
       </div>

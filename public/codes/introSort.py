@@ -1,4 +1,3 @@
-```python
 def intro_sort(array, set_array, set_comparing_indices, set_swapping_indices, set_sorted_indices, speed, is_sorting):
     n = len(array)
     MAX_DEPTH_FACTOR = 2  # log2(n) * 2
@@ -120,4 +119,3 @@ def intro_sort(array, set_array, set_comparing_indices, set_swapping_indices, se
     set_comparing_indices([])
 
 import time
-```

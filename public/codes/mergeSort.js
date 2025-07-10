@@ -1,4 +1,3 @@
-```javascript
 function mergeSort(arr) {
   if (arr.length <= 1) {
     return arr;
@@ -24,4 +23,3 @@ function merge(left, right) {
     .concat(left.slice(leftIndex))
     .concat(right.slice(rightIndex));
 }
-```

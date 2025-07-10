@@ -1,4 +1,3 @@
-```python
 def bucket_sort(array, set_array, set_comparing_indices, set_swapping_indices, set_sorted_indices, speed, is_sorting):
     n = len(array)
 
@@ -52,4 +51,3 @@ def bucket_sort(array, set_array, set_comparing_indices, set_swapping_indices, s
     set_comparing_indices([])
 
 import time
-```

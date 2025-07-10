@@ -1,4 +1,3 @@
-```python
 def merge_sort(arr):
     if len(arr) > 1:
         mid = len(arr) // 2
@@ -24,4 +23,3 @@ def merge_sort(arr):
             j += 1
             k += 1
     return arr
-```

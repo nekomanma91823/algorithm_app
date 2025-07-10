@@ -1,4 +1,3 @@
-```javascript
 async function introSort(array, setArray, setComparingIndices, setSwappingIndices, setSortedIndices, speed, isSorting) {
     const n = array.length;
     const MAX_DEPTH_FACTOR = 2; // log2(n) * 2
@@ -145,4 +144,3 @@ async function introSort(array, setArray, setComparingIndices, setSwappingIndice
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-```

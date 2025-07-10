@@ -1,4 +1,3 @@
-```python
 def counting_sort(array, set_array, set_comparing_indices, set_swapping_indices, set_sorted_indices, speed, is_sorting):
     n = len(array)
 
@@ -49,4 +48,3 @@ def counting_sort(array, set_array, set_comparing_indices, set_swapping_indices,
     set_comparing_indices([])
 
 import time
-```
