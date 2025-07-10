@@ -6,6 +6,9 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/common/app-siderbar";
+import AppBreadcrumb from "@/components/common/app-breadcrumb";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -63,315 +66,325 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <nav className="w-64 bg-gray-100 text-black p-4 dark:bg-gray-800 dark:text-white">
-            <ThemeToggle />
-            <h2 className="text-xl font-bold mb-4">アルゴリズム</h2>
-            <ul>
-              <li>
-                <a
-                  href="/sort/bubble-sort"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  バブルソート
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/sort/selection-sort"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  選択ソート
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/sort/insertion-sort"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  挿入ソート
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/sort/merge-sort"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  マージソート
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/sort/quick-sort"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  クイックソート
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/sort/heap-sort"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  ヒープソート
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/sort/counting-sort"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  カウントソート
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/sort/radix-sort"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  基数ソート
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/sort/bucket-sort"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  バケットソート
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/sort/tim-sort"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  ティムソート
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/sort/intro-sort"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  イントロソート
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/sort/shell-sort"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  シェルソート
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/sort/bogo-sort"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  ボゴソート
-                </a>
-              </li>
-            </ul>
-            <h2 className="text-xl font-bold mb-4 mt-8">機械学習</h2>
-            <ul>
-              <li>
-                <a
-                  href="/ml/linear-regression"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  線形回帰
-                </a>
-              </li>
-            </ul>
-            <h2 className="text-xl font-bold mb-4 mt-8">デザインパターン</h2>
-            <ul>
-              <li>
-                <a
-                  href="/design-pattern/singleton"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Singleton
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/factory-method"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Factory Method
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/abstract-factory"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Abstract Factory
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/builder"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Builder
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/prototype"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Prototype
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/adapter"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Adapter
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/bridge"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Bridge
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/composite"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Composite
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/decorator"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Decorator
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/facade"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Facade
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/flyweight"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Flyweight
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/proxy"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Proxy
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/chain-of-responsibility"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Chain of Responsibility
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/command"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Command
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/iterator"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Iterator
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/mediator"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Mediator
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/memento"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Memento
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/observer"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Observer
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/state"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  State
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/strategy"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Strategy
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/template-method"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Template Method
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/visitor"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Visitor
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/design-pattern/interpreter"
-                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                >
-                  Interpreter
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <main className="flex-1 p-4 overflow-y-auto">{children}</main>
+          <SidebarProvider>
+            <AppSidebar />
+
+            {/* <nav className="w-64 bg-gray-100 text-black p-4 dark:bg-gray-800 dark:text-white">
+              <ThemeToggle />
+              <h2 className="text-xl font-bold mb-4">アルゴリズム</h2>
+              <ul>
+                <li>
+                  <a
+                    href="/sort/bubble-sort"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    バブルソート
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/sort/selection-sort"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    選択ソート
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/sort/insertion-sort"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    挿入ソート
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/sort/merge-sort"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    マージソート
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/sort/quick-sort"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    クイックソート
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/sort/heap-sort"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    ヒープソート
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/sort/counting-sort"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    カウントソート
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/sort/radix-sort"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    基数ソート
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/sort/bucket-sort"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    バケットソート
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/sort/tim-sort"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    ティムソート
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/sort/intro-sort"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    イントロソート
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/sort/shell-sort"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    シェルソート
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/sort/bogo-sort"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    ボゴソート
+                  </a>
+                </li>
+              </ul>
+              <h2 className="text-xl font-bold mb-4 mt-8">機械学習</h2>
+              <ul>
+                <li>
+                  <a
+                    href="/ml/linear-regression"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    線形回帰
+                  </a>
+                </li>
+              </ul>
+              <h2 className="text-xl font-bold mb-4 mt-8">デザインパターン</h2>
+              <ul>
+                <li>
+                  <a
+                    href="/design-pattern/singleton"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Singleton
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/factory-method"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Factory Method
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/abstract-factory"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Abstract Factory
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/builder"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Builder
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/prototype"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Prototype
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/adapter"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Adapter
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/bridge"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Bridge
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/composite"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Composite
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/decorator"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Decorator
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/facade"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Facade
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/flyweight"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Flyweight
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/proxy"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Proxy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/chain-of-responsibility"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Chain of Responsibility
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/command"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Command
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/iterator"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Iterator
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/mediator"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Mediator
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/memento"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Memento
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/observer"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Observer
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/state"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    State
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/strategy"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Strategy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/template-method"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Template Method
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/visitor"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Visitor
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/design-pattern/interpreter"
+                    className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                  >
+                    Interpreter
+                  </a>
+                </li>
+              </ul>
+            </nav> */}
+            <main className="flex-1 p-4 overflow-y-auto">
+              <div className="flex items-center justify-start gap-2 mb-4">
+                <SidebarTrigger />
+                <AppBreadcrumb />
+              </div>
+              {children}
+            </main>
+          </SidebarProvider>
         </ThemeProvider>
       </body>
     </html>
