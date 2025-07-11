@@ -11,6 +11,7 @@ import {
   SidebarFooter,
   SidebarMenuSubItem,
   SidebarMenuSub,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
 import {
@@ -22,6 +23,15 @@ import Link from "next/link";
 import { headerData } from "@/data/headerData";
 
 export function AppSidebar() {
+  const {
+    state,
+    open,
+    setOpen,
+    openMobile,
+    setOpenMobile,
+    isMobile,
+    toggleSidebar,
+  } = useSidebar();
   return (
     <Sidebar>
       <SidebarHeader />
@@ -34,7 +44,7 @@ export function AppSidebar() {
             {headerData.map((section, index) => (
               <Collapsible
                 key={section.section}
-                defaultOpen
+                defaultOpen={false}
                 className="group/collapsible"
               >
                 <SidebarMenuItem>

@@ -8,7 +8,7 @@ interface PatternDetails {
   cons: string;
   uml: string;
   code: {
-    typescript: string;
+    javascript: string;
     python: string;
   };
 }
@@ -34,7 +34,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         }
     `,
     code: {
-      typescript: "/codes/design-pattern/creational/singleton.ts",
+      javascript: "/codes/design-pattern/creational/singleton.ts",
       python: "/codes/design-pattern/creational/singleton.py",
     },
   },
@@ -72,7 +72,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         ConcreteCreator ..> ConcreteProduct : creates
     `,
     code: {
-      typescript: "/codes/design-pattern/creational/factoryMethod.ts",
+      javascript: "/codes/design-pattern/creational/factoryMethod.ts",
       python: "/codes/design-pattern/creational/factoryMethod.py",
     },
   },
@@ -140,7 +140,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         ConcreteFactory2 ..> ConcreteProductB2 : creates
     `,
     code: {
-      typescript: "/codes/design-pattern/creational/abstractFactory.ts",
+      javascript: "/codes/design-pattern/creational/abstractFactory.ts",
       python: "/codes/design-pattern/creational/abstractFactory.py",
     },
   },
@@ -188,7 +188,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         ConcreteBuilder ..> Product : creates
     `,
     code: {
-      typescript: "/codes/design-pattern/creational/builder.ts",
+      javascript: "/codes/design-pattern/creational/builder.ts",
       python: "/codes/design-pattern/creational/builder.py",
     },
   },
@@ -221,7 +221,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         Client --> Prototype : uses
     `,
     code: {
-      typescript: "/codes/design-pattern/creational/prototype.ts",
+      javascript: "/codes/design-pattern/creational/prototype.ts",
       python: "/codes/design-pattern/creational/prototype.py",
     },
   },
@@ -254,7 +254,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         Adapter --o Adaptee
     `,
     code: {
-      typescript: "/codes/design-pattern/structural/adapter.ts",
+      javascript: "/codes/design-pattern/structural/adapter.ts",
       python: "/codes/design-pattern/structural/adapter.py",
     },
   },
@@ -295,7 +295,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         Implementor <|.. ConcreteImplementorB
     `,
     code: {
-      typescript: "/codes/design-pattern/structural/bridge.ts",
+      javascript: "/codes/design-pattern/structural/bridge.ts",
       python: "/codes/design-pattern/structural/bridge.py",
     },
   },
@@ -335,7 +335,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         Composite o-- Component
     `,
     code: {
-      typescript: "/codes/design-pattern/structural/composite.ts",
+      javascript: "/codes/design-pattern/structural/composite.ts",
       python: "/codes/design-pattern/structural/composite.py",
     },
   },
@@ -377,7 +377,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         Decorator o-- Component
     `,
     code: {
-      typescript: "/codes/design-pattern/structural/decorator.ts",
+      javascript: "/codes/design-pattern/structural/decorator.ts",
       python: "/codes/design-pattern/structural/decorator.py",
     },
   },
@@ -411,7 +411,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         Client --> Facade
     `,
     code: {
-      typescript: "/codes/design-pattern/structural/facade.ts",
+      javascript: "/codes/design-pattern/structural/facade.ts",
       python: "/codes/design-pattern/structural/facade.py",
     },
   },
@@ -451,7 +451,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         Client --> Flyweight
     `,
     code: {
-      typescript: "/codes/design-pattern/structural/flyweight.ts",
+      javascript: "/codes/design-pattern/structural/flyweight.ts",
       python: "/codes/design-pattern/structural/flyweight.py",
     },
   },
@@ -486,7 +486,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         Client --> Subject
     `,
     code: {
-      typescript: "/codes/design-pattern/structural/proxy.ts",
+      javascript: "/codes/design-pattern/structural/proxy.ts",
       python: "/codes/design-pattern/structural/proxy.py",
     },
   },
@@ -525,7 +525,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         Client --> Handler
     `,
     code: {
-      typescript: "/codes/design-pattern/behavioral/chainOfResponsibility.ts",
+      javascript: "/codes/design-pattern/behavioral/chainOfResponsibility.ts",
       python: "/codes/design-pattern/behavioral/chainOfResponsibility.py",
     },
   },
@@ -566,7 +566,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         Client --> Receiver
     `,
     code: {
-      typescript: "/codes/design-pattern/behavioral/command.ts",
+      javascript: "/codes/design-pattern/behavioral/command.ts",
       python: "/codes/design-pattern/behavioral/command.py",
     },
   },
@@ -610,7 +610,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         Client --> Iterator
     `,
     code: {
-      typescript: "/codes/design-pattern/behavioral/iterator.ts",
+      javascript: "/codes/design-pattern/behavioral/iterator.ts",
       python: "/codes/design-pattern/behavioral/iterator.py",
     },
   },
@@ -658,7 +658,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         Client --> Component
     `,
     code: {
-      typescript: "/codes/design-pattern/behavioral/mediator.ts",
+      javascript: "/codes/design-pattern/behavioral/mediator.ts",
       python: "/codes/design-pattern/behavioral/mediator.py",
     },
   },
@@ -697,7 +697,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         Client --> Caretaker
     `,
     code: {
-      typescript: "/codes/design-pattern/behavioral/memento.ts",
+      javascript: "/codes/design-pattern/behavioral/memento.ts",
       python: "/codes/design-pattern/behavioral/memento.py",
     },
   },
@@ -739,7 +739,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         Subject o-- Observer
     `,
     code: {
-      typescript: "/codes/design-pattern/behavioral/observer.ts",
+      javascript: "/codes/design-pattern/behavioral/observer.ts",
       python: "/codes/design-pattern/behavioral/observer.py",
     },
   },
@@ -778,7 +778,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         Client --> Context
     `,
     code: {
-      typescript: "/codes/design-pattern/behavioral/state.ts",
+      javascript: "/codes/design-pattern/behavioral/state.ts",
       python: "/codes/design-pattern/behavioral/state.py",
     },
   },
@@ -816,7 +816,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         Strategy <|.. ConcreteStrategyB
     `,
     code: {
-      typescript: "/codes/design-pattern/behavioral/strategy.ts",
+      javascript: "/codes/design-pattern/behavioral/strategy.ts",
       python: "/codes/design-pattern/behavioral/strategy.py",
     },
   },
@@ -846,7 +846,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         AbstractClass <|-- ConcreteClass
     `,
     code: {
-      typescript: "/codes/design-pattern/behavioral/templateMethod.ts",
+      javascript: "/codes/design-pattern/behavioral/templateMethod.ts",
       python: "/codes/design-pattern/behavioral/templateMethod.py",
     },
   },
@@ -899,7 +899,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         Client --> Visitor
     `,
     code: {
-      typescript: "/codes/design-pattern/behavioral/visitor.ts",
+      javascript: "/codes/design-pattern/behavioral/visitor.ts",
       python: "/codes/design-pattern/behavioral/visitor.py",
     },
   },
@@ -941,7 +941,7 @@ export const patternMap: { [key: string]: PatternDetails } = {
         Client --> Context
     `,
     code: {
-      typescript: "/codes/design-pattern/behavioral/interpreter.ts",
+      javascript: "/codes/design-pattern/behavioral/interpreter.ts",
       python: "/codes/design-pattern/behavioral/interpreter.py",
     },
   },
