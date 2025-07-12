@@ -163,4 +163,13 @@ export const headerData = [
       },
     ],
   },
+  {
+    section: "ネットワーク",
+    content: [
+      {
+        title: "OSI参照モデル",
+        url: "/network/osi-model",
+      },
+    ],
+  },
 ];
