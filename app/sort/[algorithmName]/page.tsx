@@ -5,6 +5,7 @@ import SortVisualizer from "@/components/SortVisualizer";
 import { algorithmMap } from "@/data/algorithmMap";
 import CodeBlock from "@/components/CodeBlock";
 
+export const runtime = "edge";
 interface AlgorithmPageProps {
   params: Promise<{
     algorithmName: string;
