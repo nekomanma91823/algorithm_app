@@ -44,7 +44,7 @@ const AlgorithmPage: React.FC<AlgorithmPageProps> = ({ params }) => {
     };
     loadCodeFiles();
     generateRandomArray(20);
-  }, [algorithmName]);
+  }, [algorithmName, currentAlgorithm]);
 
   const generateRandomArray = (size: number) => {
     const newArray = Array.from(

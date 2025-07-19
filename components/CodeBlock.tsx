@@ -17,7 +17,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({ children }) => {
 
   // Children will be a React element, specifically the <code> tag
   if (React.isValidElement(children) && children.props) {
-    const props = children.props as any;
+    const props = children.props as { children?: string; className?: string };
     codeContent = props.children || "";
     const className = props.className || "";
     const match = className.match(/language-(\w+)/);

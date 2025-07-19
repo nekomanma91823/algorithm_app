@@ -23,7 +23,7 @@ const OSIModelPage: React.FC = () => {
         const jsCodeResponse = await fetch(code.javascript);
         const jsCodeText = await jsCodeResponse.text();
         setJsCode(jsCodeText);
-      } catch (e) {
+      } catch {
         setJsCode("");
       }
 
@@ -31,7 +31,7 @@ const OSIModelPage: React.FC = () => {
         const pyCodeResponse = await fetch(code.python);
         const pyCodeText = await pyCodeResponse.text();
         setPyCode(pyCodeText);
-      } catch (e) {
+      } catch {
         setPyCode("");
       }
     };

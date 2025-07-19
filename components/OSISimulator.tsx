@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 
 interface LayerData {
   name: string;
@@ -119,11 +119,11 @@ const OSISimulator: React.FC = () => {
     };
   };
 
-  const getHeaderColor = (headerNumber: string) => {
-    const layerIndex = 7 - parseInt(headerNumber.charAt(1));
-    const layer = layersData[layerIndex];
-    return layer.color;
-  };
+  // const getHeaderColor = (headerNumber: string) => {
+  //   const layerIndex = 7 - parseInt(headerNumber.charAt(1));
+  //   const layer = layersData[layerIndex];
+  //   return layer.color;
+  // };
 
   const resetSimulation = () => {
     setIsSimulating(false);
@@ -313,7 +313,7 @@ const OSISimulator: React.FC = () => {
                                 : "none",
                           }}
                         >
-                          📝 データ: "{item}"
+                          📝 データ: &quot;{item}&quot;
                         </div>
                       );
                     }

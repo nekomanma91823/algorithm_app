@@ -29,7 +29,7 @@ const PatternPage: React.FC<PatternPageProps> = ({ params }) => {
         const jsCodeResponse = await fetch(code.javascript);
         const jsCodeText = await jsCodeResponse.text();
         setJsCode(jsCodeText);
-      } catch (e) {
+      } catch {
         setJsCode("");
       }
 
@@ -37,7 +37,7 @@ const PatternPage: React.FC<PatternPageProps> = ({ params }) => {
         const pyCodeResponse = await fetch(code.python);
         const pyCodeText = await pyCodeResponse.text();
         setPyCode(pyCodeText);
-      } catch (e) {
+      } catch {
         setPyCode("");
       }
     };
