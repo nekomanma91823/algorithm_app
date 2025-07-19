@@ -5,6 +5,7 @@ import CodeBlock from "@/components/CodeBlock";
 import Mermaid from "@/components/Mermaid";
 import { patternMap } from "@/data/patternMap";
 
+export const runtime = "edge";
 interface PatternPageProps {
   params: Promise<{
     patternName: string;
