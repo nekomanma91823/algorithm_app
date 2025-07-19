@@ -1,4 +1,4 @@
-```javascript
+javascript;
 async function bogoSort(
   array,
   setArray,
@@ -46,4 +46,3 @@ async function bogoSort(
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
-```
