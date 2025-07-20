@@ -20,7 +20,7 @@ import {
   CollapsibleTrigger,
 } from "../ui/collapsible";
 import Link from "next/link";
-import { headerData } from "@/data/headerData";
+import { sidebarData } from "@/data/sidebarData";
 
 export function AppSidebar() {
   // const {
@@ -41,7 +41,7 @@ export function AppSidebar() {
         <SidebarGroupContent>
           <SidebarMenu></SidebarMenu>
           <SidebarMenu>
-            {headerData.map((section, index) => (
+            {sidebarData.map((section, index) => (
               <Collapsible
                 key={index}
                 defaultOpen={false}
