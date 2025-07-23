@@ -1,38 +1,58 @@
 // import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
 export const sidebarData = [
   // =============================================
+  // 基本（コンピュータサイエンスの基礎）
+  // =============================================
+  {
+    section: "基礎",
+    content: [
+      { title: "CPUの仕組み", url: "/basics/cpu-architecture" },
+      { title: "GPUの仕組み", url: "/basics/gpu-architecture" },
+      { title: "メモリとストレージ", url: "/basics/memory-and-storage" },
+      { title: "ハードウェア", url: "/basics/hardware" },
+      { title: "ソフトウェア", url: "/basics/software" },
+      { title: "OSの役割", url: "/basics/os-role" },
+      { title: "プロセスとスレッド", url: "/basics/process-thread" },
+      { title: "メモリ管理", url: "/basics/memory-management" },
+      { title: "論理演算", url: "/basics/logical-operations" },
+      { title: "2進数と16進数", url: "/basics/number-systems" },
+      { title: "集合", url: "/basics/set-theory" },
+      { title: "計算量", url: "/basics/complexity" },
+    ],
+  },
+  // =============================================
   // データ構造
   // =============================================
-  // {
-  //   section: "データ構造",
-  //   content: [
-  //     { title: "配列", url: "/data-structure/array" },
-  //     { title: "連結リスト", url: "/data-structure/linked-list" },
-  //     { title: "スタック", url: "/data-structure/stack" },
-  //     { title: "キュー", url: "/data-structure/queue" },
-  //     { title: "ハッシュテーブル", url: "/data-structure/hash-table" },
-  //     { title: "二分探索木", url: "/data-structure/binary-search-tree" },
-  //     { title: "ヒープ", url: "/data-structure/heap" },
-  //     { title: "グラフ", url: "/data-structure/graph" },
-  //     { title: "トライ木", url: "/data-structure/trie" },
-  //     { title: "AVL木", url: "/data-structure/avl-tree" },
-  //     { title: "B木", url: "/data-structure/b-tree" },
-  //   ],
-  // },
+  {
+    section: "データ構造",
+    content: [
+      { title: "配列", url: "/data-structure/array" },
+      { title: "連結リスト", url: "/data-structure/linked-list" },
+      { title: "スタック", url: "/data-structure/stack" },
+      { title: "キュー", url: "/data-structure/queue" },
+      { title: "ハッシュテーブル", url: "/data-structure/hash-table" },
+      { title: "二分探索木", url: "/data-structure/binary-search-tree" },
+      { title: "ヒープ", url: "/data-structure/heap" },
+      { title: "グラフ", url: "/data-structure/graph" },
+      { title: "トライ木", url: "/data-structure/trie" },
+      { title: "AVL木", url: "/data-structure/avl-tree" },
+      { title: "B木", url: "/data-structure/b-tree" },
+    ],
+  },
   // =============================================
   // 探索アルゴリズム
   // =============================================
-  // {
-  //   section: "探索アルゴリズム",
-  //   content: [
-  //     { title: "線形探索", url: "/search/linear-search" },
-  //     { title: "二分探索", url: "/search/binary-search" },
-  //     { title: "幅優先探索 (BFS)", url: "/search/bfs" },
-  //     { title: "深さ優先探索 (DFS)", url: "/search/dfs" },
-  //     { title: "ダイクストラ法", url: "/search/dijkstra" },
-  //     { title: "A* (A-star) アルゴリズム", url: "/search/a-star" },
-  //   ],
-  // },
+  {
+    section: "探索アルゴリズム",
+    content: [
+      { title: "線形探索", url: "/search/linear-search" },
+      { title: "二分探索", url: "/search/binary-search" },
+      { title: "幅優先探索 (BFS)", url: "/search/bfs" },
+      { title: "深さ優先探索 (DFS)", url: "/search/dfs" },
+      { title: "ダイクストラ法", url: "/search/dijkstra" },
+      { title: "A* (A-star) アルゴリズム", url: "/search/a-star" },
+    ],
+  },
   // =============================================
   // ソートアルゴリズム
   // =============================================
@@ -54,21 +74,6 @@ export const sidebarData = [
       { title: "ボゴソート", url: "/sort/bogo-sort" },
     ],
   },
-  // =============================================
-  // 計算量
-  // =============================================
-  // {
-  //   section: "計算量",
-  //   content: [
-  //     { title: "Big O記法とは", url: "/complexity/big-o" },
-  //     { title: "O(1) - 定数時間", url: "/complexity/constant" },
-  //     { title: "O(log n) - 対数時間", url: "/complexity/logarithmic" },
-  //     { title: "O(n) - 線形時間", url: "/complexity/linear" },
-  //     { title: "O(n log n) - 線形対数時間", url: "/complexity/log-linear" },
-  //     { title: "O(n^2) - 二乗時間", url: "/complexity/quadratic" },
-  //     { title: "O(2^n) - 指数時間", url: "/complexity/exponential" },
-  //   ],
-  // },
   // =============================================
   // デザインパターン
   // =============================================
@@ -158,6 +163,57 @@ export const sidebarData = [
   //     { title: "共通鍵暗号と公開鍵暗号", url: "/security/encryption" },
   //     { title: "クロスサイトスクリプティング (XSS)", url: "/security/xss" },
   //     { title: "SQLインジェクション", url: "/security/sql-injection" },
+  //   ],
+  // },
+  // =============================================
+  // バージョン管理
+  // =============================================
+  // {
+  //   section: "バージョン管理",
+  //   content: [
+  //     {
+  //       title: "Gitの基本（リポジトリ, コミット）",
+  //       url: "/version-control/git-basics",
+  //     },
+  //     {
+  //       title: "ブランチの分岐とマージ",
+  //       url: "/version-control/branch-and-merge",
+  //     },
+  //     { title: "リベースの仕組み", url: "/version-control/rebase" },
+  //     { title: "競合（コンフリクト）の解決", url: "/version-control/conflict" },
+  //   ],
+  // },
+  // =============================================
+  // コンテナ技術
+  // =============================================
+  // {
+  //   section: "コンテナ技術",
+  //   content: [
+  //     { title: "Dockerとは？", url: "/container/what-is-docker" },
+  //     { title: "イメージとコンテナ", url: "/container/image-vs-container" },
+  //     { title: "Dockerfileの仕組み", url: "/container/dockerfile" },
+  //     { title: "Docker Compose", url: "/container/docker-compose" },
+  //   ],
+  // },
+  // =============================================
+  // Webの仕組み
+  // =============================================
+  // {
+  //   section: "Webの仕組み",
+  //   content: [
+  //     { title: "ブラウザのレンダリング", url: "/web/browser-rendering" },
+  //     { title: "イベントループ", url: "/web/event-loop" },
+  //   ],
+  // },
+  // =============================================
+  // 正規表現
+  // =============================================
+  // {
+  //   section: "正規表現",
+  //   content: [
+  //     { title: "正規表現とは？", url: "/regex/what-is-regex" },
+  //     { title: "メタ文字と量指定子", url: "/regex/meta-and-quantifiers" },
+  //     { title: "グループ化とキャプチャ", url: "/regex/grouping-and-capturing" },
   //   ],
   // },
 ];
