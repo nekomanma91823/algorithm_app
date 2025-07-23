@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 命令
 
-## Getting Started
+以下の詳細と制約条件に従って、情報科学の学習サイト「AlgoPrism」に掲載するための解説ページを生成してください。セクションごとに動的ページで生成されると、管理しやすくて、よいです。プリズム・デモの部分はコンポーネントとしてそのページの階層に作成して、動的に切り替えるようにしてください。
 
-First, run the development server:
+# 役割
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+あなたは、複雑な IT 技術を初学者にも分かりやすく解説する専門家です。特に、概念を視覚的なイメージや身近な例え話に変換する能力に長けています。
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# 対象読者
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+プログラミングの学習を始めたばかりの学生や、キャリアチェンジを目指す社会人。難しい専門用語はまだ知らないが、学習意欲は非常に高い。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# トーン＆マナー
 
-## Learn More
+- 専門的でありながらも、親しみやすく、語りかけるような丁寧な口調。
+- 断定的な表現は使いつつも、威圧感を与えない、穏やかでクリアな文章。
+- 「プリズム」という名前のように、知的好奇心を刺激するような少しワクワクする雰囲気。
 
-To learn more about Next.js, take a look at the following resources:
+# 生成するコンテンツの詳細
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## トピック：【ここに具体的なテーマ名を入れる。例：バブルソート】
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+以下の構成要素をすべて含んだ記事を作成してください。
 
-## Deploy on Vercel
+### 1. プリズム・デモ：見て、触って、理解する
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **前置き**: このトピックがなぜテキストだけでは理解しにくいのかを軽く前置きし、この実践形式のインタラクティブ・デモがその理解をどう助けるのか、その価値を伝えてください。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **次への橋渡し**: デモでの観察が、後の「仕組みの解説」や「特徴」セクションの理解に繋がることを示唆する一文を加えてください。
+
+### 2. 導入（一言でいうと）
+
+- この技術が「何なのか」を一言で、かつキャッチーに表現してください。
+- どのような問題を解決するために生まれたのか、その目的を簡潔に説明してください。
+
+### 3. 身近な例え話
+
+- この概念を、日常生活の中にある具体的な物事や出来事で例えて説明してください。
+
+### 4. 仕組みのステップ解説
+
+- この技術が動作する仕組みを、初学者でも理解できるようにステップ・バイ・ステップで丁寧に解説してください。
+
+### 5. 特徴（長所と短所）
+
+- この技術の主な長所と短所を、それぞれリストアップしてください。
+- 計算量についても触れ、それが何を意味するのかを分かりやすく補足してください。
+
+### 6. まとめ
+
+- ページ全体の要点を簡潔にまとめてください。
+- 読者が次に何を学ぶべきか、関連するトピックを提示して、さらなる学習を促してください。
+
+### 7
+
+. 疑似コード
+
+- ソースコードの場所は/codes/[section 名]/[topic 名].py or .js
+- プログラミング言語に依存しない、シンプルな擬似コードを提示してください。
+- コードの各行が何をしているのか、コメント形式で簡単な注釈を加えてください。
+
+# 制約条件
+
+- 全体を Markdown 形式で記述してください。
+- 見出し、リスト、太字などを適切に使い、視覚的に分かりやすい構造にしてください。
+- 専門用語には、初学者向けに簡単な注釈を加えてください。

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import SortVisualizer from "@/components/SortVisualizer";
-import { algorithmMap } from "@/data/algorithmMap";
+import { algorithmMap } from "@/data/sortMap";
 import CodeBlock from "@/components/CodeBlock";
 
 export const runtime = "edge";
@@ -141,6 +141,8 @@ const AlgorithmPage: React.FC<AlgorithmPageProps> = ({ params }) => {
         <h2 className="text-2xl font-semibold mb-2">解説</h2>
         <h3 className="text-xl font-medium mb-1">特徴</h3>
         <p>{currentAlgorithm.features}</p>
+        <h3 className="text-xl font-medium mb-1">例え</h3>
+        <p>{currentAlgorithm.example}</p>
 
         <h3 className="text-xl font-medium mb-1 mt-4">計算方法</h3>
         <p>{currentAlgorithm.calculationMethod}</p>
