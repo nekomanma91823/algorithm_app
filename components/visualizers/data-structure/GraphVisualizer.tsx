@@ -17,9 +17,7 @@ interface GraphEdge {
   weight?: number;
 }
 
-interface GraphVisualizerProps {}
-
-const GraphVisualizer: React.FC<GraphVisualizerProps> = () => {
+const GraphVisualizer: React.FC = () => {
   const [nodes, setNodes] = useState<GraphNode[]>([
     { id: 'A', x: 150, y: 100, label: 'A' },
     { id: 'B', x: 250, y: 100, label: 'B' },

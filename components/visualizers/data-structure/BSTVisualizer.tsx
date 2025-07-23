@@ -10,9 +10,7 @@ interface TreeNode {
   right: TreeNode | null;
 }
 
-interface BSTVisualizerProps {}
-
-const BSTVisualizer: React.FC<BSTVisualizerProps> = () => {
+const BSTVisualizer: React.FC = () => {
   const [tree, setTree] = useState<TreeNode | null>({
     value: 50,
     left: {

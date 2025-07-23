@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Play, Pause, RotateCcw } from "lucide-react";
 
@@ -38,16 +38,25 @@ const SearchVisualizer: React.FC<SearchVisualizerProps> = ({
     algorithmName
   );
 
-  // アルゴリズム別の初期化
-  useEffect(() => {
-    if (isArrayAlgorithm) {
-      generateArray();
-    } else if (isGraphAlgorithm) {
-      generateGraph();
-    }
-  }, [algorithmName]);
+  const reset = useCallback(() => {
+    setCurrentIndex(-1);
+    setFoundIndex(-1);
+    setIsSearching(false);
+    setSearchComplete(false);
+    searchRef.current = false;
+  }, []);
 
-  const generateArray = () => {
+  const resetGraph = useCallback(() => {
+    setVisitedNodes(new Set());
+    setCurrentNode("");
+    setQueue([]);
+    setStack([]);
+    setIsSearching(false);
+    setSearchComplete(false);
+    searchRef.current = false;
+  }, []);
+
+  const generateArray = useCallback(() => {
     let newArray: number[];
 
     if (algorithmName === "binary-search") {
@@ -66,9 +75,9 @@ const SearchVisualizer: React.FC<SearchVisualizerProps> = ({
     const randomIndex = Math.floor(Math.random() * newArray.length);
     setTarget(newArray[randomIndex]);
     reset();
-  };
+  }, [algorithmName, reset]);
 
-  const generateGraph = () => {
+  const generateGraph = useCallback(() => {
     // サンプルグラフの生成（深さ5階層の二分木構造）
     const sampleGraph = {
       // レベル0（ルート）
@@ -161,25 +170,22 @@ const SearchVisualizer: React.FC<SearchVisualizerProps> = ({
     setNodePositions(positions);
     setTargetNode("EE"); // 最深部の右端ノードをターゲットに設定
     resetGraph();
-  };
+  }, [resetGraph]);
 
-  const reset = () => {
-    setCurrentIndex(-1);
-    setFoundIndex(-1);
-    setIsSearching(false);
-    setSearchComplete(false);
-    searchRef.current = false;
-  };
-
-  const resetGraph = () => {
-    setVisitedNodes(new Set());
-    setCurrentNode("");
-    setQueue([]);
-    setStack([]);
-    setIsSearching(false);
-    setSearchComplete(false);
-    searchRef.current = false;
-  };
+  // アルゴリズム別の初期化
+  useEffect(() => {
+    if (isArrayAlgorithm) {
+      generateArray();
+    } else if (isGraphAlgorithm) {
+      generateGraph();
+    }
+  }, [
+    algorithmName,
+    isArrayAlgorithm,
+    isGraphAlgorithm,
+    generateArray,
+    generateGraph,
+  ]);
 
   const sleep = (ms: number) =>
     new Promise((resolve) => setTimeout(resolve, ms));

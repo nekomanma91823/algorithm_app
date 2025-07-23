@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -227,7 +227,7 @@ const MemoryHierarchyDemo: React.FC = () => {
       <div className="space-y-4 mb-6">
         <h4 className="font-semibold text-gray-800">メモリ階層</h4>
         {memoryLevels.map((level, index) => (
-          <div key={level.name} className="border rounded-lg p-4">
+          <div key={index} className="border rounded-lg p-4">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-3">
                 <div className={`w-4 h-4 rounded ${level.color}`}></div>

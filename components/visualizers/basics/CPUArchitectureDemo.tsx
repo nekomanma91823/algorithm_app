@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 
 interface CPUState {
   accumulator: number;
@@ -20,11 +19,11 @@ const CPUArchitectureDemo: React.FC = () => {
     instructionRegister: null,
     memory: new Array(16).fill(0),
     running: false,
-    step: 0
+    step: 0,
   });
 
   const [currentOperation, setCurrentOperation] = useState<string>("待機中");
-  const [program, setProgram] = useState<number[]>([0x15, 0x36, 0x27, 0x00]);
+  const program = [0x15, 0x36, 0x27, 0x00];
 
   // プログラムをロード
   const loadProgram = () => {
@@ -35,14 +34,14 @@ const CPUArchitectureDemo: React.FC = () => {
     // データも配置
     newMemory[5] = 5; // 値5
     newMemory[6] = 3; // 値3
-    
+
     setCpuState({
       ...cpuState,
       memory: newMemory,
       programCounter: 0,
       accumulator: 0,
       running: true,
-      step: 0
+      step: 0,
     });
     setCurrentOperation("プログラムをメモリにロードしました");
   };
@@ -53,13 +52,16 @@ const CPUArchitectureDemo: React.FC = () => {
 
     const instruction = cpuState.memory[cpuState.programCounter];
     const opcode = instruction >> 4;
-    const operand = instruction & 0x0F;
+    const operand = instruction & 0x0f;
 
+    // eslint-disable-next-line prefer-const
     let newState = { ...cpuState };
     let operation = "";
 
     // フェッチフェーズ
-    newState.instructionRegister = `0x${instruction.toString(16).toUpperCase()}`;
+    newState.instructionRegister = `0x${instruction
+      .toString(16)
+      .toUpperCase()}`;
     newState.programCounter++;
 
     // 実行フェーズ
@@ -97,7 +99,7 @@ const CPUArchitectureDemo: React.FC = () => {
       instructionRegister: null,
       memory: new Array(16).fill(0),
       running: false,
-      step: 0
+      step: 0,
     });
     setCurrentOperation("待機中");
   };
@@ -105,14 +107,14 @@ const CPUArchitectureDemo: React.FC = () => {
   return (
     <div className="p-6 bg-white rounded-lg border">
       <h3 className="text-xl font-bold mb-4 text-center">CPUシミュレータ</h3>
-      
+
       {/* コントロールパネル */}
       <div className="flex gap-2 mb-6 justify-center">
         <Button onClick={loadProgram} variant="outline">
           プログラムロード
         </Button>
-        <Button 
-          onClick={executeStep} 
+        <Button
+          onClick={executeStep}
           disabled={!cpuState.running}
           className="bg-blue-500 hover:bg-blue-600"
         >
@@ -159,10 +161,14 @@ const CPUArchitectureDemo: React.FC = () => {
             </div>
             <div className="mb-2">
               <span className="font-medium">状態:</span>
-              <span className={`ml-2 px-2 py-1 rounded text-xs ${
-                cpuState.running ? 'bg-green-200 text-green-800' : 'bg-gray-200 text-gray-800'
-              }`}>
-                {cpuState.running ? '実行中' : '停止'}
+              <span
+                className={`ml-2 px-2 py-1 rounded text-xs ${
+                  cpuState.running
+                    ? "bg-green-200 text-green-800"
+                    : "bg-gray-200 text-gray-800"
+                }`}
+              >
+                {cpuState.running ? "実行中" : "停止"}
               </span>
             </div>
           </div>
@@ -171,9 +177,7 @@ const CPUArchitectureDemo: React.FC = () => {
         {/* 現在の操作 */}
         <div className="bg-yellow-50 p-4 rounded-lg">
           <h4 className="font-semibold text-yellow-800 mb-2">現在の操作</h4>
-          <div className="text-sm text-yellow-700">
-            {currentOperation}
-          </div>
+          <div className="text-sm text-yellow-700">{currentOperation}</div>
         </div>
       </div>
 
@@ -184,12 +188,14 @@ const CPUArchitectureDemo: React.FC = () => {
           {cpuState.memory.slice(0, 8).map((value, index) => (
             <div key={index} className="text-center">
               <div className="text-xs text-gray-500 mb-1">[{index}]</div>
-              <div className={`p-2 rounded text-sm font-mono border ${
-                index === cpuState.programCounter - 1 && cpuState.running 
-                  ? 'bg-blue-200 border-blue-400' 
-                  : 'bg-white border-gray-300'
-              }`}>
-                0x{value.toString(16).toUpperCase().padStart(2, '0')}
+              <div
+                className={`p-2 rounded text-sm font-mono border ${
+                  index === cpuState.programCounter - 1 && cpuState.running
+                    ? "bg-blue-200 border-blue-400"
+                    : "bg-white border-gray-300"
+                }`}
+              >
+                0x{value.toString(16).toUpperCase().padStart(2, "0")}
               </div>
             </div>
           ))}
@@ -210,10 +216,18 @@ const CPUArchitectureDemo: React.FC = () => {
       <div className="mt-4 p-4 bg-indigo-50 rounded-lg">
         <h4 className="font-semibold text-indigo-800 mb-2">プログラム説明</h4>
         <div className="text-sm text-indigo-700 space-y-1">
-          <div>• <code>0x15</code>: LOAD メモリ[5]の値(5)を累積レジスタへ</div>
-          <div>• <code>0x36</code>: ADD メモリ[6]の値(3)を累積レジスタに加算</div>
-          <div>• <code>0x27</code>: STORE 累積レジスタの値をメモリ[7]へ保存</div>
-          <div>• <code>0x00</code>: HALT プログラム終了</div>
+          <div>
+            • <code>0x15</code>: LOAD メモリ[5]の値(5)を累積レジスタへ
+          </div>
+          <div>
+            • <code>0x36</code>: ADD メモリ[6]の値(3)を累積レジスタに加算
+          </div>
+          <div>
+            • <code>0x27</code>: STORE 累積レジスタの値をメモリ[7]へ保存
+          </div>
+          <div>
+            • <code>0x00</code>: HALT プログラム終了
+          </div>
           <div className="mt-2 font-medium">結果: 5 + 3 = 8 の計算を実行</div>
         </div>
       </div>

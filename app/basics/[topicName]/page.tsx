@@ -4,15 +4,6 @@ import React, { useState, useEffect } from "react";
 import { basicsMap } from "@/data/basicsMap";
 import { glossary } from "@/data/glossary";
 
-// ビジュアライザーコンポーネントの動的インポート
-import CPUArchitectureDemo from "@/components/visualizers/basics/CPUArchitectureDemo";
-import LogicalOperationsDemo from "@/components/visualizers/basics/LogicalOperationsDemo";
-import NumberSystemsDemo from "@/components/visualizers/basics/NumberSystemsDemo";
-import SetTheoryDemo from "@/components/visualizers/basics/SetTheoryDemo";
-import MemoryHierarchyDemo from "@/components/visualizers/basics/MemoryHierarchyDemo";
-import ProcessThreadDemo from "@/components/visualizers/basics/ProcessThreadDemo";
-import ComplexityDemo from "@/components/visualizers/basics/ComplexityDemo";
-
 export const runtime = "edge";
 
 // 用語辞書
@@ -46,8 +37,6 @@ const BasicsPage: React.FC<BasicsPageProps> = ({ params }) => {
     if (!text) return text;
 
     let processedText = text;
-    const termElements: React.ReactNode[] = [];
-    let lastIndex = 0;
 
     // 用語辞書の各用語を検索
     Object.keys(glossary).forEach((term) => {
@@ -148,84 +137,6 @@ const BasicsPage: React.FC<BasicsPageProps> = ({ params }) => {
     setHoverTimeout(timeout);
   };
 
-  // ビジュアライザーコンポーネントのマッピング
-  const getVisualizer = () => {
-    switch (topicName) {
-      case "cpu-architecture":
-        return <CPUArchitectureDemo />;
-      case "logical-operations":
-        return <LogicalOperationsDemo />;
-      case "number-systems":
-        return <NumberSystemsDemo />;
-      case "set-theory":
-        return <SetTheoryDemo />;
-      case "memory-and-storage":
-        return <MemoryHierarchyDemo />;
-      case "process-thread":
-        return <ProcessThreadDemo />;
-      case "gpu-architecture":
-        return (
-          <div className="text-center text-gray-500 py-8">
-            <div className="text-6xl mb-4">🖥️</div>
-            <p className="text-lg font-medium">GPU並列処理の概念図</p>
-            <p className="text-sm mt-2">
-              数千のコアが並列して動作する様子を想像してみましょう
-            </p>
-          </div>
-        );
-      case "hardware":
-        return (
-          <div className="text-center text-gray-500 py-8">
-            <div className="text-6xl mb-4">🔧</div>
-            <p className="text-lg font-medium">ハードウェアコンポーネント図</p>
-            <p className="text-sm mt-2">
-              CPU、メモリ、ストレージの関係を理解しましょう
-            </p>
-          </div>
-        );
-      case "software":
-        return (
-          <div className="text-center text-gray-500 py-8">
-            <div className="text-6xl mb-4">💾</div>
-            <p className="text-lg font-medium">ソフトウェア階層構造</p>
-            <p className="text-sm mt-2">
-              OS、ミドルウェア、アプリケーションの関係
-            </p>
-          </div>
-        );
-      case "os-role":
-        return (
-          <div className="text-center text-gray-500 py-8">
-            <div className="text-6xl mb-4">⚙️</div>
-            <p className="text-lg font-medium">OS機能の概念図</p>
-            <p className="text-sm mt-2">
-              プロセス管理、メモリ管理、ファイル管理の役割
-            </p>
-          </div>
-        );
-      case "memory-management":
-        return (
-          <div className="text-center text-gray-500 py-8">
-            <div className="text-6xl mb-4">🧠</div>
-            <p className="text-lg font-medium">メモリ管理の仕組み</p>
-            <p className="text-sm mt-2">仮想メモリとページングの概念</p>
-          </div>
-        );
-      case "complexity":
-        return <ComplexityDemo />;
-      default:
-        return (
-          <div className="text-center text-gray-500 py-8">
-            <div className="text-6xl mb-4">💡</div>
-            <p className="text-lg font-medium">概念的理解のための視覚的説明</p>
-            <p className="text-sm mt-2">
-              {currentTopic.name}の仕組みを図解で理解しましょう
-            </p>
-          </div>
-        );
-    }
-  };
-
   return (
     <div className="p-6 max-w-6xl mx-auto relative">
       {/* ページタイトル */}
@@ -243,7 +154,7 @@ const BasicsPage: React.FC<BasicsPageProps> = ({ params }) => {
         </p>
         <div className="text-gray-700">
           {renderTextWithTerms(
-            currentTopic.overview || (currentTopic as any).example || ""
+            currentTopic.overview || currentTopic.example || ""
           )}
         </div>
       </section>
@@ -267,8 +178,7 @@ const BasicsPage: React.FC<BasicsPageProps> = ({ params }) => {
             <div className="bg-white p-4 rounded-md border-l-4 border-blue-200">
               <p className="text-gray-700 leading-relaxed">
                 {renderTextWithTerms(
-                  (currentTopic as any).features ||
-                    "キーポイントを読み込み中..."
+                  currentTopic.features || "キーポイントを読み込み中..."
                 )}
               </p>
             </div>
@@ -285,7 +195,7 @@ const BasicsPage: React.FC<BasicsPageProps> = ({ params }) => {
           <p className="text-gray-700 leading-relaxed whitespace-pre-line">
             {renderTextWithTerms(
               currentTopic.detailedExplanation ||
-                (currentTopic as any).structure ||
+                currentTopic.structure ||
                 "詳細説明を読み込み中..."
             )}
           </p>
@@ -314,8 +224,7 @@ const BasicsPage: React.FC<BasicsPageProps> = ({ params }) => {
             <div className="bg-white p-4 rounded-md border col-span-full">
               <p className="text-gray-700">
                 {renderTextWithTerms(
-                  (currentTopic as any).realWorldExample ||
-                    "応用例を読み込み中..."
+                  currentTopic.realWorldExample || "応用例を読み込み中..."
                 )}
               </p>
             </div>

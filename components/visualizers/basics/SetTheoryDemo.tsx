@@ -4,12 +4,12 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-interface SetOperationResult {
-  name: string;
-  symbol: string;
-  result: string[];
-  description: string;
-}
+// interface SetOperationResult {
+//   name: string;
+//   symbol: string;
+//   result: string[];
+//   description: string;
+// }
 
 const SetTheoryDemo: React.FC = () => {
   const [setA, setSetA] = useState<string[]>(["1", "2", "3", "4", "5"]);
@@ -25,39 +25,39 @@ const SetTheoryDemo: React.FC = () => {
       name: "和集合",
       symbol: "∪",
       func: (a: string[], b: string[]) => Array.from(new Set([...a, ...b])),
-      description: "AまたはBに含まれる要素"
+      description: "AまたはBに含まれる要素",
     },
     intersection: {
       name: "積集合",
       symbol: "∩",
-      func: (a: string[], b: string[]) => a.filter(x => b.includes(x)),
-      description: "AかつBに含まれる要素"
+      func: (a: string[], b: string[]) => a.filter((x) => b.includes(x)),
+      description: "AかつBに含まれる要素",
     },
     difference: {
       name: "差集合",
       symbol: "−",
-      func: (a: string[], b: string[]) => a.filter(x => !b.includes(x)),
-      description: "AにあるがBにない要素"
+      func: (a: string[], b: string[]) => a.filter((x) => !b.includes(x)),
+      description: "AにあるがBにない要素",
     },
     symmetricDifference: {
       name: "対称差",
       symbol: "⊕",
       func: (a: string[], b: string[]) => {
-        const aOnly = a.filter(x => !b.includes(x));
-        const bOnly = b.filter(x => !a.includes(x));
+        const aOnly = a.filter((x) => !b.includes(x));
+        const bOnly = b.filter((x) => !a.includes(x));
         return [...aOnly, ...bOnly];
       },
-      description: "どちらか一方にのみ含まれる要素"
-    }
+      description: "どちらか一方にのみ含まれる要素",
+    },
   };
 
   const currentOp = operations[selectedOperation as keyof typeof operations];
   const result = currentOp.func(setA, setB);
 
   // ベン図の要素分類
-  const aOnly = setA.filter(x => !setB.includes(x));
-  const bOnly = setB.filter(x => !setA.includes(x));
-  const both = setA.filter(x => setB.includes(x));
+  const aOnly = setA.filter((x) => !setB.includes(x));
+  const bOnly = setB.filter((x) => !setA.includes(x));
+  const both = setA.filter((x) => setB.includes(x));
 
   // 要素追加
   const addToSetA = () => {
@@ -76,21 +76,23 @@ const SetTheoryDemo: React.FC = () => {
 
   // 要素削除
   const removeFromSetA = (element: string) => {
-    setSetA(setA.filter(x => x !== element));
+    setSetA(setA.filter((x) => x !== element));
   };
 
   const removeFromSetB = (element: string) => {
-    setSetB(setB.filter(x => x !== element));
+    setSetB(setB.filter((x) => x !== element));
   };
 
   // 部分集合関係のチェック
-  const isASubsetOfB = setA.every(x => setB.includes(x));
-  const isBSubsetOfA = setB.every(x => setA.includes(x));
+  const isASubsetOfB = setA.every((x) => setB.includes(x));
+  const isBSubsetOfA = setB.every((x) => setA.includes(x));
 
   return (
     <div className="p-6 bg-white rounded-lg border">
-      <h3 className="text-xl font-bold mb-4 text-center">集合演算ビジュアライザー</h3>
-      
+      <h3 className="text-xl font-bold mb-4 text-center">
+        集合演算ビジュアライザー
+      </h3>
+
       {/* 集合の編集 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         {/* 集合A */}
@@ -101,9 +103,11 @@ const SetTheoryDemo: React.FC = () => {
               value={inputA}
               onChange={(e) => setInputA(e.target.value)}
               placeholder="要素を追加"
-              onKeyPress={(e) => e.key === 'Enter' && addToSetA()}
+              onKeyPress={(e) => e.key === "Enter" && addToSetA()}
             />
-            <Button onClick={addToSetA} size="sm">追加</Button>
+            <Button onClick={addToSetA} size="sm">
+              追加
+            </Button>
           </div>
           <div className="flex flex-wrap gap-2">
             {setA.map((element, index) => (
@@ -134,9 +138,11 @@ const SetTheoryDemo: React.FC = () => {
               value={inputB}
               onChange={(e) => setInputB(e.target.value)}
               placeholder="要素を追加"
-              onKeyPress={(e) => e.key === 'Enter' && addToSetB()}
+              onKeyPress={(e) => e.key === "Enter" && addToSetB()}
             />
-            <Button onClick={addToSetB} size="sm">追加</Button>
+            <Button onClick={addToSetB} size="sm">
+              追加
+            </Button>
           </div>
           <div className="flex flex-wrap gap-2">
             {setB.map((element, index) => (
@@ -154,9 +160,7 @@ const SetTheoryDemo: React.FC = () => {
               </div>
             ))}
           </div>
-          <div className="mt-2 text-sm text-red-600">
-            要素数: {setB.length}
-          </div>
+          <div className="mt-2 text-sm text-red-600">要素数: {setB.length}</div>
         </div>
       </div>
 
@@ -183,15 +187,20 @@ const SetTheoryDemo: React.FC = () => {
           onClick={() => setShowVennDiagram(!showVennDiagram)}
           variant="outline"
         >
-          {showVennDiagram ? 'ベン図を隠す' : 'ベン図を表示'}
+          {showVennDiagram ? "ベン図を隠す" : "ベン図を表示"}
         </Button>
       </div>
 
       {/* ベン図 */}
       {showVennDiagram && (
         <div className="bg-gray-50 p-6 rounded-lg mb-6">
-          <h4 className="font-semibold text-gray-800 mb-4 text-center">ベン図</h4>
-          <div className="relative mx-auto" style={{ width: '400px', height: '300px' }}>
+          <h4 className="font-semibold text-gray-800 mb-4 text-center">
+            ベン図
+          </h4>
+          <div
+            className="relative mx-auto"
+            style={{ width: "400px", height: "300px" }}
+          >
             {/* SVGベン図 */}
             <svg width="400" height="300" className="absolute inset-0">
               {/* 集合A（左の円） */}
@@ -203,7 +212,7 @@ const SetTheoryDemo: React.FC = () => {
                 stroke="rgb(59, 130, 246)"
                 strokeWidth="2"
               />
-              
+
               {/* 集合B（右の円） */}
               <circle
                 cx="250"
@@ -213,12 +222,22 @@ const SetTheoryDemo: React.FC = () => {
                 stroke="rgb(239, 68, 68)"
                 strokeWidth="2"
               />
-              
+
               {/* ラベル */}
-              <text x="120" y="100" textAnchor="middle" className="font-bold text-blue-600">
+              <text
+                x="120"
+                y="100"
+                textAnchor="middle"
+                className="font-bold text-blue-600"
+              >
                 A
               </text>
-              <text x="280" y="100" textAnchor="middle" className="font-bold text-red-600">
+              <text
+                x="280"
+                y="100"
+                textAnchor="middle"
+                className="font-bold text-red-600"
+              >
                 B
               </text>
             </svg>
@@ -232,7 +251,7 @@ const SetTheoryDemo: React.FC = () => {
                   className="absolute bg-blue-500 text-white px-2 py-1 rounded text-sm font-medium"
                   style={{
                     left: `${100 + (index % 3) * 20}px`,
-                    top: `${130 + Math.floor(index / 3) * 25}px`
+                    top: `${130 + Math.floor(index / 3) * 25}px`,
                   }}
                 >
                   {element}
@@ -246,7 +265,7 @@ const SetTheoryDemo: React.FC = () => {
                   className="absolute bg-red-500 text-white px-2 py-1 rounded text-sm font-medium"
                   style={{
                     left: `${270 + (index % 3) * 20}px`,
-                    top: `${130 + Math.floor(index / 3) * 25}px`
+                    top: `${130 + Math.floor(index / 3) * 25}px`,
                   }}
                 >
                   {element}
@@ -260,7 +279,7 @@ const SetTheoryDemo: React.FC = () => {
                   className="absolute bg-purple-500 text-white px-2 py-1 rounded text-sm font-medium"
                   style={{
                     left: `${190 + (index % 2) * 20}px`,
-                    top: `${130 + Math.floor(index / 2) * 25}px`
+                    top: `${130 + Math.floor(index / 2) * 25}px`,
                   }}
                 >
                   {element}
@@ -275,25 +294,19 @@ const SetTheoryDemo: React.FC = () => {
               <div className="bg-blue-500 text-white px-3 py-1 rounded mb-2 inline-block">
                 Aのみ
               </div>
-              <div>
-                {aOnly.length > 0 ? `{${aOnly.join(', ')}}` : '∅'}
-              </div>
+              <div>{aOnly.length > 0 ? `{${aOnly.join(", ")}}` : "∅"}</div>
             </div>
             <div className="text-center">
               <div className="bg-purple-500 text-white px-3 py-1 rounded mb-2 inline-block">
                 A ∩ B
               </div>
-              <div>
-                {both.length > 0 ? `{${both.join(', ')}}` : '∅'}
-              </div>
+              <div>{both.length > 0 ? `{${both.join(", ")}}` : "∅"}</div>
             </div>
             <div className="text-center">
               <div className="bg-red-500 text-white px-3 py-1 rounded mb-2 inline-block">
                 Bのみ
               </div>
-              <div>
-                {bOnly.length > 0 ? `{${bOnly.join(', ')}}` : '∅'}
-              </div>
+              <div>{bOnly.length > 0 ? `{${bOnly.join(", ")}}` : "∅"}</div>
             </div>
           </div>
         </div>
@@ -306,11 +319,11 @@ const SetTheoryDemo: React.FC = () => {
         </h4>
         <div className="bg-white p-4 rounded border">
           <div className="text-lg font-mono mb-2">
-            {`{${setA.join(', ')}} ${currentOp.symbol} {${setB.join(', ')}} = {${result.join(', ')}}`}
+            {`{${setA.join(", ")}} ${currentOp.symbol} {${setB.join(
+              ", "
+            )}} = {${result.join(", ")}}`}
           </div>
-          <div className="text-sm text-green-700">
-            {currentOp.description}
-          </div>
+          <div className="text-sm text-green-700">{currentOp.description}</div>
           <div className="mt-2 text-sm text-gray-600">
             結果の要素数: {result.length}
           </div>
@@ -321,16 +334,28 @@ const SetTheoryDemo: React.FC = () => {
       <div className="bg-purple-50 p-4 rounded-lg mb-6">
         <h4 className="font-semibold text-purple-800 mb-3">集合の関係</h4>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-          <div className={`p-3 rounded ${isASubsetOfB ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-600'}`}>
+          <div
+            className={`p-3 rounded ${
+              isASubsetOfB
+                ? "bg-green-100 text-green-800"
+                : "bg-gray-100 text-gray-600"
+            }`}
+          >
             <div className="font-medium">A ⊆ B (AはBの部分集合)</div>
             <div className="text-xs mt-1">
-              {isASubsetOfB ? '成立' : '成立しない'}
+              {isASubsetOfB ? "成立" : "成立しない"}
             </div>
           </div>
-          <div className={`p-3 rounded ${isBSubsetOfA ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-600'}`}>
+          <div
+            className={`p-3 rounded ${
+              isBSubsetOfA
+                ? "bg-green-100 text-green-800"
+                : "bg-gray-100 text-gray-600"
+            }`}
+          >
             <div className="font-medium">B ⊆ A (BはAの部分集合)</div>
             <div className="text-xs mt-1">
-              {isBSubsetOfA ? '成立' : '成立しない'}
+              {isBSubsetOfA ? "成立" : "成立しない"}
             </div>
           </div>
         </div>

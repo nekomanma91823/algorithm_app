@@ -4,14 +4,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-interface Node {
-  value: number;
-  next: Node | null;
-}
-
-interface LinkedListVisualizerProps {}
-
-const LinkedListVisualizer: React.FC<LinkedListVisualizerProps> = () => {
+const LinkedListVisualizer: React.FC = () => {
   const [list, setList] = useState<number[]>([1, 2, 3, 4]);
   const [inputValue, setInputValue] = useState<string>("");
   const [insertIndex, setInsertIndex] = useState<string>("");

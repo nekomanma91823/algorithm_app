@@ -4,9 +4,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-interface QueueVisualizerProps {}
-
-const QueueVisualizer: React.FC<QueueVisualizerProps> = () => {
+const QueueVisualizer: React.FC = () => {
   const [queue, setQueue] = useState<number[]>([1, 2, 3]);
   const [inputValue, setInputValue] = useState<string>("");
   const [operation, setOperation] = useState<string>("");

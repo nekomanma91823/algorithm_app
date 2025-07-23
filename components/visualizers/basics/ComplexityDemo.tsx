@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 
 interface ComplexityFunction {
@@ -16,7 +16,7 @@ const complexityFunctions: ComplexityFunction[] = [
     name: "O(1)",
     color: "#10B981", // green
     formula: "f(n) = 1",
-    calculate: (n) => 1,
+    calculate: () => 1,
     description: "定数時間：入力サイズに関係なく一定",
   },
   {

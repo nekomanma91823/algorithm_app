@@ -44,7 +44,7 @@ const DataStructurePage: React.FC<DataStructurePageProps> = ({ params }) => {
   // 用語をハイライトしてホバー機能を追加する関数
   const renderTextWithTerms = (text: string) => {
     const terms = Object.keys(glossary);
-    let result: React.ReactNode[] = [];
+    const result: React.ReactNode[] = [];
     let remaining = text;
     let index = 0;
 

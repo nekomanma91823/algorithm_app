@@ -50,9 +50,9 @@ const BasicsPage: React.FC = () => {
             <div className="border-t pt-4">
               <p className="text-xs text-gray-500 mb-2">主な特徴:</p>
               <p className="text-sm text-gray-700">
-                {topic.features.length > 100
+                {topic.features && topic.features.length > 100
                   ? `${topic.features.substring(0, 100)}...`
-                  : topic.features}
+                  : topic.features || "特徴の情報がありません"}
               </p>
             </div>
 

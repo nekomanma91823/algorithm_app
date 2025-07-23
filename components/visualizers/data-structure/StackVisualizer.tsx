@@ -4,9 +4,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-interface StackVisualizerProps {}
-
-const StackVisualizer: React.FC<StackVisualizerProps> = () => {
+const StackVisualizer: React.FC = () => {
   const [stack, setStack] = useState<number[]>([1, 2, 3]);
   const [inputValue, setInputValue] = useState<string>("");
   const [operation, setOperation] = useState<string>("");

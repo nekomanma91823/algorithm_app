@@ -4,9 +4,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-interface HeapVisualizerProps {}
-
-const HeapVisualizer: React.FC<HeapVisualizerProps> = () => {
+const HeapVisualizer: React.FC = () => {
   const [heap, setHeap] = useState<number[]>([90, 80, 70, 40, 30, 20, 10]);
   const [inputValue, setInputValue] = useState<string>("");
   const [operation, setOperation] = useState<string>("");
@@ -161,11 +159,7 @@ const HeapVisualizer: React.FC<HeapVisualizerProps> = () => {
   };
 
   // ヒープの配列表現からツリー構造をレンダリング
-  const renderHeapLevel = (
-    startIndex: number,
-    levelSize: number,
-    level: number
-  ) => {
+  const renderHeapLevel = (startIndex: number, levelSize: number) => {
     const elements: React.JSX.Element[] = [];
 
     for (let i = 0; i < levelSize && startIndex + i < heap.length; i++) {
@@ -233,7 +227,7 @@ const HeapVisualizer: React.FC<HeapVisualizerProps> = () => {
 
     while (currentIndex < heap.length) {
       const levelSize = Math.pow(2, level);
-      levels.push(renderHeapLevel(currentIndex, levelSize, level));
+      levels.push(renderHeapLevel(currentIndex, levelSize));
       currentIndex += levelSize;
       level++;
     }

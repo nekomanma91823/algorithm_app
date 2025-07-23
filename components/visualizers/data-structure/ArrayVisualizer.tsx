@@ -4,9 +4,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-interface ArrayVisualizerProps {}
-
-const ArrayVisualizer: React.FC<ArrayVisualizerProps> = () => {
+const ArrayVisualizer: React.FC = () => {
   const [array, setArray] = useState<number[]>([1, 3, 5, 7, 9]);
   const [inputValue, setInputValue] = useState<string>("");
   const [insertIndex, setInsertIndex] = useState<string>("");

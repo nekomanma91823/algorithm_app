@@ -4,13 +4,13 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-interface HashTableVisualizerProps {}
-
-const HashTableVisualizer: React.FC<HashTableVisualizerProps> = () => {
-  const [table, setTable] = useState<Array<{ key: string; value: string }>[]>(
+const HashTableVisualizer: React.FC = () => {
+  const [table, setTable] = useState<
+    Array<Array<{ key: string; value: string }>>
+  >(
     Array(8)
       .fill(null)
-      .map(() => [])
+      .map(() => [] as Array<{ key: string; value: string }>)
   );
   const [inputKey, setInputKey] = useState<string>("");
   const [inputValue, setInputValue] = useState<string>("");
@@ -115,7 +115,7 @@ const HashTableVisualizer: React.FC<HashTableVisualizerProps> = () => {
     setTable(
       Array(8)
         .fill(null)
-        .map(() => [])
+        .map(() => [] as Array<{ key: string; value: string }>)
     );
     setHighlightIndex(null);
     setOperation("ハッシュテーブルをリセットしました");
@@ -130,9 +130,9 @@ const HashTableVisualizer: React.FC<HashTableVisualizerProps> = () => {
       { key: "orange", value: "orange" },
     ];
 
-    const newTable = Array(8)
+    const newTable: Array<Array<{ key: string; value: string }>> = Array(8)
       .fill(null)
-      .map(() => []);
+      .map(() => [] as Array<{ key: string; value: string }>);
     sampleData.forEach(({ key, value }) => {
       const index = hashFunction(key);
       newTable[index].push({ key, value });
