@@ -12,6 +12,9 @@ const ArrayVisualizer: React.FC<ArrayVisualizerProps> = () => {
   const [insertIndex, setInsertIndex] = useState<string>("");
   const [highlightIndex, setHighlightIndex] = useState<number | null>(null);
   const [operation, setOperation] = useState<string>("");
+  const [operationType, setOperationType] = useState<"insert" | "overwrite">(
+    "insert"
+  );
 
   const handleInsert = () => {
     const value = parseInt(inputValue);
@@ -19,16 +22,40 @@ const ArrayVisualizer: React.FC<ArrayVisualizerProps> = () => {
 
     if (isNaN(value)) return;
 
-    if (isNaN(index) || index < 0 || index > array.length) {
-      // 末尾に追加
-      setArray([...array, value]);
-      setOperation(`要素 ${value} を末尾に追加しました`);
-    } else {
-      // 指定位置に挿入
+    if (operationType === "overwrite") {
+      // 上書き操作
+      if (isNaN(index) || index < 0 || index >= array.length) {
+        setOperation(
+          `無効なインデックスです。0〜${
+            array.length - 1
+          }の範囲で指定してください`
+        );
+        setTimeout(() => setOperation(""), 3000);
+        return;
+      }
+
       const newArray = [...array];
-      newArray.splice(index, 0, value);
+      const oldValue = newArray[index];
+      newArray[index] = value;
       setArray(newArray);
-      setOperation(`要素 ${value} をインデックス ${index} に挿入しました`);
+      setOperation(
+        `インデックス ${index} の要素 ${oldValue} を ${value} で上書きしました`
+      );
+    } else {
+      // 挿入操作（既存の実装）
+      if (isNaN(index) || index < 0 || index > array.length) {
+        // 末尾に追加
+        setArray([...array, value]);
+        setOperation(`要素 ${value} を末尾に追加しました`);
+      } else {
+        // 指定位置に挿入
+        const newArray = [...array];
+        newArray.splice(index, 0, value);
+        setArray(newArray);
+        setOperation(
+          `要素 ${value} をインデックス ${index} に挿入しました（既存要素は右にシフト）`
+        );
+      }
     }
 
     setInputValue("");
@@ -121,25 +148,74 @@ const ArrayVisualizer: React.FC<ArrayVisualizerProps> = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* 挿入操作 */}
         <div className="bg-gray-50 p-4 rounded-lg">
-          <h4 className="font-semibold mb-3 text-green-700">📥 要素の挿入</h4>
+          <h4 className="font-semibold mb-3 text-green-700">
+            📥 要素の{operationType === "insert" ? "挿入" : "代入"}
+          </h4>
+
+          {/* 操作モード選択 */}
+          <div className="mb-4 p-3 bg-white rounded border">
+            <p className="text-sm font-medium mb-2">操作モード:</p>
+            <div className="flex gap-2">
+              <Button
+                variant={operationType === "insert" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setOperationType("insert")}
+                className={
+                  operationType === "insert"
+                    ? "bg-green-600 hover:bg-green-700"
+                    : ""
+                }
+              >
+                挿入
+              </Button>
+              <Button
+                variant={operationType === "overwrite" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setOperationType("overwrite")}
+                className={
+                  operationType === "overwrite"
+                    ? "bg-orange-600 hover:bg-orange-700"
+                    : ""
+                }
+              >
+                代入
+              </Button>
+            </div>
+            <p className="text-xs text-gray-600 mt-2">
+              {operationType === "insert"
+                ? "既存要素を右にシフトして新しい要素を挿入"
+                : "指定位置の要素を新しい値で置き換え"}
+            </p>
+          </div>
+
           <div className="space-y-2">
             <Input
               type="number"
-              placeholder="挿入する値"
+              placeholder={
+                operationType === "insert" ? "挿入する値" : "新しい値"
+              }
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
             />
             <Input
               type="number"
-              placeholder="挿入位置（省略で末尾）"
+              placeholder={
+                operationType === "insert"
+                  ? "挿入位置（省略で末尾）"
+                  : `上書き位置 (0〜${array.length - 1})`
+              }
               value={insertIndex}
               onChange={(e) => setInsertIndex(e.target.value)}
             />
             <Button
               onClick={handleInsert}
-              className="w-full bg-green-600 hover:bg-green-700"
+              className={`w-full ${
+                operationType === "insert"
+                  ? "bg-green-600 hover:bg-green-700"
+                  : "bg-orange-600 hover:bg-orange-700"
+              }`}
             >
-              挿入
+              {operationType === "insert" ? "🔄 挿入" : "✏️ 上書き"}
             </Button>
           </div>
         </div>

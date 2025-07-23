@@ -84,8 +84,8 @@ export default function Home() {
     <div className="p-6 max-w-7xl mx-auto">
       {/* ヘッダーセクション */}
       <div className="text-center mb-12">
-        <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          アルゴリズム学習アプリ
+        <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent p-4">
+          AlgoPrism
         </h1>
         <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
           コンピュータサイエンスの基礎からアルゴリズム、データ構造まで
