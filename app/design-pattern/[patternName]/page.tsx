@@ -71,43 +71,55 @@ const PatternPage: React.FC<PatternPageProps> = ({ params }) => {
           <div className="p-6 rounded-lg neumorphic-shadow bg-card">
             <div className="space-y-4 text-foreground">
               <div>
-                <h3 className="text-xl font-semibold mb-2 text-foreground">一言でいうと</h3>
+                <h3 className="text-xl font-semibold mb-2 text-foreground">
+                  一言でいうと
+                </h3>
                 <p>{currentPattern.inANutshell}</p>
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-2 text-foreground">目的</h3>
+                <h3 className="text-xl font-semibold mb-2 text-foreground">
+                  目的
+                </h3>
                 <p>{currentPattern.purpose}</p>
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-2 text-foreground">例え話</h3>
+                <h3 className="text-xl font-semibold mb-2 text-foreground">
+                  例え話
+                </h3>
                 <p>{currentPattern.analogy}</p>
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-2 text-foreground">構造</h3>
+                <h3 className="text-xl font-semibold mb-2 text-foreground">
+                  構造
+                </h3>
                 <p>{currentPattern.structure}</p>
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-2 text-foreground">メリット</h3>
+                <h3 className="text-xl font-semibold mb-2 text-foreground">
+                  メリット
+                </h3>
                 <p>{currentPattern.pros}</p>
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-2 text-foreground">デメリット</h3>
+                <h3 className="text-xl font-semibold mb-2 text-foreground">
+                  デメリット
+                </h3>
                 <p>{currentPattern.cons}</p>
               </div>
             </div>
             <div className="mt-8">
-              <h2 className="text-2xl font-semibold mb-2 text-foreground">コード例</h2>
+              <h2 className="text-2xl font-semibold mb-2 text-foreground">
+                コード例
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="p-4 rounded-md neumorphic-shadow bg-card">
-                  <h3 className="text-xl font-medium mb-2 text-foreground">JavaScript</h3>
+                <div className="rounded-md  ">
                   {jsCode && (
                     <CodeBlock>
                       <code className="language-javascript">{jsCode}</code>
                     </CodeBlock>
                   )}
                 </div>
-                <div className="p-4 rounded-md neumorphic-shadow bg-card">
-                  <h3 className="text-xl font-medium mb-2 text-foreground">Python</h3>
+                <div className="rounded-md ">
                   {pyCode && (
                     <CodeBlock>
                       <code className="language-python">{pyCode}</code>

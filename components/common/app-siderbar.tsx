@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Sidebar,
   SidebarContent,
@@ -13,7 +15,7 @@ import {
   SidebarMenuSub,
   // useSidebar,
 } from "@/components/ui/sidebar";
-import { Home } from "lucide-react";
+import { Home, Sun, Moon } from "lucide-react";
 import {
   Collapsible,
   CollapsibleContent,
@@ -21,17 +23,16 @@ import {
 } from "../ui/collapsible";
 import Link from "next/link";
 import { sidebarData } from "@/data/sidebarData";
+import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
 
 export function AppSidebar() {
-  // const {
-  //   state,
-  //   open,
-  //   setOpen,
-  //   openMobile,
-  //   setOpenMobile,
-  //   isMobile,
-  //   toggleSidebar,
-  // } = useSidebar();
+  const { theme, setTheme } = useTheme();
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
   return (
     <Sidebar>
       <SidebarHeader />
@@ -77,7 +78,12 @@ export function AppSidebar() {
         </SidebarGroupContent>
         <SidebarGroup />
       </SidebarContent>
-      <SidebarFooter />
+      <SidebarFooter>
+        <Button onClick={toggleTheme} className="w-full">
+          {theme === "dark" ? <Sun className="mr-2 h-4 w-4" /> : <Moon className="mr-2 h-4 w-4" />}
+          {theme === "dark" ? "ライトモード" : "ダークモード"}
+        </Button>
+      </SidebarFooter>
     </Sidebar>
   );
 }

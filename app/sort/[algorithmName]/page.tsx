@@ -144,28 +144,32 @@ const AlgorithmPage: React.FC<AlgorithmPageProps> = ({ params }) => {
         <h3 className="text-xl font-medium mb-1">例え</h3>
         <p>{currentAlgorithm.example}</p>
 
-        <h3 className="text-xl font-medium mb-1 mt-4 text-foreground">計算方法</h3>
+        <h3 className="text-xl font-medium mb-1 mt-4 text-foreground">
+          計算方法
+        </h3>
         <p>{currentAlgorithm.calculationMethod}</p>
 
-        <h3 className="text-xl font-medium mb-1 mt-4 text-foreground">計算量</h3>
+        <h3 className="text-xl font-medium mb-1 mt-4 text-foreground">
+          計算量
+        </h3>
         <p>最良の場合: {currentAlgorithm.complexity.best}</p>
         <p>平均の場合: {currentAlgorithm.complexity.average}</p>
         <p>最悪の場合: {currentAlgorithm.complexity.worst}</p>
       </div>
 
       <div className="mt-8">
-        <h2 className="text-2xl font-semibold mb-2 text-foreground">コード例</h2>
+        <h2 className="text-2xl font-semibold mb-2 text-foreground">
+          コード例
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="p-4 rounded-md neumorphic-shadow bg-card">
-            <h3 className="text-xl font-medium mb-2 text-foreground">JavaScript</h3>
+          <div className="rounded-md  ">
             {jsCode && (
               <CodeBlock>
                 <code className="language-javascript">{jsCode}</code>
               </CodeBlock>
             )}
           </div>
-          <div className="p-4 rounded-md neumorphic-shadow bg-card">
-            <h3 className="text-xl font-medium mb-2 text-foreground">Python</h3>
+          <div className="rounded-md ">
             {pyCode && (
               <CodeBlock>
                 <code className="language-python">{pyCode}</code>

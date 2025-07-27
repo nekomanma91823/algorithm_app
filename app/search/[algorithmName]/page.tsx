@@ -158,7 +158,9 @@ const SearchAlgorithmPage: React.FC<SearchPageProps> = ({ params }) => {
 
           {/* 計算量 */}
           <div className="mt-6 p-4 rounded-lg neumorphic-shadow-inset bg-card">
-            <h4 className="text-lg font-semibold text-foreground mb-3">計算量</h4>
+            <h4 className="text-lg font-semibold text-foreground mb-3">
+              計算量
+            </h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="text-center">
                 <p className="text-sm text-foreground">最良の場合</p>
@@ -199,27 +201,24 @@ const SearchAlgorithmPage: React.FC<SearchPageProps> = ({ params }) => {
         </div>
 
         {/* ソースコード */}
-        <div className="p-8 mb-8 neumorphic-shadow bg-card">
-          <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
-            <span className="text-2xl mr-3">💻</span>
-            ソースコード
+        <div className="mt-8">
+          <h2 className="text-2xl font-semibold mb-2 text-foreground">
+            コード例
           </h2>
-          <div className="space-y-6">
-            <div className="p-4 rounded-md neumorphic-shadow-inset bg-card">
-              <h3 className="text-lg font-semibold text-foreground mb-3">
-                JavaScript
-              </h3>
-              <CodeBlock>
-                <code className="language-javascript">{jsCode}</code>
-              </CodeBlock>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="rounded-md  ">
+              {jsCode && (
+                <CodeBlock>
+                  <code className="language-javascript">{jsCode}</code>
+                </CodeBlock>
+              )}
             </div>
-            <div className="p-4 rounded-md neumorphic-shadow-inset bg-card">
-              <h3 className="text-lg font-semibold text-foreground mb-3">
-                Python
-              </h3>
-              <CodeBlock>
-                <code className="language-python">{pyCode}</code>
-              </CodeBlock>
+            <div className="rounded-md ">
+              {pyCode && (
+                <CodeBlock>
+                  <code className="language-python">{pyCode}</code>
+                </CodeBlock>
+              )}
             </div>
           </div>
         </div>
