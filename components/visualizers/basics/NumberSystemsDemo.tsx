@@ -83,41 +83,41 @@ const NumberSystemsDemo: React.FC = () => {
 
       {/* 変換結果表示 */}
       {isValidInput && (
-        <div className="bg-green-50 p-4 rounded-lg mb-6">
-          <h4 className="font-semibold text-green-800 mb-3">
+        <div className="p-4 rounded-lg mb-6 neumorphic-shadow">
+          <h4 className="font-semibold mb-3">
             変換結果: {currentDecimal} (10進数)
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="text-center p-3 bg-white rounded border">
-              <div className="font-medium text-gray-700 mb-1">2進数</div>
-              <div className="font-mono text-lg font-bold text-blue-600">
+            <div className="text-center p-3 rounded neumorphic-shadow-inset">
+              <div className="font-medium mb-1">2進数</div>
+              <div className="font-mono text-lg font-bold">
                 {convertToBase(currentDecimal, 2)}
               </div>
-              <div className="text-xs text-gray-500 mt-1">Binary</div>
+              <div className="text-xs mt-1">Binary</div>
             </div>
 
-            <div className="text-center p-3 bg-white rounded border">
-              <div className="font-medium text-gray-700 mb-1">8進数</div>
-              <div className="font-mono text-lg font-bold text-orange-600">
+            <div className="text-center p-3 rounded neumorphic-shadow-inset">
+              <div className="font-medium mb-1">8進数</div>
+              <div className="font-mono text-lg font-bold">
                 {convertToBase(currentDecimal, 8)}
               </div>
-              <div className="text-xs text-gray-500 mt-1">Octal</div>
+              <div className="text-xs mt-1">Octal</div>
             </div>
 
-            <div className="text-center p-3 bg-white rounded border">
-              <div className="font-medium text-gray-700 mb-1">10進数</div>
-              <div className="font-mono text-lg font-bold text-green-600">
+            <div className="text-center p-3 rounded neumorphic-shadow-inset">
+              <div className="font-medium mb-1">10進数</div>
+              <div className="font-mono text-lg font-bold">
                 {currentDecimal}
               </div>
-              <div className="text-xs text-gray-500 mt-1">Decimal</div>
+              <div className="text-xs mt-1">Decimal</div>
             </div>
 
-            <div className="text-center p-3 bg-white rounded border">
-              <div className="font-medium text-gray-700 mb-1">16進数</div>
-              <div className="font-mono text-lg font-bold text-purple-600">
+            <div className="text-center p-3 rounded neumorphic-shadow-inset">
+              <div className="font-medium mb-1">16進数</div>
+              <div className="font-mono text-lg font-bold">
                 {convertToBase(currentDecimal, 16)}
               </div>
-              <div className="text-xs text-gray-500 mt-1">Hexadecimal</div>
+              <div className="text-xs mt-1">Hexadecimal</div>
             </div>
           </div>
         </div>
@@ -125,8 +125,8 @@ const NumberSystemsDemo: React.FC = () => {
 
       {/* ビット表現 */}
       {isValidInput && currentDecimal <= 255 && (
-        <div className="bg-purple-50 p-4 rounded-lg mb-6">
-          <h4 className="font-semibold text-purple-800 mb-3">
+        <div className="p-4 rounded-lg mb-6 neumorphic-shadow">
+          <h4 className="font-semibold mb-3">
             ビット表現 (8ビット)
           </h4>
           <div className="flex justify-center mb-4">
@@ -137,10 +137,10 @@ const NumberSystemsDemo: React.FC = () => {
                 .map((bit, index) => (
                   <div
                     key={index}
-                    className={`w-12 h-12 flex items-center justify-center rounded font-mono font-bold ${
+                    className={`w-12 h-12 flex items-center justify-center rounded font-mono font-bold neumorphic-shadow ${
                       bit === "1"
-                        ? "bg-purple-500 text-white"
-                        : "bg-white border border-purple-300"
+                        ? ""
+                        : ""
                     }`}
                   >
                     {bit}
@@ -151,7 +151,7 @@ const NumberSystemsDemo: React.FC = () => {
 
           {/* 位の重み */}
           <div className="text-center">
-            <div className="text-sm text-purple-600 mb-2">
+            <div className="text-sm mb-2">
               各ビットの重み（位の値）
             </div>
             <div className="grid grid-cols-8 gap-1 max-w-md mx-auto">

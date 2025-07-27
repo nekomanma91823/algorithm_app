@@ -81,13 +81,13 @@ export default function Home() {
   });
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 max-w-7xl mx-auto bg-background text-foreground">
       {/* ヘッダーセクション */}
       <div className="text-center mb-12">
         <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent p-4">
           AlgoPrism
         </h1>
-        <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+        <p className="text-xl leading-relaxed max-w-3xl mx-auto">
           コンピュータサイエンスの基礎からアルゴリズム、データ構造まで
           <br />
           視覚的でインタラクティブな学習体験を提供します
@@ -95,32 +95,32 @@ export default function Home() {
       </div>
 
       {/* 特徴セクション */}
-      <section className="mb-16 bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-xl border">
-        <h2 className="text-3xl font-bold mb-6 text-center text-blue-800">
+      <section className="mb-16 p-8 rounded-xl bg-card neumorphic-shadow">
+        <h2 className="text-3xl font-bold mb-6 text-center">
           🎯 学習の特徴
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white p-6 rounded-lg border-l-4 border-blue-400">
-            <h3 className="font-semibold mb-3 text-blue-700 text-lg">
+          <div className="p-6 rounded-lg neumorphic-shadow bg-card">
+            <h3 className="font-semibold mb-3 text-lg">
               📊 視覚的学習
             </h3>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm">
               アニメーションと図解で複雑なアルゴリズムを直感的に理解できます
             </p>
           </div>
-          <div className="bg-white p-6 rounded-lg border-l-4 border-green-400">
-            <h3 className="font-semibold mb-3 text-green-700 text-lg">
+          <div className="p-6 rounded-lg neumorphic-shadow bg-card">
+            <h3 className="font-semibold mb-3 text-lg">
               🔧 実践的コード
             </h3>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm">
               JavaScriptとPythonの両方でサンプルコードを提供し、実装まで学べます
             </p>
           </div>
-          <div className="bg-white p-6 rounded-lg border-l-4 border-purple-400">
-            <h3 className="font-semibold mb-3 text-purple-700 text-lg">
+          <div className="p-6 rounded-lg neumorphic-shadow bg-card">
+            <h3 className="font-semibold mb-3 text-lg">
               🎮 インタラクティブ
             </h3>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm">
               実際にパラメータを変更して、アルゴリズムの動作を体験できます
             </p>
           </div>
@@ -135,25 +135,27 @@ export default function Home() {
             <Link
               key={section.title}
               href={section.url}
-              className="group block bg-white p-6 rounded-xl border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+              className="group block p-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1 neumorphic-shadow hover:neumorphic-shadow-inset bg-card text-foreground"
             >
               <div className="flex items-center mb-4">
                 <div className={`${section.color} p-3 rounded-lg mr-4`}>
                   <IconComponent className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
+                  <h3 className="text-xl font-bold group-hover:text-blue-600 transition-colors">
                     {section.title}
                   </h3>
-                  <p className="text-sm text-gray-600">{section.description}</p>
+                  <p className="text-sm">
+                    {section.description}
+                  </p>
                 </div>
               </div>
 
               <div className="border-t pt-4 mb-4">
-                <h4 className="text-sm font-semibold text-gray-700 mb-2">
+                <h4 className="text-sm font-semibold mb-2">
                   主なトピック:
                 </h4>
-                <ul className="text-sm text-gray-600 space-y-1">
+                <ul className="text-sm space-y-1">
                   {section.topics.map((topic, index) => (
                     <li key={index} className="flex items-center">
                       <span className="w-1 h-1 bg-gray-400 rounded-full mr-2"></span>
@@ -174,7 +176,7 @@ export default function Home() {
 
       {/* フッターメッセージ */}
       <section className="mt-16 text-center">
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-xl">
+        <div className="p-8 rounded-xl neumorphic-shadow bg-card text-foreground">
           <h3 className="text-2xl font-bold mb-4">学習を始めましょう！</h3>
           <p className="text-lg opacity-90">
             各セクションから興味のある分野を選んで、アルゴリズムの世界を探索してください。

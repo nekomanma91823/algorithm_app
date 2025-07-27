@@ -128,8 +128,8 @@ const LogicalOperationsDemo: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-green-50 p-4 rounded-lg">
-          <h4 className="font-semibold text-green-800 mb-3">演算選択</h4>
+        <div className="p-4 rounded-lg neumorphic-shadow">
+          <h4 className="font-semibold mb-3">演算選択</h4>
           <div className="grid grid-cols-2 gap-2">
             {operations.map((op) => (
               <Button
@@ -147,8 +147,8 @@ const LogicalOperationsDemo: React.FC = () => {
       </div>
 
       {/* 視覚的な論理ゲート表現 */}
-      <div className="bg-gray-50 p-6 rounded-lg mb-6">
-        <h4 className="font-semibold text-gray-800 mb-4 text-center">
+      <div className="p-6 rounded-lg mb-6 neumorphic-shadow">
+        <h4 className="font-semibold mb-4 text-center">
           論理ゲート
         </h4>
         <div className="flex items-center justify-center">
@@ -156,8 +156,8 @@ const LogicalOperationsDemo: React.FC = () => {
             {/* 入力A */}
             <div className="text-center">
               <div
-                className={`w-16 h-8 rounded-lg flex items-center justify-center text-white font-bold ${
-                  inputA ? "bg-green-500" : "bg-red-500"
+                className={`w-16 h-8 rounded-lg flex items-center justify-center text-white font-bold neumorphic-shadow ${
+                  inputA ? "" : ""
                 }`}
               >
                 A: {inputA ? "1" : "0"}
@@ -166,19 +166,19 @@ const LogicalOperationsDemo: React.FC = () => {
 
             {/* 演算子 */}
             <div className="text-center">
-              <div className="w-20 h-12 bg-blue-100 border-2 border-blue-400 rounded-lg flex items-center justify-center">
-                <span className="font-bold text-blue-800">
+              <div className="w-20 h-12 rounded-lg flex items-center justify-center neumorphic-shadow">
+                <span className="font-bold">
                   {currentOp.symbol}
                 </span>
               </div>
-              <div className="text-xs text-blue-600 mt-1">{currentOp.name}</div>
+              <div className="text-xs mt-1">{currentOp.name}</div>
             </div>
 
             {/* 入力B */}
             <div className="text-center">
               <div
-                className={`w-16 h-8 rounded-lg flex items-center justify-center text-white font-bold ${
-                  inputB ? "bg-green-500" : "bg-red-500"
+                className={`w-16 h-8 rounded-lg flex items-center justify-center text-white font-bold neumorphic-shadow ${
+                  inputB ? "" : ""
                 }`}
               >
                 B: {inputB ? "1" : "0"}
@@ -191,19 +191,19 @@ const LogicalOperationsDemo: React.FC = () => {
             {/* 結果 */}
             <div className="text-center">
               <div
-                className={`w-20 h-12 rounded-lg flex items-center justify-center text-white font-bold text-lg ${
-                  result ? "bg-green-600" : "bg-red-600"
+                className={`w-20 h-12 rounded-lg flex items-center justify-center text-white font-bold text-lg neumorphic-shadow ${
+                  result ? "" : ""
                 }`}
               >
                 {result ? "1" : "0"}
               </div>
-              <div className="text-xs text-gray-600 mt-1">結果</div>
+              <div className="text-xs mt-1">結果</div>
             </div>
           </div>
         </div>
 
         {/* 数式表現 */}
-        <div className="text-center mt-4 p-3 bg-white rounded border">
+        <div className="text-center mt-4 p-3 rounded neumorphic-shadow-inset">
           <span className="font-mono text-lg">
             {inputA ? "TRUE" : "FALSE"} {currentOp.symbol}{" "}
             {inputB ? "TRUE" : "FALSE"} = {result ? "TRUE" : "FALSE"}
@@ -249,17 +249,17 @@ const LogicalOperationsDemo: React.FC = () => {
       </div>
 
       {showTruthTable && (
-        <div className="bg-indigo-50 p-4 rounded-lg">
-          <h4 className="font-semibold text-indigo-800 mb-3">
+        <div className="p-4 rounded-lg neumorphic-shadow">
+          <h4 className="font-semibold mb-3">
             {currentOp.name}の真理値表
           </h4>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-indigo-100">
-                  <th className="p-2 border">A</th>
-                  <th className="p-2 border">B</th>
-                  <th className="p-2 border">A {currentOp.symbol} B</th>
+                <tr>
+                  <th className="p-2">A</th>
+                  <th className="p-2">B</th>
+                  <th className="p-2">A {currentOp.symbol} B</th>
                 </tr>
               </thead>
               <tbody>
@@ -268,18 +268,18 @@ const LogicalOperationsDemo: React.FC = () => {
                     key={index}
                     className={
                       inputA === row.a && inputB === row.b
-                        ? "bg-yellow-100 font-bold"
-                        : "bg-white"
+                        ? "font-bold"
+                        : ""
                     }
                   >
-                    <td className="p-2 border text-center">
+                    <td className="p-2 text-center">
                       {row.a ? "TRUE" : "FALSE"}
                     </td>
-                    <td className="p-2 border text-center">
+                    <td className="p-2 text-center">
                       {row.b ? "TRUE" : "FALSE"}
                     </td>
                     <td
-                      className={`p-2 border text-center font-bold ${
+                      className={`p-2 text-center font-bold ${
                         row.result ? "text-green-600" : "text-red-600"
                       }`}
                     >
@@ -290,7 +290,7 @@ const LogicalOperationsDemo: React.FC = () => {
               </tbody>
             </table>
           </div>
-          <div className="mt-2 text-xs text-indigo-600">
+          <div className="mt-2 text-xs">
             {currentOp.description}
           </div>
         </div>

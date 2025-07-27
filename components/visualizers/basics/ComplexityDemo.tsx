@@ -213,14 +213,14 @@ export default function ComplexityDemo() {
       <div className="mb-6">
         <h4 className="text-lg font-semibold mb-3">実行時間の比較表</h4>
         <div className="overflow-x-auto">
-          <table className="w-full border-collapse border border-gray-300">
+          <table className="w-full border-collapse">
             <thead>
               <tr className="bg-gray-100">
-                <th className="border border-gray-300 px-4 py-2">計算量</th>
-                <th className="border border-gray-300 px-4 py-2">n=10</th>
-                <th className="border border-gray-300 px-4 py-2">n=100</th>
-                <th className="border border-gray-300 px-4 py-2">n=1000</th>
-                <th className="border border-gray-300 px-4 py-2">説明</th>
+                <th className="px-4 py-2">計算量</th>
+                <th className="px-4 py-2">n=10</th>
+                <th className="px-4 py-2">n=100</th>
+                <th className="px-4 py-2">n=1000</th>
+                <th className="px-4 py-2">説明</th>
               </tr>
             </thead>
             <tbody>
@@ -231,24 +231,24 @@ export default function ComplexityDemo() {
                     selectedFunctions.includes(func.name) ? "bg-blue-50" : ""
                   }
                 >
-                  <td className="border border-gray-300 px-4 py-2 font-medium">
+                  <td className="px-4 py-2 font-medium">
                     <span
                       className="inline-block w-3 h-3 rounded mr-2"
                       style={{ backgroundColor: func.color }}
                     />
                     {func.name}
                   </td>
-                  <td className="border border-gray-300 px-4 py-2 text-center">
+                  <td className="px-4 py-2 text-center">
                     {Math.round(func.calculate(10))}
                   </td>
-                  <td className="border border-gray-300 px-4 py-2 text-center">
+                  <td className="px-4 py-2 text-center">
                     {func.calculate(100) > 1000000
                       ? `${(func.calculate(100) / 1000000).toFixed(1)}M`
                       : func.calculate(100) > 1000
                       ? `${(func.calculate(100) / 1000).toFixed(1)}K`
                       : Math.round(func.calculate(100))}
                   </td>
-                  <td className="border border-gray-300 px-4 py-2 text-center">
+                  <td className="px-4 py-2 text-center">
                     {func.calculate(1000) > 1000000000
                       ? `${(func.calculate(1000) / 1000000000).toFixed(1)}B`
                       : func.calculate(1000) > 1000000
@@ -257,7 +257,7 @@ export default function ComplexityDemo() {
                       ? `${(func.calculate(1000) / 1000).toFixed(1)}K`
                       : Math.round(func.calculate(1000))}
                   </td>
-                  <td className="border border-gray-300 px-4 py-2 text-sm">
+                  <td className="px-4 py-2 text-sm">
                     {func.description}
                   </td>
                 </tr>

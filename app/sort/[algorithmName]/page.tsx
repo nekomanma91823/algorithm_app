@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import SortVisualizer from "@/components/SortVisualizer";
-import { algorithmMap } from "@/data/sortMap";
+import { sortAlgorithmMap } from "@/data/sortMap";
 import CodeBlock from "@/components/CodeBlock";
 
 export const runtime = "edge";
@@ -27,7 +27,7 @@ const AlgorithmPage: React.FC<AlgorithmPageProps> = ({ params }) => {
   const [pyCode, setPyCode] = useState<string>("");
 
   const currentAlgorithm =
-    algorithmMap[algorithmName] || algorithmMap["bubble-sort"];
+    sortAlgorithmMap[algorithmName] || sortAlgorithmMap["bubble-sort"];
 
   useEffect(() => {
     const loadCodeFiles = async () => {
@@ -92,8 +92,8 @@ const AlgorithmPage: React.FC<AlgorithmPageProps> = ({ params }) => {
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-3xl font-bold mb-4">
+    <div className="p-4 bg-background text-foreground">
+      <h1 className="text-3xl font-bold mb-4 text-foreground">
         {decodeURIComponent(algorithmName).replace(/-/g, " ").toUpperCase()}
       </h1>
 
@@ -110,19 +110,19 @@ const AlgorithmPage: React.FC<AlgorithmPageProps> = ({ params }) => {
         <button
           onClick={startSort}
           disabled={isSortingRef.current}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50"
+          className="neumorphic-button bg-card text-foreground py-2 px-4 rounded-lg disabled:opacity-50"
         >
           ソート開始
         </button>
         <button
           onClick={pauseSort}
-          className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50"
+          className="neumorphic-button bg-card text-foreground py-2 px-4 rounded-lg disabled:opacity-50"
         >
           一時停止
         </button>
         <button
           onClick={resetSort}
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          className="neumorphic-button bg-card text-foreground py-2 px-4 rounded-lg"
         >
           リセット
         </button>
@@ -132,40 +132,40 @@ const AlgorithmPage: React.FC<AlgorithmPageProps> = ({ params }) => {
           max="500"
           value={speed}
           onChange={(e) => setSpeed(Number(e.target.value))}
-          className="w-48"
+          className="w-48 neumorphic-slider"
         />
         <span>間隔: {speed}ms</span>
       </div>
 
-      <div className="bg-gray-100 p-4 rounded-md">
-        <h2 className="text-2xl font-semibold mb-2">解説</h2>
-        <h3 className="text-xl font-medium mb-1">特徴</h3>
+      <div className="p-4 rounded-md neumorphic-shadow bg-card text-foreground">
+        <h2 className="text-2xl font-semibold mb-2 text-foreground">解説</h2>
+        <h3 className="text-xl font-medium mb-1 text-foreground">特徴</h3>
         <p>{currentAlgorithm.features}</p>
         <h3 className="text-xl font-medium mb-1">例え</h3>
         <p>{currentAlgorithm.example}</p>
 
-        <h3 className="text-xl font-medium mb-1 mt-4">計算方法</h3>
+        <h3 className="text-xl font-medium mb-1 mt-4 text-foreground">計算方法</h3>
         <p>{currentAlgorithm.calculationMethod}</p>
 
-        <h3 className="text-xl font-medium mb-1 mt-4">計算量</h3>
+        <h3 className="text-xl font-medium mb-1 mt-4 text-foreground">計算量</h3>
         <p>最良の場合: {currentAlgorithm.complexity.best}</p>
         <p>平均の場合: {currentAlgorithm.complexity.average}</p>
         <p>最悪の場合: {currentAlgorithm.complexity.worst}</p>
       </div>
 
       <div className="mt-8">
-        <h2 className="text-2xl font-semibold mb-2">コード例</h2>
+        <h2 className="text-2xl font-semibold mb-2 text-foreground">コード例</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <h3 className="text-xl font-medium mb-2">JavaScript</h3>
+          <div className="p-4 rounded-md neumorphic-shadow bg-card">
+            <h3 className="text-xl font-medium mb-2 text-foreground">JavaScript</h3>
             {jsCode && (
               <CodeBlock>
                 <code className="language-javascript">{jsCode}</code>
               </CodeBlock>
             )}
           </div>
-          <div>
-            <h3 className="text-xl font-medium mb-2">Python</h3>
+          <div className="p-4 rounded-md neumorphic-shadow bg-card">
+            <h3 className="text-xl font-medium mb-2 text-foreground">Python</h3>
             {pyCode && (
               <CodeBlock>
                 <code className="language-python">{pyCode}</code>

@@ -28,7 +28,7 @@ interface AlgorithmDetails {
     python: string;
   };
 }
-export const algorithmMap: { [key: string]: AlgorithmDetails } = {
+export const sortAlgorithmMap: { [key: string]: AlgorithmDetails } = {
   "bubble-sort": {
     sortFunction: bubbleSort,
     features:

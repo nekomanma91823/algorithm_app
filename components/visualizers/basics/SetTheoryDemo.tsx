@@ -165,8 +165,8 @@ const SetTheoryDemo: React.FC = () => {
       </div>
 
       {/* 演算選択 */}
-      <div className="bg-gray-50 p-4 rounded-lg mb-6">
-        <h4 className="font-semibold text-gray-800 mb-3">集合演算を選択</h4>
+      <div className="p-4 rounded-lg mb-6 neumorphic-shadow">
+        <h4 className="font-semibold mb-3">集合演算を選択</h4>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
           {Object.entries(operations).map(([key, op]) => (
             <Button
@@ -331,14 +331,14 @@ const SetTheoryDemo: React.FC = () => {
       </div>
 
       {/* 部分集合関係 */}
-      <div className="bg-purple-50 p-4 rounded-lg mb-6">
-        <h4 className="font-semibold text-purple-800 mb-3">集合の関係</h4>
+      <div className="p-4 rounded-lg mb-6 neumorphic-shadow">
+        <h4 className="font-semibold mb-3">集合の関係</h4>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
           <div
-            className={`p-3 rounded ${
+            className={`p-3 rounded neumorphic-shadow ${
               isASubsetOfB
-                ? "bg-green-100 text-green-800"
-                : "bg-gray-100 text-gray-600"
+                ? ""
+                : ""
             }`}
           >
             <div className="font-medium">A ⊆ B (AはBの部分集合)</div>
@@ -347,10 +347,10 @@ const SetTheoryDemo: React.FC = () => {
             </div>
           </div>
           <div
-            className={`p-3 rounded ${
+            className={`p-3 rounded neumorphic-shadow ${
               isBSubsetOfA
-                ? "bg-green-100 text-green-800"
-                : "bg-gray-100 text-gray-600"
+                ? ""
+                : ""
             }`}
           >
             <div className="font-medium">B ⊆ A (BはAの部分集合)</div>

@@ -271,8 +271,8 @@ const ProcessThreadDemo: React.FC = () => {
       </div>
 
       {/* プロセス作成 */}
-      <div className="bg-gray-50 p-4 rounded-lg mb-6">
-        <h4 className="font-semibold text-gray-800 mb-3">
+      <div className="p-4 rounded-lg mb-6 neumorphic-shadow">
+        <h4 className="font-semibold mb-3">
           新しいプロセスを作成
         </h4>
         <div className="flex gap-2">
@@ -280,6 +280,7 @@ const ProcessThreadDemo: React.FC = () => {
             value={newProcessName}
             onChange={(e) => setNewProcessName(e.target.value)}
             placeholder="プロセス名を入力"
+            className="neumorphic-shadow-inset"
           />
           <Button onClick={createProcess} disabled={!newProcessName}>
             作成
@@ -291,7 +292,7 @@ const ProcessThreadDemo: React.FC = () => {
       <div className="space-y-4">
         <h4 className="font-semibold text-gray-800">プロセス一覧</h4>
         {processes.map((process) => (
-          <div key={process.id} className="border rounded-lg p-4 bg-gray-50">
+          <div key={process.id} className="rounded-lg p-4 neumorphic-shadow">
             {/* プロセス情報 */}
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-4">
@@ -302,7 +303,7 @@ const ProcessThreadDemo: React.FC = () => {
                 ></div>
                 <div>
                   <h5 className="font-semibold">{process.name}</h5>
-                  <div className="text-sm text-gray-600">
+                  <div className="text-sm">
                     PID: {process.id} | 優先度: {process.priority} | メモリ:{" "}
                     {process.memoryUsage}MB
                   </div>
@@ -310,9 +311,9 @@ const ProcessThreadDemo: React.FC = () => {
               </div>
               <div className="flex items-center gap-2">
                 <span
-                  className={`px-2 py-1 rounded text-xs font-medium text-white ${getStatusColor(
-                    process.status
-                  )}`}
+                  className={`px-2 py-1 rounded text-xs font-medium neumorphic-shadow ${
+                    process.status === "running" ? "text-green-600" : ""
+                  }`}
                 >
                   {getStatusText(process.status)}
                 </span>
@@ -329,7 +330,6 @@ const ProcessThreadDemo: React.FC = () => {
                   variant="outline"
                   onClick={() => terminateProcess(process.id)}
                   disabled={process.status === "terminated"}
-                  className="text-red-600 hover:text-red-700"
                 >
                   終了
                 </Button>
@@ -338,14 +338,14 @@ const ProcessThreadDemo: React.FC = () => {
 
             {/* スレッド一覧 */}
             <div className="ml-8">
-              <h6 className="font-medium text-gray-700 mb-2">
+              <h6 className="font-medium mb-2">
                 スレッド ({process.threads.length}個)
               </h6>
               <div className="space-y-2">
                 {process.threads.map((thread) => (
                   <div
                     key={thread.id}
-                    className="bg-white p-3 rounded border flex items-center justify-between"
+                    className="p-3 rounded flex items-center justify-between neumorphic-shadow"
                   >
                     <div className="flex items-center gap-3">
                       <div
@@ -355,16 +355,16 @@ const ProcessThreadDemo: React.FC = () => {
                       ></div>
                       <div>
                         <div className="font-medium text-sm">{thread.name}</div>
-                        <div className="text-xs text-gray-500">
+                        <div className="text-xs">
                           {thread.task}
                         </div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4">
                       {/* プログレスバー */}
-                      <div className="w-32 bg-gray-200 rounded-full h-2">
+                      <div className="w-32 rounded-full h-2 neumorphic-shadow-inset">
                         <div
-                          className="bg-blue-500 h-2 rounded-full transition-all duration-300"
+                          className="h-2 rounded-full transition-all duration-300 neumorphic-shadow"
                           style={{ width: `${thread.progress}%` }}
                         ></div>
                       </div>
@@ -372,9 +372,9 @@ const ProcessThreadDemo: React.FC = () => {
                         {Math.round(thread.progress)}%
                       </span>
                       <span
-                        className={`px-2 py-1 rounded text-xs text-white ${getStatusColor(
-                          thread.status
-                        )}`}
+                        className={`px-2 py-1 rounded text-xs neumorphic-shadow ${
+                          thread.status === "running" ? "text-green-600" : ""
+                        }`}
                       >
                         {getStatusText(thread.status)}
                       </span>
@@ -389,33 +389,33 @@ const ProcessThreadDemo: React.FC = () => {
 
       {/* システム統計 */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
-        <div className="bg-green-50 p-4 rounded-lg text-center">
-          <div className="text-2xl font-bold text-green-600">
+        <div className="p-4 rounded-lg text-center neumorphic-shadow">
+          <div className="text-2xl font-bold">
             {processes.filter((p) => p.status !== "terminated").length}
           </div>
-          <div className="text-sm text-green-800">アクティブプロセス</div>
+          <div className="text-sm">アクティブプロセス</div>
         </div>
-        <div className="bg-blue-50 p-4 rounded-lg text-center">
-          <div className="text-2xl font-bold text-blue-600">
+        <div className="p-4 rounded-lg text-center neumorphic-shadow">
+          <div className="text-2xl font-bold">
             {processes.reduce(
               (sum, p) =>
                 sum + p.threads.filter((t) => t.status !== "terminated").length,
               0
             )}
           </div>
-          <div className="text-sm text-blue-800">アクティブスレッド</div>
+          <div className="text-sm">アクティブスレッド</div>
         </div>
-        <div className="bg-purple-50 p-4 rounded-lg text-center">
-          <div className="text-2xl font-bold text-purple-600">
+        <div className="p-4 rounded-lg text-center neumorphic-shadow">
+          <div className="text-2xl font-bold">
             {processes.reduce((sum, p) => sum + p.memoryUsage, 0)}MB
           </div>
-          <div className="text-sm text-purple-800">使用メモリ</div>
+          <div className="text-sm">使用メモリ</div>
         </div>
-        <div className="bg-orange-50 p-4 rounded-lg text-center">
-          <div className="text-2xl font-bold text-orange-600">
+        <div className="p-4 rounded-lg text-center neumorphic-shadow">
+          <div className="text-2xl font-bold">
             {processes.filter((p) => p.status === "running").length}
           </div>
-          <div className="text-sm text-orange-800">実行中プロセス</div>
+          <div className="text-sm">実行中プロセス</div>
         </div>
       </div>
 

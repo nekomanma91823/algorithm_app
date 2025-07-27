@@ -238,7 +238,7 @@ const HeapVisualizer: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* ヒープの視覚化 */}
-      <div className="bg-white p-6 rounded-lg border">
+      <div className="p-6 rounded-lg neumorphic-shadow">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold">
             {heapType === "max" ? "最大" : "最小"}ヒープの可視化
@@ -246,9 +246,6 @@ const HeapVisualizer: React.FC = () => {
           <Button
             onClick={toggleHeapType}
             variant="outline"
-            className={`${
-              heapType === "max" ? "text-red-600" : "text-blue-600"
-            }`}
           >
             {heapType === "max" ? "最小ヒープ" : "最大ヒープ"}に変換
           </Button>
@@ -258,32 +255,32 @@ const HeapVisualizer: React.FC = () => {
         <div className="mb-6">{renderHeapTree()}</div>
 
         {/* 配列表現 */}
-        <div className="bg-gray-50 p-4 rounded border">
-          <h4 className="text-sm font-semibold mb-2 text-gray-700">
+        <div className="p-4 rounded neumorphic-shadow-inset">
+          <h4 className="text-sm font-semibold mb-2">
             配列表現:
           </h4>
           <div className="flex flex-wrap gap-2">
             {heap.map((value, index) => (
               <div
                 key={index}
-                className={`w-12 h-8 border rounded flex items-center justify-center text-sm font-medium ${
+                className={`w-12 h-8 rounded flex items-center justify-center text-sm font-medium neumorphic-shadow ${
                   highlightIndex === index
-                    ? "bg-yellow-200 border-yellow-400"
-                    : "bg-white border-gray-300"
+                    ? "neumorphic-shadow-inset"
+                    : ""
                 }`}
               >
                 {value}
               </div>
             ))}
           </div>
-          <div className="text-xs text-gray-500 mt-2">
+          <div className="text-xs mt-2">
             ヒープ性質: 親ノード {heapType === "max" ? "≥" : "≤"} 子ノード
           </div>
         </div>
 
         {/* 操作結果表示 */}
         {operation && (
-          <div className="mt-4 bg-blue-50 border border-blue-200 rounded p-3 text-blue-800 text-center">
+          <div className="mt-4 p-3 rounded text-center neumorphic-shadow">
             {operation}
           </div>
         )}
@@ -347,9 +344,11 @@ const HeapVisualizer: React.FC = () => {
       </div>
 
       {/* 操作説明 */}
-      <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-        <h4 className="font-semibold mb-2 text-yellow-800">💡 ヒープの特徴</h4>
-        <ul className="text-sm text-yellow-700 space-y-1">
+      <div className="p-4 rounded-lg neumorphic-shadow">
+        <h4 className="font-semibold mb-2">
+          💡 ヒープの特徴
+        </h4>
+        <ul className="text-sm space-y-1">
           <li>
             • <strong>完全二分木</strong>: 最下段以外はすべて埋まっている
           </li>

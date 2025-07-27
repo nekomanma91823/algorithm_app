@@ -111,23 +111,23 @@ const ArrayVisualizer: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* 配列の視覚化 */}
-      <div className="bg-white p-6 rounded-lg border">
+      <div className="p-6 rounded-lg neumorphic-shadow">
         <h3 className="text-lg font-semibold mb-4 text-center">配列の可視化</h3>
 
         <div className="flex flex-wrap justify-center gap-2 mb-4">
           {array.map((value, index) => (
             <div key={index} className="relative">
               <div
-                className={`w-16 h-16 border-2 rounded-lg flex items-center justify-center text-lg font-bold cursor-pointer transition-all ${
+                className={`w-16 h-16 rounded-lg flex items-center justify-center text-lg font-bold cursor-pointer transition-all neumorphic-shadow ${
                   highlightIndex === index
-                    ? "bg-blue-200 border-blue-500 shadow-lg scale-110"
-                    : "bg-gray-50 border-gray-300 hover:bg-gray-100"
+                    ? "neumorphic-shadow-inset"
+                    : ""
                 }`}
                 onClick={() => handleAccess(index)}
               >
                 {value}
               </div>
-              <div className="text-xs text-center mt-1 text-gray-500">
+              <div className="text-xs text-center mt-1">
                 [{index}]
               </div>
             </div>
@@ -136,7 +136,7 @@ const ArrayVisualizer: React.FC = () => {
 
         {/* 操作結果表示 */}
         {operation && (
-          <div className="bg-blue-50 border border-blue-200 rounded p-3 text-blue-800 text-center">
+          <div className="p-3 rounded text-center neumorphic-shadow">
             {operation}
           </div>
         )}
@@ -145,24 +145,19 @@ const ArrayVisualizer: React.FC = () => {
       {/* コントロールパネル */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* 挿入操作 */}
-        <div className="bg-gray-50 p-4 rounded-lg">
-          <h4 className="font-semibold mb-3 text-green-700">
+        <div className="p-4 rounded-lg neumorphic-shadow">
+          <h4 className="font-semibold mb-3">
             📥 要素の{operationType === "insert" ? "挿入" : "代入"}
           </h4>
 
           {/* 操作モード選択 */}
-          <div className="mb-4 p-3 bg-white rounded border">
+          <div className="mb-4 p-3 rounded neumorphic-shadow-inset">
             <p className="text-sm font-medium mb-2">操作モード:</p>
             <div className="flex gap-2">
               <Button
                 variant={operationType === "insert" ? "default" : "outline"}
                 size="sm"
                 onClick={() => setOperationType("insert")}
-                className={
-                  operationType === "insert"
-                    ? "bg-green-600 hover:bg-green-700"
-                    : ""
-                }
               >
                 挿入
               </Button>
@@ -170,16 +165,11 @@ const ArrayVisualizer: React.FC = () => {
                 variant={operationType === "overwrite" ? "default" : "outline"}
                 size="sm"
                 onClick={() => setOperationType("overwrite")}
-                className={
-                  operationType === "overwrite"
-                    ? "bg-orange-600 hover:bg-orange-700"
-                    : ""
-                }
               >
                 代入
               </Button>
             </div>
-            <p className="text-xs text-gray-600 mt-2">
+            <p className="text-xs mt-2">
               {operationType === "insert"
                 ? "既存要素を右にシフトして新しい要素を挿入"
                 : "指定位置の要素を新しい値で置き換え"}
@@ -194,6 +184,7 @@ const ArrayVisualizer: React.FC = () => {
               }
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
+              className="neumorphic-shadow-inset"
             />
             <Input
               type="number"
@@ -204,14 +195,11 @@ const ArrayVisualizer: React.FC = () => {
               }
               value={insertIndex}
               onChange={(e) => setInsertIndex(e.target.value)}
+              className="neumorphic-shadow-inset"
             />
             <Button
               onClick={handleInsert}
-              className={`w-full ${
-                operationType === "insert"
-                  ? "bg-green-600 hover:bg-green-700"
-                  : "bg-orange-600 hover:bg-orange-700"
-              }`}
+              className="w-full"
             >
               {operationType === "insert" ? "🔄 挿入" : "✏️ 上書き"}
             </Button>
@@ -219,18 +207,19 @@ const ArrayVisualizer: React.FC = () => {
         </div>
 
         {/* 検索操作 */}
-        <div className="bg-gray-50 p-4 rounded-lg">
-          <h4 className="font-semibold mb-3 text-blue-700">🔍 要素の検索</h4>
+        <div className="p-4 rounded-lg neumorphic-shadow">
+          <h4 className="font-semibold mb-3">🔍 要素の検索</h4>
           <div className="space-y-2">
             <Input
               type="number"
               placeholder="検索する値"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
+              className="neumorphic-shadow-inset"
             />
             <Button
               onClick={handleSearch}
-              className="w-full bg-blue-600 hover:bg-blue-700"
+              className="w-full"
             >
               検索
             </Button>

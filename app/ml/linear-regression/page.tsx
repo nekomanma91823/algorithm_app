@@ -132,20 +132,20 @@ export default function LinearRegressionPage() {
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">線形回帰の視覚化</h1>
+    <div className="p-4 bg-background text-foreground">
+      <h1 className="text-2xl font-bold mb-4 text-foreground">線形回帰の視覚化</h1>
       <p className="mb-2">グラフをクリックしてデータポイントを追加してください。</p>
       <div className="mb-4">
         <p>回帰直線: y = {slope.toFixed(2)}x + {intercept.toFixed(2)}</p>
         <p>平均二乗誤差 (MSE): {mse.toFixed(2)}</p>
         <button
           onClick={handleClearData}
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-2"
+          className="neumorphic-button bg-card text-foreground py-2 px-4 rounded-lg mt-2"
         >
           データをクリア
         </button>
       </div>
-      <svg ref={svgRef} className="border border-gray-400"></svg>
+      <svg ref={svgRef} className="neumorphic-shadow-inset bg-card"></svg>
     </div>
   );
 }

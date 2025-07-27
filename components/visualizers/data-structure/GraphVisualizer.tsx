@@ -178,7 +178,7 @@ const GraphVisualizer: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* グラフの視覚化 */}
-      <div className="bg-white p-6 rounded-lg border">
+      <div className="p-6 rounded-lg neumorphic-shadow">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold">グラフの可視化</h3>
           <div className="flex items-center gap-2">
@@ -193,7 +193,7 @@ const GraphVisualizer: React.FC = () => {
         </div>
         
         {/* SVGでグラフを描画 */}
-        <div className="border rounded bg-gray-50 overflow-hidden">
+        <div className="rounded overflow-hidden neumorphic-shadow-inset">
           <svg width="400" height="300" className="w-full">
             {/* エッジの描画 */}
             {edges.map((edge, index) => {
@@ -212,7 +212,7 @@ const GraphVisualizer: React.FC = () => {
                     y1={fromNode.y}
                     x2={toNode.x}
                     y2={toNode.y}
-                    stroke={isHighlighted ? "#3b82f6" : "#6b7280"}
+                    stroke={isHighlighted ? "var(--primary)" : "var(--foreground)"}
                     strokeWidth={isHighlighted ? "3" : "2"}
                     markerEnd={isDirected ? "url(#arrowhead)" : ""}
                   />
@@ -234,7 +234,7 @@ const GraphVisualizer: React.FC = () => {
                     cx={(fromNode.x + toNode.x) / 2}
                     cy={(fromNode.y + toNode.y) / 2 + 10}
                     r="8"
-                    fill="#ef4444"
+                    fill="var(--destructive)"
                     className="cursor-pointer opacity-70 hover:opacity-100"
                     onClick={() => removeEdge(edge.from, edge.to)}
                   />
@@ -263,7 +263,7 @@ const GraphVisualizer: React.FC = () => {
               >
                 <polygon
                   points="0 0, 10 3.5, 0 7"
-                  fill="#6b7280"
+                  fill="var(--foreground)"
                 />
               </marker>
             </defs>
@@ -280,10 +280,10 @@ const GraphVisualizer: React.FC = () => {
                     cx={node.x}
                     cy={node.y}
                     r="20"
-                    fill={isHighlighted ? "#3b82f6" : "#e5e7eb"}
-                    stroke={isHighlighted ? "#1d4ed8" : "#6b7280"}
+                    fill={isHighlighted ? "var(--primary)" : "var(--background)"}
+                    stroke={isHighlighted ? "var(--primary-foreground)" : "var(--border)"}
                     strokeWidth="2"
-                    className="cursor-pointer hover:fill-gray-300"
+                    className="cursor-pointer hover:fill-gray-300 neumorphic-shadow"
                     onClick={() => performDFS(node.id)}
                   />
                   
@@ -293,7 +293,7 @@ const GraphVisualizer: React.FC = () => {
                     y={node.y + 4}
                     textAnchor="middle"
                     className={`text-sm font-bold cursor-pointer ${
-                      isHighlighted ? 'fill-white' : 'fill-gray-800'
+                      isHighlighted ? 'fill-white' : 'fill-foreground'
                     }`}
                     onClick={() => performDFS(node.id)}
                   >
@@ -317,7 +317,7 @@ const GraphVisualizer: React.FC = () => {
                     cx={node.x + 15}
                     cy={node.y - 15}
                     r="8"
-                    fill="#ef4444"
+                    fill="var(--destructive)"
                     className="cursor-pointer opacity-70 hover:opacity-100"
                     onClick={() => removeNode(node.id)}
                   />
@@ -337,7 +337,7 @@ const GraphVisualizer: React.FC = () => {
         </div>
 
         {/* 隣接リスト表示 */}
-        <div className="mt-4 bg-gray-50 p-3 rounded border">
+        <div className="mt-4 p-3 rounded neumorphic-shadow">
           <h4 className="text-sm font-semibold mb-2">隣接リスト:</h4>
           <div className="text-sm space-y-1">
             {nodes.map(node => {
@@ -355,7 +355,7 @@ const GraphVisualizer: React.FC = () => {
 
         {/* 操作結果表示 */}
         {operation && (
-          <div className="mt-4 bg-blue-50 border border-blue-200 rounded p-3 text-blue-800 text-center">
+          <div className="mt-4 p-3 rounded text-center neumorphic-shadow">
             {operation}
           </div>
         )}
@@ -442,9 +442,9 @@ const GraphVisualizer: React.FC = () => {
       </div>
 
       {/* 操作説明 */}
-      <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-        <h4 className="font-semibold mb-2 text-yellow-800">💡 グラフの特徴</h4>
-        <ul className="text-sm text-yellow-700 space-y-1">
+      <div className="p-4 rounded-lg neumorphic-shadow">
+        <h4 className="font-semibold mb-2">💡 グラフの特徴</h4>
+        <ul className="text-sm space-y-1">
           <li>• <strong>ノード（頂点）</strong>: データを格納する要素</li>
           <li>• <strong>エッジ（辺）</strong>: ノード間の関係を表す</li>
           <li>• <strong>有向・無向</strong>: エッジに方向性があるかどうか</li>
