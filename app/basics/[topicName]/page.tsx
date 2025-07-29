@@ -268,27 +268,6 @@ const BasicsPage: React.FC<BasicsPageProps> = ({ params }) => {
         )}
       </section>
 
-      {/* まとめ */}
-      <section className="p-6 rounded-lg bg-card neumorphic-shadow">
-        <h2 className="text-2xl font-bold mb-4 text-foreground">まとめ</h2>
-        <div className="space-y-3">
-          <p className="leading-relaxed">
-            <strong>{currentTopic.name}</strong>は、
-            {renderTextWithTerms(currentTopic.summary)}
-          </p>
-          <p className="leading-relaxed">
-            {renderTextWithTerms(
-              "この理解を深めるために、次のようなトピックも学習することをお勧めします："
-            )}
-          </p>
-          <ul className="list-disc list-inside space-y-1 ml-4">
-            {currentTopic.nextSteps.map((step, index) => (
-              <li key={index}>{renderTextWithTerms(step)}</li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
       {/* コード例 */}
       <div className="mt-8">
         <h2 className="text-2xl font-semibold mb-2 text-foreground">
