@@ -1,7 +1,9 @@
-import Link from 'next/link';
-import { allQuizData } from '@/data/allQuizData';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import Link from "next/link";
+import { allQuizData } from "@/data/allQuizData";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+export const runtime = "edge";
 
 const QuizSelectionPage = () => {
   return (
@@ -19,7 +21,7 @@ const QuizSelectionPage = () => {
             </Link>
           </CardContent>
         </Card>
-        {allQuizData.map(sectionQuiz => (
+        {allQuizData.map((sectionQuiz) => (
           <Card key={sectionQuiz.section} className="neumorphic-shadow bg-card">
             <CardHeader>
               <CardTitle>{sectionQuiz.section}</CardTitle>

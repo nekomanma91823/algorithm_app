@@ -19,7 +19,7 @@ const BasicsPage: React.FC = () => {
       {/* 説明 */}
       <section className="mb-12 p-6 rounded-lg bg-card neumorphic-shadow">
         <h2 className="text-2xl font-bold mb-4 text-foreground">
-          🎓 基礎について
+          基礎について
         </h2>
         <p className="text-foreground leading-relaxed mb-4">
           コンピュータサイエンスの基礎は、プログラミングやシステム開発を理解するための土台となる重要な概念です。
@@ -79,7 +79,7 @@ const BasicsPage: React.FC = () => {
       {/* 学習の進め方 */}
       <section className="mt-12 p-6 rounded-lg neumorphic-shadow bg-card">
         <h2 className="text-2xl font-bold mb-4 text-foreground">
-          📚 学習の進め方
+          学習の進め方
         </h2>
         <div className="space-y-3 text-foreground">
           <p>
@@ -103,9 +103,7 @@ const BasicsPage: React.FC = () => {
 
       {/* 推奨学習順序 */}
       <section className="mt-8 p-6 rounded-lg neumorphic-shadow bg-card text-foreground">
-        <h2 className="text-2xl font-bold mb-4">
-          🎯 推奨学習順序
-        </h2>
+        <h2 className="text-2xl font-bold mb-4">推奨学習順序</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <h3 className="text-lg font-medium mb-2">基礎編</h3>

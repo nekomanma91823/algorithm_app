@@ -9,45 +9,48 @@ const SearchPage: React.FC = () => {
     {
       title: "線形探索",
       url: "/search/linear-search",
-      description: "配列を最初から順番に調べていく最もシンプルな探索アルゴリズム",
+      description:
+        "配列を最初から順番に調べていく最もシンプルな探索アルゴリズム",
       complexity: "O(n)",
-      icon: "📍"
+      icon: "📍",
     },
     {
       title: "二分探索",
       url: "/search/binary-search",
-      description: "ソート済み配列を半分に分けながら効率的に探索するアルゴリズム",
+      description:
+        "ソート済み配列を半分に分けながら効率的に探索するアルゴリズム",
       complexity: "O(log n)",
-      icon: "📊"
+      icon: "📊",
     },
     {
       title: "幅優先探索 (BFS)",
       url: "/search/bfs",
       description: "グラフやツリーを幅方向に探索する基本的なアルゴリズム",
       complexity: "O(V + E)",
-      icon: "🌊"
+      icon: "🌊",
     },
     {
       title: "深さ優先探索 (DFS)",
       url: "/search/dfs",
       description: "グラフやツリーを深さ方向に探索する基本的なアルゴリズム",
       complexity: "O(V + E)",
-      icon: "🕳️"
+      icon: "🕳️",
     },
     {
       title: "ダイクストラ法",
       url: "/search/dijkstra",
       description: "重み付きグラフで最短経路を見つけるアルゴリズム",
       complexity: "O((V + E) log V)",
-      icon: "🛤️"
+      icon: "🛤️",
     },
     {
       title: "A* (A-star) アルゴリズム",
       url: "/search/a-star",
-      description: "ヒューリスティックを使用した効率的な最短経路探索アルゴリズム",
+      description:
+        "ヒューリスティックを使用した効率的な最短経路探索アルゴリズム",
       complexity: "O(b^d)",
-      icon: "⭐"
-    }
+      icon: "⭐",
+    },
   ];
 
   return (
@@ -57,7 +60,9 @@ const SearchPage: React.FC = () => {
         <div className="text-center mb-12">
           <div className="flex justify-center items-center mb-4">
             <Search className="w-12 h-12 text-primary mr-3" />
-            <h1 className="text-4xl font-bold text-foreground">探索アルゴリズム</h1>
+            <h1 className="text-4xl font-bold text-foreground">
+              探索アルゴリズム
+            </h1>
           </div>
           <p className="text-lg text-foreground max-w-3xl mx-auto">
             データの中から目的の情報を効率的に見つけ出すためのアルゴリズムを学びましょう。
@@ -76,11 +81,11 @@ const SearchPage: React.FC = () => {
                     {algorithm.title}
                   </h3>
                 </div>
-                
+
                 <p className="text-foreground mb-4 leading-relaxed">
                   {algorithm.description}
                 </p>
-                
+
                 <div className="flex justify-between items-center">
                   <span className="text-primary text-sm font-medium px-3 py-1 rounded-full neumorphic-shadow-inset bg-card">
                     {algorithm.complexity}
@@ -100,7 +105,9 @@ const SearchPage: React.FC = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h3 className="text-lg font-semibold text-foreground mb-3">基本から応用へ</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-3">
+                基本から応用へ
+              </h3>
               <ul className="space-y-2 text-foreground">
                 <li>• まずは線形探索で基本概念を理解</li>
                 <li>• 二分探索で効率性の重要性を学習</li>
@@ -108,7 +115,9 @@ const SearchPage: React.FC = () => {
               </ul>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-foreground mb-3">視覚化の活用</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-3">
+                視覚化の活用
+              </h3>
               <ul className="space-y-2 text-foreground">
                 <li>• インタラクティブなデモで動作を確認</li>
                 <li>• ステップごとの状態変化を観察</li>

@@ -235,49 +235,22 @@ const DataStructurePage: React.FC<DataStructurePageProps> = ({ params }) => {
       {/* プリズム・デモセクション */}
       <section className="mb-12 p-6 rounded-lg bg-card neumorphic-shadow">
         <h2 className="text-2xl font-bold mb-4 text-foreground">
-          🔍 プリズム・デモ：見て、触って、理解する
+          プリズム・デモ
         </h2>
-        <div className="p-4 rounded-md neumorphic-shadow-inset bg-card mb-4">
-          <p className="leading-relaxed">
-            {renderTextWithTerms(
-              "データ構造は、文字や図だけでは理解しにくい概念です。実際にデータがどのように格納され、操作されるかを視覚的に体験することで、その仕組みや特徴が直感的に理解できるようになります。"
-            )}
-          </p>
-        </div>
 
         {/* 簡単な視覚化エリア */}
         <div className="p-6 rounded-md neumorphic-shadow-inset bg-card min-h-[400px]">
           {getVisualizer()}
         </div>
-
-        <div className="mt-4 text-sm text-foreground">
-          <p>
-            💡
-            この視覚的な理解が、後の「仕組みの解説」や「特徴」セクションの理解に繋がります。
-            デモで感じた「なぜ？」の答えを、この後の解説で一緒に見つけていきましょう。
-          </p>
-        </div>
       </section>
 
-      {/* 導入（一言でいうと） */}
+      {/* 概要 */}
       <section className="mb-8 p-6 rounded-lg bg-card neumorphic-shadow">
-        <h2 className="text-2xl font-bold mb-4 text-foreground">
-          💡 一言でいうと
-        </h2>
+        <h2 className="text-2xl font-bold mb-4 text-foreground">概要</h2>
         <p className="text-lg font-medium mb-2">
           {renderTextWithTerms(currentStructure.description)}
         </p>
-        <p className="text-foreground">
-          {renderTextWithTerms(currentStructure.features)}
-        </p>
-      </section>
-
-      {/* 身近な例え話 */}
-      <section className="mb-8 p-6 rounded-lg bg-card neumorphic-shadow">
-        <h2 className="text-2xl font-bold mb-4 text-foreground">
-          🌟 身近な例え話
-        </h2>
-        <p className="leading-relaxed">
+        <p className="text-lg font-medium mb-2">
           {renderTextWithTerms(currentStructure.example)}
         </p>
       </section>
@@ -285,65 +258,40 @@ const DataStructurePage: React.FC<DataStructurePageProps> = ({ params }) => {
       {/* 仕組みのステップ解説 */}
       <section className="mb-8 p-6 rounded-lg bg-card neumorphic-shadow">
         <h2 className="text-2xl font-bold mb-4 text-foreground">
-          ⚙️ 仕組みのステップ解説
+          仕組みのステップ解説
         </h2>
-        <div className="p-4 rounded-md neumorphic-shadow-inset bg-card">
+        <div className=" rounded-md  bg-card">
           <p className="leading-relaxed">
             {renderTextWithTerms(currentStructure.structure)}
           </p>
         </div>
       </section>
 
-      {/* 疑似コード */}
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold mb-4 text-foreground">📝 疑似コード</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-4 rounded-lg neumorphic-shadow bg-card">
-            <h3 className="text-xl font-medium mb-3 text-foreground">
-              JavaScript
-            </h3>
-            {jsCode && (
-              <CodeBlock>
-                <code className="language-javascript">{jsCode}</code>
-              </CodeBlock>
-            )}
-          </div>
-          <div className="p-4 rounded-lg neumorphic-shadow bg-card">
-            <h3 className="text-xl font-medium mb-3 text-foreground">Python</h3>
-            {pyCode && (
-              <CodeBlock>
-                <code className="language-python">{pyCode}</code>
-              </CodeBlock>
-            )}
-          </div>
-        </div>
-      </section>
-
       {/* 特徴（長所と短所） */}
       <section className="mb-8 p-6 rounded-lg bg-card neumorphic-shadow">
-        <h2 className="text-2xl font-bold mb-4 text-foreground">
-          ⚡ 特徴（長所と短所）
-        </h2>
+        <h2 className="text-2xl font-bold mb-4 text-foreground">特徴</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div className="p-4 rounded-md neumorphic-shadow-inset bg-card">
-            <h3 className="text-lg font-medium mb-2 text-foreground">✅ 長所</h3>
-            <p className="leading-relaxed">
-              {renderTextWithTerms(currentStructure.features)}
-            </p>
+          <div className="p-4 rounded-md  bg-card">
+            <h3 className="text-lg font-medium mb-2 text-foreground">長所</h3>
+            <ul className="list-disc list-inside space-y-1 text-foreground">
+              {currentStructure.pros.map((pro, index) => (
+                <li key={index}>{renderTextWithTerms(pro)}</li>
+              ))}
+            </ul>
           </div>
-          <div className="p-4 rounded-md neumorphic-shadow-inset bg-card">
-            <h3 className="text-lg font-medium mb-2 text-foreground">⚠️ 短所</h3>
-            <p className="leading-relaxed">
-              {renderTextWithTerms(
-                "実装によっては複雑になる場合があり、メモリ使用量が多くなることがあります。"
-              )}
-            </p>
+          <div className="p-4 rounded-md  bg-card">
+            <h3 className="text-lg font-medium mb-2 text-foreground">短所</h3>
+            <ul className="list-disc list-inside space-y-1 text-foreground">
+              {currentStructure.cons.map((con, index) => (
+                <li key={index}>{renderTextWithTerms(con)}</li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div className="p-4 rounded-md neumorphic-shadow-inset bg-card">
-          <h3 className="text-lg font-medium mb-3 text-foreground">📊 計算量</h3>
+        <div className="p-4 rounded-md bg-card">
+          <h3 className="text-lg font-medium mb-3 text-foreground">計算量</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
             <div className="text-center">
               <p className="font-medium text-foreground">アクセス</p>
@@ -378,39 +326,31 @@ const DataStructurePage: React.FC<DataStructurePageProps> = ({ params }) => {
               </span>
             </p>
           </div>
-          <div className="mt-2 text-xs text-foreground">
-            <p>
-              {renderTextWithTerms(
-                "💡 計算量とは、データ量が増えた時の処理時間やメモリ使用量の増加率を表します。O(1)は常に一定、O(n)はデータ量に比例、O(log n)はデータ量の対数に比例して増加します。"
-              )}
-            </p>
-          </div>
         </div>
       </section>
 
-      {/* まとめ */}
-      <section className="p-6 rounded-lg bg-card neumorphic-shadow">
-        <h2 className="text-2xl font-bold mb-4 text-foreground">📋 まとめ</h2>
-        <div className="space-y-3">
-          <p className="leading-relaxed">
-            <strong>{currentStructure.name}</strong>は、
-            {renderTextWithTerms(currentStructure.description.toLowerCase())}
-            です。
-            {renderTextWithTerms(currentStructure.example)}
-          </p>
-          <p className="leading-relaxed">
-            {renderTextWithTerms(
-              "この理解を深めるために、次のようなトピックも学習することをお勧めします："
+      {/* コード例 */}
+      <div className="mt-8">
+        <h2 className="text-2xl font-semibold mb-2 text-foreground">
+          コード例
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="rounded-md  ">
+            {jsCode && (
+              <CodeBlock>
+                <code className="language-javascript">{jsCode}</code>
+              </CodeBlock>
             )}
-          </p>
-          <ul className="list-disc list-inside space-y-1 ml-4">
-            <li>{renderTextWithTerms("他のデータ構造との比較と使い分け")}</li>
-            <li>{renderTextWithTerms("実際のプログラミングでの応用例")}</li>
-            <li>{renderTextWithTerms("アルゴリズムとの組み合わせ")}</li>
-            <li>{renderTextWithTerms("パフォーマンスの最適化技術")}</li>
-          </ul>
+          </div>
+          <div className="rounded-md ">
+            {pyCode && (
+              <CodeBlock>
+                <code className="language-python">{pyCode}</code>
+              </CodeBlock>
+            )}
+          </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 };

@@ -79,9 +79,8 @@ export function AppSidebar() {
         <SidebarGroup />
       </SidebarContent>
       <SidebarFooter>
-        <Button onClick={toggleTheme} className="w-full">
-          {theme === "dark" ? <Sun className="mr-2 h-4 w-4" /> : <Moon className="mr-2 h-4 w-4" />}
-          {theme === "dark" ? "ライトモード" : "ダークモード"}
+        <Button onClick={toggleTheme} size="icon">
+          {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
         </Button>
       </SidebarFooter>
     </Sidebar>

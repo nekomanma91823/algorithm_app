@@ -118,18 +118,15 @@ const ArrayVisualizer: React.FC = () => {
           {array.map((value, index) => (
             <div key={index} className="relative">
               <div
-                className={`w-16 h-16 rounded-lg flex items-center justify-center text-lg font-bold cursor-pointer transition-all neumorphic-shadow ${
-                  highlightIndex === index
-                    ? "neumorphic-shadow-inset"
-                    : ""
-                }`}
+                className={
+                  `w-16 h-16 rounded-lg flex items-center justify-center text-lg font-bold cursor-pointer transition-all neumorphic-shadow ` +
+                  (highlightIndex === index ? " bg-blue-100" : "bg-gray-200")
+                }
                 onClick={() => handleAccess(index)}
               >
                 {value}
               </div>
-              <div className="text-xs text-center mt-1">
-                [{index}]
-              </div>
+              <div className="text-xs text-center mt-1">[{index}]</div>
             </div>
           ))}
         </div>
@@ -147,12 +144,12 @@ const ArrayVisualizer: React.FC = () => {
         {/* 挿入操作 */}
         <div className="p-4 rounded-lg neumorphic-shadow">
           <h4 className="font-semibold mb-3">
-            📥 要素の{operationType === "insert" ? "挿入" : "代入"}
+            要素の{operationType === "insert" ? "挿入" : "代入"}
           </h4>
 
           {/* 操作モード選択 */}
-          <div className="mb-4 p-3 rounded neumorphic-shadow-inset">
-            <p className="text-sm font-medium mb-2">操作モード:</p>
+          <div className="mb-4 p-3 rounded ">
+            {/* <p className="text-sm font-medium mb-2">操作モード:</p> */}
             <div className="flex gap-2">
               <Button
                 variant={operationType === "insert" ? "default" : "outline"}
@@ -169,11 +166,11 @@ const ArrayVisualizer: React.FC = () => {
                 代入
               </Button>
             </div>
-            <p className="text-xs mt-2">
+            {/* <p className="text-xs mt-2">
               {operationType === "insert"
                 ? "既存要素を右にシフトして新しい要素を挿入"
                 : "指定位置の要素を新しい値で置き換え"}
-            </p>
+            </p> */}
           </div>
 
           <div className="space-y-2">
@@ -197,10 +194,7 @@ const ArrayVisualizer: React.FC = () => {
               onChange={(e) => setInsertIndex(e.target.value)}
               className="neumorphic-shadow-inset"
             />
-            <Button
-              onClick={handleInsert}
-              className="w-full"
-            >
+            <Button onClick={handleInsert} className="w-full">
               {operationType === "insert" ? "🔄 挿入" : "✏️ 上書き"}
             </Button>
           </div>
@@ -217,10 +211,7 @@ const ArrayVisualizer: React.FC = () => {
               onChange={(e) => setInputValue(e.target.value)}
               className="neumorphic-shadow-inset"
             />
-            <Button
-              onClick={handleSearch}
-              className="w-full"
-            >
+            <Button onClick={handleSearch} className="w-full">
               検索
             </Button>
           </div>
