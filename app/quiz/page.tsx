@@ -3,8 +3,6 @@ import { allQuizData } from "@/data/allQuizData";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-export const runtime = "edge";
-
 const QuizSelectionPage = () => {
   return (
     <div className="container mx-auto p-4 bg-background text-foreground neumorphic-shadow">
