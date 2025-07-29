@@ -106,7 +106,7 @@ const LinkedListVisualizer: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* 連結リストの視覚化 */}
-      <div className="bg-white p-6 rounded-lg border">
+      <div className="p-6 rounded-lg neumorphic-shadow">
         <h3 className="text-lg font-semibold mb-4 text-center">
           連結リストの可視化
         </h3>
@@ -114,43 +114,43 @@ const LinkedListVisualizer: React.FC = () => {
         <div className="flex items-center justify-center space-x-2 overflow-x-auto pb-4">
           {/* HEAD ポインタ */}
           <div className="flex flex-col items-center">
-            <div className="text-sm font-semibold text-blue-600 mb-1">HEAD</div>
-            <div className="w-2 h-8 bg-blue-500 rounded"></div>
+            <div className="text-sm font-semibold mb-1">HEAD</div>
+            <div className="w-2 h-8 rounded neumorphic-shadow"></div>
           </div>
 
-          <div className="text-blue-500 text-xl">→</div>
+          <div className="text-xl">→</div>
 
           {list.map((value, index) => (
             <React.Fragment key={index}>
               {/* ノード */}
               <div
-                className={`relative border-2 rounded-lg p-4 transition-all ${
+                className={`relative rounded-lg p-4 transition-all neumorphic-shadow ${
                   highlightIndex === index
-                    ? "bg-yellow-200 border-yellow-500 shadow-lg scale-110"
-                    : "bg-gray-50 border-gray-300 hover:bg-gray-100"
+                    ? "neumorphic-shadow-inset"
+                    : ""
                 }`}
               >
                 {/* ノードの構造 */}
                 <div className="flex">
                   {/* データ部分 */}
-                  <div className="w-12 h-12 border border-gray-400 rounded-l flex items-center justify-center bg-white font-bold">
+                  <div className="w-12 h-12 rounded-l flex items-center justify-center font-bold neumorphic-shadow-inset">
                     {value}
                   </div>
                   {/* ポインタ部分 */}
-                  <div className="w-8 h-12 border border-gray-400 border-l-0 rounded-r flex items-center justify-center bg-blue-50">
-                    <span className="text-blue-600 text-sm">→</span>
+                  <div className="w-8 h-12 rounded-r flex items-center justify-center neumorphic-shadow-inset">
+                    <span className="text-sm">→</span>
                   </div>
                 </div>
 
                 {/* インデックス表示 */}
-                <div className="text-xs text-center mt-1 text-gray-500">
+                <div className="text-xs text-center mt-1">
                   [{index}]
                 </div>
 
                 {/* 削除ボタン */}
                 <button
                   onClick={() => handleDeleteAtIndex(index)}
-                  className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white rounded-full text-xs hover:bg-red-600"
+                  className="absolute -top-2 -right-2 w-5 h-5 text-white rounded-full text-xs neumorphic-shadow"
                 >
                   ×
                 </button>
@@ -158,23 +158,23 @@ const LinkedListVisualizer: React.FC = () => {
 
               {/* 矢印（最後の要素以外） */}
               {index < list.length - 1 && (
-                <div className="text-blue-500 text-xl">→</div>
+                <div className="text-xl">→</div>
               )}
             </React.Fragment>
           ))}
 
           {/* NULL ポインタ */}
           <div className="flex flex-col items-center">
-            <div className="text-sm font-semibold text-gray-500 mb-1">NULL</div>
-            <div className="w-8 h-8 border-2 border-gray-400 rounded bg-gray-200 flex items-center justify-center">
-              <span className="text-gray-500 text-xs">∅</span>
+            <div className="text-sm font-semibold mb-1">NULL</div>
+            <div className="w-8 h-8 rounded neumorphic-shadow-inset flex items-center justify-center">
+              <span className="text-xs">∅</span>
             </div>
           </div>
         </div>
 
         {/* リスト情報 */}
         <div className="mt-4 text-center">
-          <div className="text-sm text-gray-600">
+          <div className="text-sm">
             <span className="font-semibold">ノード数:</span> {list.length}
             {list.length > 0 && (
               <>
@@ -188,7 +188,7 @@ const LinkedListVisualizer: React.FC = () => {
 
         {/* 操作結果表示 */}
         {operation && (
-          <div className="mt-4 bg-blue-50 border border-blue-200 rounded p-3 text-blue-800 text-center">
+          <div className="mt-4 p-3 rounded text-center neumorphic-shadow">
             {operation}
           </div>
         )}
@@ -306,11 +306,11 @@ const LinkedListVisualizer: React.FC = () => {
       </div>
 
       {/* 操作説明 */}
-      <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-        <h4 className="font-semibold mb-2 text-yellow-800">
+      <div className="p-4 rounded-lg neumorphic-shadow">
+        <h4 className="font-semibold mb-2">
           💡 連結リストの特徴
         </h4>
-        <ul className="text-sm text-yellow-700 space-y-1">
+        <ul className="text-sm space-y-1">
           <li>
             • <strong>動的サイズ</strong>: 実行時にサイズを変更可能
           </li>

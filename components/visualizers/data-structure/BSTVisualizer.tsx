@@ -245,12 +245,12 @@ const BSTVisualizer: React.FC = () => {
       <div className="flex flex-col items-center">
         {/* ノード */}
         <div
-          className={`w-12 h-12 rounded-full border-2 flex items-center justify-center font-bold text-sm transition-all ${
+          className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-sm transition-all neumorphic-shadow ${
             isHighlighted
-              ? "bg-yellow-200 border-yellow-500 shadow-lg scale-110"
+              ? "neumorphic-shadow-inset"
               : isTraversalHighlighted
-              ? "bg-green-200 border-green-500"
-              : "bg-blue-100 border-blue-300 hover:bg-blue-200"
+              ? "neumorphic-shadow-inset"
+              : ""
           }`}
         >
           {node.value}
@@ -398,11 +398,11 @@ const BSTVisualizer: React.FC = () => {
       </div>
 
       {/* 操作説明 */}
-      <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-        <h4 className="font-semibold mb-2 text-yellow-800">
+      <div className="p-4 rounded-lg neumorphic-shadow">
+        <h4 className="font-semibold mb-2">
           💡 二分探索木の特徴
         </h4>
-        <ul className="text-sm text-yellow-700 space-y-1">
+        <ul className="text-sm space-y-1">
           <li>
             • <strong>BST性質</strong>: 左の子 ＜ 親 ＜ 右の子
           </li>

@@ -1,5 +1,9 @@
 // import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
 export const sidebarData = [
+  {
+    section: "クイズ",
+    content: [{ title: "総合クイズ", url: "/quiz" }],
+  },
   // =============================================
   // 基本（コンピュータサイエンスの基礎）
   // =============================================

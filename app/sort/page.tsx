@@ -2,81 +2,85 @@
 
 import React from "react";
 import Link from "next/link";
-import { dataStructureMap } from "@/data/dataStructureMap";
+import { sortAlgorithmMap } from "@/data/sortMap";
+import { BarChart3 } from "lucide-react";
 
-const DataStructurePage: React.FC = () => {
-  // データ構造のキーと情報を取得
-  const dataStructures = Object.entries(dataStructureMap);
+const SortPage: React.FC = () => {
+  // ソートアルゴリズムのキーと情報を取得
+  const sortAlgorithms = Object.entries(sortAlgorithmMap);
 
   return (
     <div className="p-6 max-w-6xl mx-auto bg-background text-foreground">
       {/* ページタイトル */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4 text-foreground">
-          データ構造の学習
-        </h1>
+        <div className="flex justify-center items-center mb-4">
+          <BarChart3 className="w-12 h-12 text-primary mr-3" />
+          <h1 className="text-4xl font-bold text-foreground">
+            ソートアルゴリズム
+          </h1>
+        </div>
         <p className="text-lg text-gray-600 leading-relaxed">
-          プログラミングにおける基本的なデータ構造を視覚的に学習できます。
+          データを特定の順序に並べ替えるためのアルゴリズムを学びましょう。
           <br />
-          各データ構造の特徴や使用例を理解し、適切な場面で活用できるようになりましょう。
+          基本的なソートから、効率的な高度なソートまで、様々な手法を視覚的に理解できます。
         </p>
       </div>
 
-      {/* データ構造一覧 */}
+      {/* アルゴリズム一覧 */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-6 text-foreground text-center">
-          データ構造一覧
+          ソートアルゴリズム一覧
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {dataStructures.map(([key, structure]) => (
+          {sortAlgorithms.map(([key, algorithm]) => (
             <Link
               key={key}
-              href={`/data-structure/${key}`}
-              className="group  p-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1 neumorphic-shadow hover:neumorphic-shadow-inset bg-card text-foreground flex flex-col"
+              href={`/sort/${key}`}
+              className="group p-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1 neumorphic-shadow hover:neumorphic-shadow-inset bg-card text-foreground flex flex-col"
             >
               {/* アイコンとタイトル */}
               <div className="flex items-center mb-3">
                 <div className="w-12 h-12 bg-card rounded-lg flex items-center justify-center mr-3 neumorphic-shadow-inset">
-                  <span className="text-2xl">{structure.icon}</span>
+                  <span className="text-2xl">{algorithm.icon}</span>
                 </div>
                 <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
-                  {structure.name}
+                  {algorithm.name}
                 </h3>
               </div>
 
               {/* 説明 */}
-              <p className="text-sm mb-4 leading-relaxed">
-                {structure.description}
+              <p className="text-sm mb-4 leading-relaxed flex-grow">
+                {algorithm.description}
               </p>
 
               {/* 計算量情報 */}
-              <div className="border-t pt-3">
-                <div className="flex justify-between text-xs mb-2">
+              <div className="border-t pt-3 text-xs space-y-2">
+                <div className="flex justify-between">
                   <span>
-                    アクセス:{" "}
+                    最良:{" "}
                     <span className="font-semibold text-primary">
-                      {structure.timeComplexity.access}
+                      {algorithm.timeComplexity.best}
                     </span>
                   </span>
                   <span>
-                    検索:{" "}
+                    平均:{" "}
                     <span className="font-semibold text-primary">
-                      {structure.timeComplexity.search}
+                      {algorithm.timeComplexity.average}
                     </span>
                   </span>
                 </div>
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between">
                   <span>
-                    挿入:{" "}
+                    最悪:{" "}
                     <span className="font-semibold text-primary">
-                      {structure.timeComplexity.insertion}
+                      {algorithm.timeComplexity.worst}
                     </span>
                   </span>
                   <span>
-                    削除:{" "}
+                    空間:{" "}
                     <span className="font-semibold text-primary">
-                      {structure.timeComplexity.deletion}
+                      {algorithm.spaceComplexity}
                     </span>
                   </span>
                 </div>
@@ -101,29 +105,22 @@ const DataStructurePage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <h3 className="font-semibold mb-2 text-foreground">
-              基本から順番に
+              計算量を意識する
             </h3>
             <ul className="text-sm space-y-1 list-disc ml-4">
-              <li>
-                <strong>配列</strong> → <strong>連結リスト</strong> →{" "}
-                <strong>スタック・キュー</strong>
-              </li>
-              <li>
-                <strong>ハッシュテーブル</strong> → <strong>二分探索木</strong>
-              </li>
-              <li>
-                <strong>ヒープ</strong> → <strong>グラフ</strong> →{" "}
-                <strong>高度な木構造</strong>
-              </li>
+              <li>O(n²) と O(n log n) の違いを理解する</li>
+              <li>データ量が増えた際のパフォーマンスを想像する</li>
+              <li>最善・平均・最悪ケースを考慮する</li>
             </ul>
           </div>
           <div>
-            <h3 className="font-semibold mb-2 text-foreground">実践的な学習</h3>
+            <h3 className="font-semibold mb-2 text-foreground">
+              安定性を知る
+            </h3>
             <ul className="text-sm space-y-1 list-disc ml-4">
-              <li>デモで実際に操作してみる</li>
-              <li>なぜその操作が必要かを考える</li>
-              <li>コード例を実際に動かしてみる</li>
-              <li>他のデータ構造との違いを比較する</li>
+              <li>同じ値の要素の順序が保たれるか（安定ソート）</li>
+              <li>マージソートは安定、クイックソートは不安定</li>
+              <li>安定性が重要になるケースを考える</li>
             </ul>
           </div>
         </div>
@@ -132,4 +129,4 @@ const DataStructurePage: React.FC = () => {
   );
 };
 
-export default DataStructurePage;
+export default SortPage;

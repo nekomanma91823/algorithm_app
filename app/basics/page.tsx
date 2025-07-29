@@ -10,22 +10,22 @@ const BasicsPage: React.FC = () => {
   const basicsTopics = Object.entries(basicsMap);
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
+    <div className="p-6 max-w-6xl mx-auto bg-background text-foreground">
       {/* ページタイトル */}
-      <h1 className="text-4xl font-bold mb-6 text-center text-blue-700">
+      <h1 className="text-4xl font-bold mb-6 text-center text-foreground">
         コンピュータサイエンスの基礎
       </h1>
 
       {/* 説明 */}
-      <section className="mb-12 bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border">
-        <h2 className="text-2xl font-bold mb-4 text-blue-800">
-          🎓 基礎について
+      <section className="mb-12 p-6 rounded-lg bg-card neumorphic-shadow">
+        <h2 className="text-2xl font-bold mb-4 text-foreground">
+          基礎について
         </h2>
-        <p className="text-gray-700 leading-relaxed mb-4">
+        <p className="text-foreground leading-relaxed mb-4">
           コンピュータサイエンスの基礎は、プログラミングやシステム開発を理解するための土台となる重要な概念です。
           これらの基礎知識をしっかりと身につけることで、より高度な技術への理解が深まります。
         </p>
-        <p className="text-gray-700 leading-relaxed">
+        <p className="text-foreground leading-relaxed">
           各トピックは身近な例え話と実践的な説明で構成されており、初学者でも分かりやすく学習できるように設計されています。
         </p>
       </section>
@@ -36,27 +36,27 @@ const BasicsPage: React.FC = () => {
           <Link
             key={key}
             href={`/basics/${key}`}
-            className="block bg-white p-6 rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200"
+            className="block p-6 rounded-lg neumorphic-shadow hover:neumorphic-shadow-inset bg-card text-foreground transition-all duration-200"
           >
             <div className="mb-4">
-              <h3 className="text-xl font-bold text-blue-700 mb-2">
+              <h3 className="text-xl font-bold text-foreground mb-2">
                 {topic.name}
               </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <p className="text-foreground text-sm leading-relaxed">
                 {topic.description}
               </p>
             </div>
 
             <div className="border-t pt-4">
-              <p className="text-xs text-gray-500 mb-2">主な特徴:</p>
-              <p className="text-sm text-gray-700">
+              <p className="text-xs text-foreground mb-2">主な特徴:</p>
+              <p className="text-sm text-foreground">
                 {topic.features && topic.features.length > 100
                   ? `${topic.features.substring(0, 100)}...`
                   : topic.features || "特徴の情報がありません"}
               </p>
             </div>
 
-            <div className="mt-4 flex items-center text-blue-600 text-sm font-medium">
+            <div className="mt-4 flex items-center text-primary text-sm font-medium">
               詳しく学ぶ
               <svg
                 className="ml-1 w-4 h-4"
@@ -77,11 +77,11 @@ const BasicsPage: React.FC = () => {
       </section>
 
       {/* 学習の進め方 */}
-      <section className="mt-12 bg-yellow-50 p-6 rounded-lg border-l-4 border-yellow-400">
-        <h2 className="text-2xl font-bold mb-4 text-yellow-800">
-          📚 学習の進め方
+      <section className="mt-12 p-6 rounded-lg neumorphic-shadow bg-card">
+        <h2 className="text-2xl font-bold mb-4 text-foreground">
+          学習の進め方
         </h2>
-        <div className="space-y-3 text-gray-700">
+        <div className="space-y-3 text-foreground">
           <p>
             <strong>1. 順序立てた学習:</strong>{" "}
             まずは「ハードウェア」「ソフトウェア」から始めて、基本的な概念を理解しましょう。
@@ -102,14 +102,12 @@ const BasicsPage: React.FC = () => {
       </section>
 
       {/* 推奨学習順序 */}
-      <section className="mt-8 bg-green-50 p-6 rounded-lg border-l-4 border-green-400">
-        <h2 className="text-2xl font-bold mb-4 text-green-800">
-          🎯 推奨学習順序
-        </h2>
+      <section className="mt-8 p-6 rounded-lg neumorphic-shadow bg-card text-foreground">
+        <h2 className="text-2xl font-bold mb-4">推奨学習順序</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h3 className="text-lg font-medium mb-2 text-green-700">基礎編</h3>
-            <ol className="list-decimal list-inside space-y-1 text-gray-700">
+            <h3 className="text-lg font-medium mb-2">基礎編</h3>
+            <ol className="list-decimal list-inside space-y-1">
               <li>ハードウェア</li>
               <li>ソフトウェア</li>
               <li>CPUの仕組み</li>
@@ -117,8 +115,8 @@ const BasicsPage: React.FC = () => {
             </ol>
           </div>
           <div>
-            <h3 className="text-lg font-medium mb-2 text-green-700">応用編</h3>
-            <ol className="list-decimal list-inside space-y-1 text-gray-700">
+            <h3 className="text-lg font-medium mb-2">応用編</h3>
+            <ol className="list-decimal list-inside space-y-1">
               <li>OSの役割</li>
               <li>プロセスとスレッド</li>
               <li>メモリ管理</li>

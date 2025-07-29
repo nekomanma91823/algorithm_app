@@ -1,9 +1,24 @@
+import React from "react";
+import {
+  List,
+  Link,
+  Slack,
+  ListOrdered,
+  Hash,
+  GitGraph,
+  Mountain,
+  Network,
+  TextSearch,
+  Database,
+} from "lucide-react";
+
 export interface DataStructureConfig {
   name: string;
   description: string;
-  features: string;
-  example: string;
+  pros: string[];
+  cons: string[];
   structure: string;
+  example: string;
   timeComplexity: {
     access: string;
     search: string;
@@ -15,205 +30,282 @@ export interface DataStructureConfig {
     javascript: string;
     python: string;
   };
+  icon: React.JSX.Element;
 }
 
 export const dataStructureMap: { [key: string]: DataStructureConfig } = {
-  "array": {
+  array: {
     name: "配列",
-    description: "同じ型のデータを連続したメモリ領域に格納するデータ構造",
-    features: "インデックスによる高速なアクセスが可能。しかし、挿入や削除時に要素をシフトする必要がある。",
-    example: "本棚のように、番号が付いた棚に本を順番に並べるイメージ。どの番号の本でもすぐに取り出せます。",
-    structure: "要素がメモリ上で連続して配置され、各要素にはインデックス（添字）でアクセスします。",
+    description: "同じ型のデータを連続したメモリ領域に格納するデータ構造です。",
+    example:
+      "本棚に並べられた本のように、決まった番号（インデックス）の棚に直接アクセスできます。",
+    pros: ["インデックスによる高速なアクセスが可能。"],
+    cons: ["挿入や削除時に要素をシフトする必要がある。"],
+    structure:
+      "要素がメモリ上で連続して配置され、各要素にはインデックス（添字）でアクセスします。",
     timeComplexity: {
       access: "O(1)",
       search: "O(n)",
       insertion: "O(n)",
-      deletion: "O(n)"
+      deletion: "O(n)",
     },
     spaceComplexity: "O(n)",
     code: {
       javascript: "/codes/data-structure/array.js",
-      python: "/codes/data-structure/array.py"
-    }
+      python: "/codes/data-structure/array.py",
+    },
+    icon: <List />,
   },
   "linked-list": {
     name: "連結リスト",
-    description: "各要素（ノード）が次の要素への参照を持つデータ構造",
-    features: "動的なサイズ変更が可能で、挿入・削除が効率的。しかし、ランダムアクセスができない。",
-    example: "数珠つなぎの電車のように、各車両が次の車両への連結器を持っているイメージ。",
-    structure: "各ノードがデータと次のノードへのポインタを持ち、チェーン状に連結されています。",
+    description:
+      "各要素（ノード）が次の要素への参照（ポインタ）を持つことで、数珠つなぎにデータを格納するデータ構造です。",
+    example:
+      "宝探しゲームのヒントのように、現在の場所にあるヒントが次の場所を指し示しているのをたどっていく様子に似ています。",
+    pros: ["動的なサイズ変更が可能で、挿入・削除が効率的。"],
+    cons: ["ランダムアクセスができない。"],
+    structure:
+      "各ノードがデータと次のノードへのポインタを持ち、チェーン状に連結されています。",
     timeComplexity: {
       access: "O(n)",
       search: "O(n)",
       insertion: "O(1)",
-      deletion: "O(1)"
+      deletion: "O(1)",
     },
     spaceComplexity: "O(n)",
     code: {
       javascript: "/codes/data-structure/linked-list.js",
-      python: "/codes/data-structure/linked-list.py"
-    }
+      python: "/codes/data-structure/linked-list.py",
+    },
+    icon: <Link />,
   },
-  "stack": {
+  stack: {
     name: "スタック",
-    description: "LIFO（Last In, First Out）方式でデータを管理するデータ構造",
-    features: "最後に追加した要素を最初に取り出す。関数呼び出しやブラウザの戻るボタンなどに使用される。",
-    example: "本を積み重ねた状態。一番上の本しか取り出せず、新しい本も一番上にしか置けません。",
-    structure: "要素の追加（push）と削除（pop）がスタックの上（top）でのみ行われます。",
+    description:
+      "LIFO（Last In, First Out）方式、つまり「後入れ先出し」でデータを管理するデータ構造です。",
+    example:
+      "積み重ねた本や皿のように、一番上に置いたものからしか取り出すことができません。",
+    pros: [
+      "最後に追加した要素を最初に取り出す。",
+      "関数呼び出しやブラウザの戻るボタンなどに使用される。",
+    ],
+    cons: [],
+    structure:
+      "要素の追加（push）と削除（pop）がスタックの同じ端（top）でのみ行われます。",
     timeComplexity: {
       access: "O(n)",
       search: "O(n)",
       insertion: "O(1)",
-      deletion: "O(1)"
+      deletion: "O(1)",
     },
     spaceComplexity: "O(n)",
     code: {
       javascript: "/codes/data-structure/stack.js",
-      python: "/codes/data-structure/stack.py"
-    }
+      python: "/codes/data-structure/stack.py",
+    },
+    icon: <Slack />,
   },
-  "queue": {
+  queue: {
     name: "キュー",
-    description: "FIFO（First In, First Out）方式でデータを管理するデータ構造",
-    features: "最初に追加した要素を最初に取り出す。プリンタのジョブ管理やタスクスケジューリングに使用される。",
-    example: "コンビニのレジ待ちの列。最初に並んだ人が最初にサービスを受けられます。",
-    structure: "要素の追加（enqueue）は後端（rear）で、削除（dequeue）は前端（front）で行われます。",
+    description:
+      "FIFO（First In, First Out）方式、つまり「先入れ先出し」でデータを管理するデータ構造です。",
+    example:
+      "コンビニのレジ待ちの列のように、最初に並んだ人が最初にサービスを受けられます。",
+    pros: [
+      "最初に追加した要素を最初に取り出す。",
+      "プリンタのジョブ管理やタスクスケジューリングに使用される。",
+    ],
+    cons: [],
+    structure:
+      "要素の追加（enqueue）は後端（rear）で、削除（dequeue）は前端（front）で行われます。",
     timeComplexity: {
       access: "O(n)",
       search: "O(n)",
       insertion: "O(1)",
-      deletion: "O(1)"
+      deletion: "O(1)",
     },
     spaceComplexity: "O(n)",
     code: {
       javascript: "/codes/data-structure/queue.js",
-      python: "/codes/data-structure/queue.py"
-    }
+      python: "/codes/data-structure/queue.py",
+    },
+    icon: <ListOrdered />,
   },
   "hash-table": {
     name: "ハッシュテーブル",
-    description: "キーと値のペアを効率的に格納・検索するデータ構造",
-    features: "平均的にO(1)での検索・挿入・削除が可能。ハッシュ関数の衝突処理が重要。",
-    example: "辞書のように、単語（キー）をすぐに意味（値）に変換できるシステム。",
-    structure: "ハッシュ関数でキーを配列のインデックスに変換し、そこに値を格納します。",
+    description: "キーと値のペアを効率的に格納・検索するためのデータ構造です。",
+    example:
+      "辞書のように、単語（キー）を引けばすぐにその意味（値）が見つかる仕組みに似ています。",
+    pros: [
+      "平均的にO(1)での検索・挿入・削除が可能。",
+      "ハッシュ関数の衝突処理が重要。",
+    ],
+    cons: [],
+    structure:
+      "ハッシュ関数でキーを配列のインデックスに変換し、そこに値を格納します。",
     timeComplexity: {
       access: "O(1)",
       search: "O(1)",
       insertion: "O(1)",
-      deletion: "O(1)"
+      deletion: "O(1)",
     },
     spaceComplexity: "O(n)",
     code: {
       javascript: "/codes/data-structure/hash-table.js",
-      python: "/codes/data-structure/hash-table.py"
-    }
+      python: "/codes/data-structure/hash-table.py",
+    },
+    icon: <Hash />,
   },
   "binary-search-tree": {
     name: "二分探索木",
-    description: "各ノードが最大2つの子を持ち、左の子<親<右の子の関係を満たす木構造",
-    features: "検索・挿入・削除が平均O(log n)で実行可能。しかし、バランスが崩れると性能が劣化する。",
-    example: "家系図のような木構造で、左の子は親より小さく、右の子は親より大きい値を持つ。",
-    structure: "各ノードが左右の子ノードへのポインタを持ち、二分探索の性質を満たします。",
+    description:
+      "各ノードが最大2つの子を持ち、「左の子 < 親 < 右の子」の関係を満たすように構成された木構造です。",
+    example:
+      "図書館の蔵書検索システムのように、カテゴリを辿って効率的に目的の本を探し出す仕組みに似ています。",
+    pros: ["検索・挿入・削除が平均O(log n)で実行可能。"],
+    cons: ["バランスが崩れると性能が劣化する。"],
+    structure:
+      "各ノードが左右の子ノードへのポインタを持ち、二分探索の性質を満たします。",
     timeComplexity: {
       access: "O(log n)",
       search: "O(log n)",
       insertion: "O(log n)",
-      deletion: "O(log n)"
+      deletion: "O(log n)",
     },
     spaceComplexity: "O(n)",
     code: {
       javascript: "/codes/data-structure/binary-search-tree.js",
-      python: "/codes/data-structure/binary-search-tree.py"
-    }
+      python: "/codes/data-structure/binary-search-tree.py",
+    },
+    icon: <GitGraph />,
   },
-  "heap": {
+  heap: {
     name: "ヒープ",
-    description: "親ノードが子ノードより大きい（または小さい）完全二分木",
-    features: "最大値（または最小値）の取得がO(1)、挿入・削除がO(log n)で実行可能。優先度キューの実装に使用。",
-    example: "会社の組織図で、上司は必ず部下より給料が高い（最大ヒープの場合）という構造。",
-    structure: "完全二分木の性質を持ち、配列で効率的に表現できます。",
+    description:
+      "親ノードが常に子ノードより大きい（または小さい）値を持つように構成された完全二分木です。",
+    example:
+      "会社の組織図で、上司は必ず部下より給料が高い（最大ヒープの場合）というような、階層的な順序関係を持つ構造に似ています。",
+    pros: [
+      "最大値（または最小値）の取得がO(1)。",
+      "挿入・削除がO(log n)で実行可能。",
+      "優先度キューの実装に使用。",
+    ],
+    cons: [],
+    structure:
+      "完全二分木の性質を持ち、親ノードと子ノードの関係がヒープ条件を満たします。",
     timeComplexity: {
-      access: "O(n)",
+      access: "O(1)",
       search: "O(n)",
       insertion: "O(log n)",
-      deletion: "O(log n)"
+      deletion: "O(log n)",
     },
     spaceComplexity: "O(n)",
     code: {
       javascript: "/codes/data-structure/heap.js",
-      python: "/codes/data-structure/heap.py"
-    }
+      python: "/codes/data-structure/heap.py",
+    },
+    icon: <Mountain />,
   },
-  "graph": {
+  graph: {
     name: "グラフ",
-    description: "ノード（頂点）とエッジ（辺）から構成されるデータ構造",
-    features: "複雑な関係性を表現可能。ソーシャルネットワーク、地図、ネットワーク分析などに応用される。",
-    example: "SNSの友達関係や電車の路線図のように、点（駅）と線（路線）で構成されたネットワーク。",
-    structure: "隣接リストや隣接行列で表現され、様々なアルゴリズムの基盤となります。",
+    description:
+      "ノード（頂点）とそれらを結ぶエッジ（辺）から構成される、関係性を表現するためのデータ構造です。",
+    example:
+      "SNSの友達関係や電車の路線図のように、点（人や駅）とそれらを繋ぐ線（関係や路線）で構成されたネットワークを表します。",
+    pros: [
+      "複雑な関係性を表現可能。",
+      "ソーシャルネットワーク、地図、ネットワーク分析などに応用される。",
+    ],
+    cons: [],
+    structure:
+      "隣接リストや隣接行列で表現され、様々なアルゴリズムの基盤となります。",
     timeComplexity: {
       access: "O(V + E)",
       search: "O(V + E)",
       insertion: "O(1)",
-      deletion: "O(V + E)"
+      deletion: "O(V + E)",
     },
     spaceComplexity: "O(V + E)",
     code: {
       javascript: "/codes/data-structure/graph.js",
-      python: "/codes/data-structure/graph.py"
-    }
+      python: "/codes/data-structure/graph.py",
+    },
+    icon: <Network />,
   },
-  "trie": {
+  trie: {
     name: "トライ木",
-    description: "文字列の集合を効率的に格納・検索するための木構造",
-    features: "文字列の長さをmとすると、検索・挿入・削除がO(m)で実行可能。自動補完機能などに使用。",
-    example: "辞書の目次のように、文字を一つずつ辿って単語を見つける仕組み。",
+    description:
+      "文字列の集合を効率的に格納・検索するために特化した木構造です。",
+    example:
+      "辞書の目次のように、先頭の文字から一文字ずつ辿っていくことで、目的の単語を高速に見つけ出す仕組みに似ています。",
+    pros: [
+      "文字列の長さをmとすると、検索・挿入・削除がO(m)で実行可能。",
+      "自動補完機能などに使用。",
+    ],
+    cons: [],
     structure: "各ノードが文字を表し、根から葉への経路が単語を形成します。",
     timeComplexity: {
       access: "O(m)",
       search: "O(m)",
       insertion: "O(m)",
-      deletion: "O(m)"
+      deletion: "O(m)",
     },
     spaceComplexity: "O(ALPHABET_SIZE * N * M)",
     code: {
       javascript: "/codes/data-structure/trie.js",
-      python: "/codes/data-structure/trie.py"
-    }
+      python: "/codes/data-structure/trie.py",
+    },
+    icon: <TextSearch />,
   },
   "avl-tree": {
     name: "AVL木",
-    description: "自動的にバランスを保つ二分探索木",
-    features: "左右の部分木の高さの差が最大1に保たれる。常にO(log n)の性能を保証。",
-    example: "シーソーのように、常に左右のバランスが取れている二分探索木。",
+    description:
+      "挿入や削除が行われるたびに、自動的に木のバランスを保つように調整される二分探索木です。",
+    example:
+      "シーソーのように、常に左右のバランスが取れている状態を維持する二分探索木と考えることができます。",
+    pros: [
+      "左右の部分木の高さの差が最大1に保たれる。",
+      "常にO(log n)の性能を保証。",
+    ],
+    cons: [],
     structure: "各ノードがバランス因子を持ち、回転操作でバランスを維持します。",
     timeComplexity: {
       access: "O(log n)",
       search: "O(log n)",
       insertion: "O(log n)",
-      deletion: "O(log n)"
+      deletion: "O(log n)",
     },
     spaceComplexity: "O(n)",
     code: {
       javascript: "/codes/data-structure/avl-tree.js",
-      python: "/codes/data-structure/avl-tree.py"
-    }
+      python: "/codes/data-structure/avl-tree.py",
+    },
+    icon: <GitGraph />,
   },
   "b-tree": {
     name: "B木",
-    description: "データベースやファイルシステムで使用される多分木",
-    features: "各ノードが複数のキーを持ち、ディスクアクセスを最小化。大量のデータを効率的に管理。",
-    example: "図書館の分類システムのように、階層的に情報を整理して検索を効率化する仕組み。",
-    structure: "各ノードが複数のキーと子ノードを持ち、常にバランスが保たれます。",
+    description:
+      "データベースやファイルシステムで、大量のデータを効率的に扱うために使用される多分木（一つのノードが多数の子を持つ木）です。",
+    example:
+      "巨大な図書館の多層的な目録のように、大量の情報を効率的に整理し、素早く目的の情報にアクセスする仕組みに似ています。",
+    pros: [
+      "各ノードが複数のキーを持ち、ディスクアクセスを最小化。",
+      "大量のデータを効率的に管理。",
+    ],
+    cons: [],
+    structure:
+      "各ノードが複数のキーと子ノードを持ち、常にバランスが保たれます。",
     timeComplexity: {
       access: "O(log n)",
       search: "O(log n)",
       insertion: "O(log n)",
-      deletion: "O(log n)"
+      deletion: "O(log n)",
     },
     spaceComplexity: "O(n)",
     code: {
       javascript: "/codes/data-structure/b-tree.js",
-      python: "/codes/data-structure/b-tree.py"
-    }
-  }
+      python: "/codes/data-structure/b-tree.py",
+    },
+    icon: <Database />,
+  },
 };

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { searchAlgorithmMap } from "@/data/searchMap";
 import CodeBlock from "@/components/CodeBlock";
 import SearchVisualizer from "@/components/visualizers/SearchVisualizer";
+import { glossary } from "@/data/glossary";
 
 export const runtime = "edge";
 interface SearchPageProps {
@@ -17,9 +18,108 @@ const SearchAlgorithmPage: React.FC<SearchPageProps> = ({ params }) => {
   const { algorithmName } = resolvedParams;
   const [jsCode, setJsCode] = useState<string>("");
   const [pyCode, setPyCode] = useState<string>("");
+  const [tooltip, setTooltip] = useState<{
+    text: string;
+    x: number;
+    y: number;
+  } | null>(null);
+  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
 
   const currentAlgorithm =
     searchAlgorithmMap[algorithmName] || searchAlgorithmMap["linear-search"];
+
+  // 用語をハイライトしてホバー機能を追加する関数
+  const renderTextWithTerms = (text: string) => {
+    const terms = Object.keys(glossary);
+    const result: React.ReactNode[] = [];
+    let remaining = text;
+    let index = 0;
+
+    while (remaining.length > 0) {
+      let foundTerm: string = "";
+      let foundIndex = -1;
+
+      // 最も早く見つかる用語を探す
+      terms.forEach((term) => {
+        const termIndex = remaining.toLowerCase().indexOf(term.toLowerCase());
+        if (termIndex !== -1 && (foundIndex === -1 || termIndex < foundIndex)) {
+          foundTerm = term;
+          foundIndex = termIndex;
+        }
+      });
+
+      if (foundTerm && foundIndex !== -1) {
+        // 用語の前のテキストを追加
+        if (foundIndex > 0) {
+          result.push(
+            <span key={`text-${index}`}>
+              {remaining.substring(0, foundIndex)}
+            </span>
+          );
+          index++;
+        }
+
+        // 用語をハイライト表示
+        const currentTerm = foundTerm; // クロージャーのために変数をキャプチャ
+        result.push(
+          <span
+            key={`term-${index}`}
+            className="bg-blue-100 text-blue-800 px-1 rounded cursor-help border-b border-blue-300 hover:bg-blue-200 transition-colors"
+            onMouseEnter={(e) => {
+              if (hoverTimeout) clearTimeout(hoverTimeout);
+              const timeout = setTimeout(() => {
+                if (e.currentTarget && currentTerm) {
+                  console.log("Term found:", currentTerm);
+                  console.log("Glossary entry:", glossary[currentTerm]);
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  const tooltipY =
+                    rect.top > 100 ? rect.top - 10 : rect.bottom + 10;
+                  setTooltip({
+                    text:
+                      glossary[currentTerm] ||
+                      `${currentTerm} の説明が見つかりません`,
+                    x: rect.left + rect.width / 2,
+                    y: tooltipY,
+                  });
+                  console.log("Tooltip set:", {
+                    text: glossary[currentTerm],
+                    x: rect.left + rect.width / 2,
+                    y: tooltipY,
+                    rectTop: rect.top,
+                    rectBottom: rect.bottom,
+                  });
+                }
+              }, 100); // 遅延を短縮
+              setHoverTimeout(timeout);
+            }}
+            onMouseLeave={() => {
+              if (hoverTimeout) clearTimeout(hoverTimeout);
+              const timeout = setTimeout(() => {
+                setTooltip(null);
+              }, 200);
+              setHoverTimeout(timeout);
+            }}
+          >
+            {foundTerm}
+          </span>
+        );
+        index++;
+
+        // 処理済みの部分を削除
+        remaining = remaining.substring(foundIndex + foundTerm.length);
+      } else {
+        // 用語が見つからない場合、残りのテキストをすべて追加
+        result.push(<span key={`text-${index}`}>{remaining}</span>);
+        break;
+      }
+    }
+
+    return result.length > 0 ? result : text;
+  };
+
+  const getVisualizer = () => {
+    return <SearchVisualizer algorithmName={algorithmName} />;
+  };
 
   useEffect(() => {
     const loadCodeFiles = async () => {
@@ -45,210 +145,155 @@ const SearchAlgorithmPage: React.FC<SearchPageProps> = ({ params }) => {
   }, [algorithmName, currentAlgorithm]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <div className="max-w-6xl mx-auto p-6">
-        {/* ヘッダー */}
-        <div className="bg-white rounded-xl shadow-md p-8 mb-8 border border-gray-200">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">
-            {currentAlgorithm.title}
-          </h1>
-          <p className="text-lg text-gray-600">
-            {currentAlgorithm.oneLineDescription}
+    <div className="p-6 max-w-6xl mx-auto relative bg-background text-foreground">
+      {/* ツールチップ */}
+      {tooltip && (
+        <div
+          className="fixed z-[9999] p-3 rounded-lg shadow-lg max-w-xs text-sm pointer-events-none neumorphic-shadow bg-card text-foreground"
+          style={{
+            left: `${tooltip.x}px`,
+            top: `${tooltip.y}px`,
+            transform:
+              tooltip.y > 100
+                ? "translate(-50%, -100%)"
+                : "translate(-50%, 10px)",
+            zIndex: 9999,
+          }}
+        >
+          <div className="relative">
+            {tooltip.text}
+            {tooltip.y > 100 ? (
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-background"></div>
+            ) : (
+              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-background"></div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ページタイトル */}
+      <h1 className="text-4xl font-bold mb-6 text-center text-foreground">
+        {currentAlgorithm.name}
+      </h1>
+
+      {/* プリズム・デモセクション */}
+      <section className="mb-12 p-6 rounded-lg bg-card neumorphic-shadow">
+        <h2 className="text-2xl font-bold mb-4 text-foreground">
+          プリズム・デモ
+        </h2>
+        <div className="p-6 rounded-md neumorphic-shadow-inset bg-card min-h-[400px]">
+          {getVisualizer()}
+        </div>
+      </section>
+
+      {/* 概要 */}
+      <section className="mb-8 p-6 rounded-lg bg-card neumorphic-shadow">
+        <h2 className="text-2xl font-bold mb-4 text-foreground">概要</h2>
+        <p className="text-lg font-medium mb-2">
+          {renderTextWithTerms(currentAlgorithm.description)}
+        </p>
+      </section>
+
+      {/* 仕組みのステップ解説 */}
+      <section className="mb-8 p-6 rounded-lg bg-card neumorphic-shadow">
+        <h2 className="text-2xl font-bold mb-4 text-foreground">
+          仕組みのステップ解説
+        </h2>
+        <div className=" rounded-md  bg-card">
+          <p className="leading-relaxed">
+            {renderTextWithTerms(currentAlgorithm.structure)}
           </p>
         </div>
+      </section>
 
-        {/* プリズム・デモ */}
-        <div className="bg-white rounded-xl shadow-md p-8 mb-8 border border-gray-200">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-            <span className="text-2xl mr-3">🔍</span>
-            プリズム・デモ：見て、触って、理解する
-          </h2>
-          <p className="text-gray-600 mb-6">{currentAlgorithm.demoIntro}</p>
+      {/* 特徴（長所と短所） */}
+      <section className="mb-8 p-6 rounded-lg bg-card neumorphic-shadow">
+        <h2 className="text-2xl font-bold mb-4 text-foreground">特徴</h2>
 
-          <SearchVisualizer algorithmName={algorithmName} />
-
-          <p className="text-gray-600 mt-4">{currentAlgorithm.demoBridge}</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div className="p-4 rounded-md  bg-card">
+            <h3 className="text-lg font-medium mb-2 text-foreground">長所</h3>
+            <ul className="list-disc list-inside space-y-1 text-foreground">
+              {currentAlgorithm.pros.map((pro, index) => (
+                <li key={index}>{renderTextWithTerms(pro)}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="p-4 rounded-md  bg-card">
+            <h3 className="text-lg font-medium mb-2 text-foreground">短所</h3>
+            <ul className="list-disc list-inside space-y-1 text-foreground">
+              {currentAlgorithm.cons.map((con, index) => (
+                <li key={index}>{renderTextWithTerms(con)}</li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        {/* 導入（一言でいうと） */}
-        <div className="bg-white rounded-xl shadow-md p-8 mb-8 border border-gray-200">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-            <span className="text-2xl mr-3">💡</span>
-            導入（一言でいうと）
-          </h2>
-          <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
-            <p className="text-lg font-semibold text-blue-800 mb-3">
-              {currentAlgorithm.catchyDescription}
+        <div className="p-4 rounded-md bg-card">
+          <h3 className="text-lg font-medium mb-3 text-foreground">計算量</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+            <div className="text-center">
+              <p className="font-medium text-foreground">アクセス</p>
+              <p className="text-lg font-bold">
+                {currentAlgorithm.timeComplexity.access}
+              </p>
+            </div>
+            <div className="text-center">
+              <p className="font-medium text-foreground">検索</p>
+              <p className="text-lg font-bold">
+                {currentAlgorithm.timeComplexity.search}
+              </p>
+            </div>
+            <div className="text-center">
+              <p className="font-medium text-foreground">挿入</p>
+              <p className="text-lg font-bold">
+                {currentAlgorithm.timeComplexity.insertion}
+              </p>
+            </div>
+            <div className="text-center">
+              <p className="font-medium text-foreground">削除</p>
+              <p className="text-lg font-bold">
+                {currentAlgorithm.timeComplexity.deletion}
+              </p>
+            </div>
+          </div>
+          <div className="mt-4 text-center">
+            <p className="text-sm text-foreground">
+              空間計算量:{" "}
+              <span className="font-bold">
+                {currentAlgorithm.spaceComplexity}
+              </span>
             </p>
-            <p className="text-gray-700">{currentAlgorithm.purpose}</p>
           </div>
-        </div>
-
-        {/* 身近な例え話 */}
-        <div className="bg-white rounded-xl shadow-md p-8 mb-8 border border-gray-200">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-            <span className="text-2xl mr-3">🏠</span>
-            身近な例え話
-          </h2>
-          <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-            <p className="text-gray-700 leading-relaxed">
-              {currentAlgorithm.analogy}
-            </p>
-          </div>
-        </div>
-
-        {/* 仕組みのステップ解説 */}
-        <div className="bg-white rounded-xl shadow-md p-8 mb-8 border border-gray-200">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <span className="text-2xl mr-3">⚙️</span>
-            仕組みのステップ解説
-          </h2>
-          <div className="space-y-4">
-            {currentAlgorithm.steps.map((step: string, index: number) => (
-              <div key={index} className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">
-                  {index + 1}
-                </div>
-                <div className="flex-1">
-                  <p className="text-gray-700 leading-relaxed">{step}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* 特徴（長所と短所） */}
-        <div className="bg-white rounded-xl shadow-md p-8 mb-8 border border-gray-200">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <span className="text-2xl mr-3">⚖️</span>
-            特徴（長所と短所）
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <h3 className="text-lg font-semibold text-green-700 mb-3 flex items-center">
-                <span className="mr-2">👍</span>長所
-              </h3>
-              <ul className="space-y-2">
-                {currentAlgorithm.advantages.map(
-                  (advantage: string, index: number) => (
-                    <li key={index} className="flex items-start">
-                      <span className="text-green-500 mr-2 mt-1">•</span>
-                      <span className="text-gray-700">{advantage}</span>
-                    </li>
-                  )
-                )}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-red-700 mb-3 flex items-center">
-                <span className="mr-2">👎</span>短所
-              </h3>
-              <ul className="space-y-2">
-                {currentAlgorithm.disadvantages.map(
-                  (disadvantage: string, index: number) => (
-                    <li key={index} className="flex items-start">
-                      <span className="text-red-500 mr-2 mt-1">•</span>
-                      <span className="text-gray-700">{disadvantage}</span>
-                    </li>
-                  )
-                )}
-              </ul>
-            </div>
-          </div>
-
-          {/* 計算量 */}
-          <div className="mt-6 bg-gray-50 rounded-lg p-4">
-            <h4 className="text-lg font-semibold text-gray-800 mb-3">計算量</h4>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="text-center">
-                <p className="text-sm text-gray-600">最良の場合</p>
-                <p className="text-lg font-bold text-green-600">
-                  {currentAlgorithm.complexity.best}
-                </p>
-              </div>
-              <div className="text-center">
-                <p className="text-sm text-gray-600">平均的な場合</p>
-                <p className="text-lg font-bold text-yellow-600">
-                  {currentAlgorithm.complexity.average}
-                </p>
-              </div>
-              <div className="text-center">
-                <p className="text-sm text-gray-600">最悪の場合</p>
-                <p className="text-lg font-bold text-red-600">
-                  {currentAlgorithm.complexity.worst}
-                </p>
-              </div>
-            </div>
-            <p className="text-sm text-gray-600 mt-4">
-              {currentAlgorithm.complexityExplanation}
+          <div className="mt-2 text-xs text-foreground">
+            <p>
+              {renderTextWithTerms(
+                "💡 計算量とは、データ量が増えた時の処理時間やメモリ使用量の増加率を表します。O(1)は常に一定、O(n)はデータ量に比例、O(log n)はデータ量の対数に比例して増加します。"
+              )}
             </p>
           </div>
         </div>
+      </section>
 
-        {/* 疑似コード */}
-        <div className="bg-white rounded-xl shadow-md p-8 mb-8 border border-gray-200">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <span className="text-2xl mr-3">📝</span>
-            疑似コード
-          </h2>
-          <div className="bg-gray-50 rounded-lg p-6">
-            <pre className="text-sm text-gray-800 leading-relaxed whitespace-pre-wrap">
-              {currentAlgorithm.pseudoCode}
-            </pre>
-          </div>
-        </div>
-
-        {/* ソースコード */}
-        <div className="bg-white rounded-xl shadow-md p-8 mb-8 border border-gray-200">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <span className="text-2xl mr-3">💻</span>
-            ソースコード
-          </h2>
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-700 mb-3">
-                JavaScript
-              </h3>
+      {/* コード例 */}
+      <div className="mt-8">
+        <h2 className="text-2xl font-semibold mb-2 text-foreground">
+          コード例
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="rounded-md">
+            {jsCode && (
               <CodeBlock>
                 <code className="language-javascript">{jsCode}</code>
               </CodeBlock>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-700 mb-3">
-                Python
-              </h3>
+            )}
+          </div>
+          <div className="rounded-md">
+            {pyCode && (
               <CodeBlock>
                 <code className="language-python">{pyCode}</code>
               </CodeBlock>
-            </div>
-          </div>
-        </div>
-
-        {/* まとめ */}
-        <div className="bg-white rounded-xl shadow-md p-8 border border-gray-200">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <span className="text-2xl mr-3">📚</span>
-            まとめ
-          </h2>
-          <div className="space-y-4">
-            <p className="text-gray-700 leading-relaxed">
-              {currentAlgorithm.summary}
-            </p>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-blue-800 mb-3">
-                次に学ぶべきトピック
-              </h3>
-              <ul className="space-y-2">
-                {currentAlgorithm.nextTopics.map(
-                  (topic: string, index: number) => (
-                    <li key={index} className="flex items-start">
-                      <span className="text-blue-500 mr-2 mt-1">•</span>
-                      <span className="text-gray-700">{topic}</span>
-                    </li>
-                  )
-                )}
-              </ul>
-            </div>
+            )}
           </div>
         </div>
       </div>

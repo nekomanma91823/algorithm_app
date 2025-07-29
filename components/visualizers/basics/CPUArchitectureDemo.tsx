@@ -116,7 +116,7 @@ const CPUArchitectureDemo: React.FC = () => {
         <Button
           onClick={executeStep}
           disabled={!cpuState.running}
-          className="bg-blue-500 hover:bg-blue-600"
+          
         >
           1ステップ実行
         </Button>
@@ -128,24 +128,24 @@ const CPUArchitectureDemo: React.FC = () => {
       {/* CPU状態表示 */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
         {/* レジスタ */}
-        <div className="bg-blue-50 p-4 rounded-lg">
-          <h4 className="font-semibold text-blue-800 mb-2">レジスタ</h4>
+        <div className="p-4 rounded-lg neumorphic-shadow">
+          <h4 className="font-semibold mb-2">レジスタ</h4>
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
               <span>累積:</span>
-              <span className="font-mono bg-blue-100 px-2 py-1 rounded">
+              <span className="font-mono px-2 py-1 rounded neumorphic-shadow-inset">
                 {cpuState.accumulator}
               </span>
             </div>
             <div className="flex justify-between">
               <span>PC:</span>
-              <span className="font-mono bg-blue-100 px-2 py-1 rounded">
+              <span className="font-mono px-2 py-1 rounded neumorphic-shadow-inset">
                 {cpuState.programCounter}
               </span>
             </div>
             <div className="flex justify-between">
               <span>IR:</span>
-              <span className="font-mono bg-blue-100 px-2 py-1 rounded">
+              <span className="font-mono px-2 py-1 rounded neumorphic-shadow-inset">
                 {cpuState.instructionRegister || "---"}
               </span>
             </div>
@@ -153,8 +153,8 @@ const CPUArchitectureDemo: React.FC = () => {
         </div>
 
         {/* 制御部 */}
-        <div className="bg-green-50 p-4 rounded-lg">
-          <h4 className="font-semibold text-green-800 mb-2">制御部</h4>
+        <div className="p-4 rounded-lg neumorphic-shadow">
+          <h4 className="font-semibold mb-2">制御部</h4>
           <div className="text-sm">
             <div className="mb-2">
               <span className="font-medium">ステップ:</span> {cpuState.step}
@@ -162,10 +162,10 @@ const CPUArchitectureDemo: React.FC = () => {
             <div className="mb-2">
               <span className="font-medium">状態:</span>
               <span
-                className={`ml-2 px-2 py-1 rounded text-xs ${
+                className={`ml-2 px-2 py-1 rounded text-xs neumorphic-shadow-inset ${
                   cpuState.running
-                    ? "bg-green-200 text-green-800"
-                    : "bg-gray-200 text-gray-800"
+                    ? "text-green-800"
+                    : "text-gray-800"
                 }`}
               >
                 {cpuState.running ? "実行中" : "停止"}
@@ -175,24 +175,24 @@ const CPUArchitectureDemo: React.FC = () => {
         </div>
 
         {/* 現在の操作 */}
-        <div className="bg-yellow-50 p-4 rounded-lg">
-          <h4 className="font-semibold text-yellow-800 mb-2">現在の操作</h4>
-          <div className="text-sm text-yellow-700">{currentOperation}</div>
+        <div className="p-4 rounded-lg neumorphic-shadow">
+          <h4 className="font-semibold mb-2">現在の操作</h4>
+          <div className="text-sm">{currentOperation}</div>
         </div>
       </div>
 
       {/* メモリ表示 */}
-      <div className="bg-gray-50 p-4 rounded-lg">
-        <h4 className="font-semibold text-gray-800 mb-3">メモリ (16バイト)</h4>
+      <div className="p-4 rounded-lg neumorphic-shadow">
+        <h4 className="font-semibold mb-3">メモリ (16バイト)</h4>
         <div className="grid grid-cols-8 gap-2">
           {cpuState.memory.slice(0, 8).map((value, index) => (
             <div key={index} className="text-center">
-              <div className="text-xs text-gray-500 mb-1">[{index}]</div>
+              <div className="text-xs mb-1">[{index}]</div>
               <div
-                className={`p-2 rounded text-sm font-mono border ${
+                className={`p-2 rounded text-sm font-mono neumorphic-shadow-inset ${
                   index === cpuState.programCounter - 1 && cpuState.running
-                    ? "bg-blue-200 border-blue-400"
-                    : "bg-white border-gray-300"
+                    ? "neumorphic-shadow"
+                    : ""
                 }`}
               >
                 0x{value.toString(16).toUpperCase().padStart(2, "0")}
@@ -203,8 +203,8 @@ const CPUArchitectureDemo: React.FC = () => {
         <div className="grid grid-cols-8 gap-2 mt-2">
           {cpuState.memory.slice(8, 16).map((value, index) => (
             <div key={index + 8} className="text-center">
-              <div className="text-xs text-gray-500 mb-1">[{index + 8}]</div>
-              <div className="p-2 rounded text-sm font-mono bg-white border border-gray-300">
+              <div className="text-xs mb-1">[{index + 8}]</div>
+              <div className="p-2 rounded text-sm font-mono neumorphic-shadow-inset">
                 {value}
               </div>
             </div>
@@ -213,9 +213,9 @@ const CPUArchitectureDemo: React.FC = () => {
       </div>
 
       {/* 説明 */}
-      <div className="mt-4 p-4 bg-indigo-50 rounded-lg">
-        <h4 className="font-semibold text-indigo-800 mb-2">プログラム説明</h4>
-        <div className="text-sm text-indigo-700 space-y-1">
+      <div className="mt-4 p-4 rounded-lg neumorphic-shadow">
+        <h4 className="font-semibold mb-2">プログラム説明</h4>
+        <div className="text-sm space-y-1">
           <div>
             • <code>0x15</code>: LOAD メモリ[5]の値(5)を累積レジスタへ
           </div>

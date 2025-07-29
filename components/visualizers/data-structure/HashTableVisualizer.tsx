@@ -146,13 +146,13 @@ const HashTableVisualizer: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* ハッシュテーブルの視覚化 */}
-      <div className="bg-white p-6 rounded-lg border">
+      <div className="p-6 rounded-lg neumorphic-shadow">
         <h3 className="text-lg font-semibold mb-4 text-center">
           ハッシュテーブルの可視化
         </h3>
 
         {/* ハッシュ関数の説明 */}
-        <div className="mb-4 p-3 bg-gray-50 rounded border text-sm">
+        <div className="mb-4 p-3 rounded neumorphic-shadow-inset text-sm">
           <strong>ハッシュ関数:</strong> hash(key) = (文字のASCII値の合計) %{" "}
           {table.length}
         </div>
@@ -162,14 +162,14 @@ const HashTableVisualizer: React.FC = () => {
           {table.map((bucket, index) => (
             <div
               key={index}
-              className={`flex items-center p-3 border rounded-lg transition-all ${
+              className={`flex items-center p-3 rounded-lg transition-all neumorphic-shadow ${
                 highlightIndex === index
-                  ? "bg-yellow-100 border-yellow-400 shadow-lg"
-                  : "bg-gray-50 border-gray-200"
+                  ? "neumorphic-shadow-inset"
+                  : ""
               }`}
             >
               {/* インデックス */}
-              <div className="w-12 text-center font-bold text-gray-600">
+              <div className="w-12 text-center font-bold">
                 [{index}]
               </div>
 
@@ -180,16 +180,16 @@ const HashTableVisualizer: React.FC = () => {
                     {bucket.map((item, itemIndex) => (
                       <div
                         key={itemIndex}
-                        className="bg-blue-100 border border-blue-300 rounded px-3 py-1 text-sm flex items-center gap-2"
+                        className="rounded px-3 py-1 text-sm flex items-center gap-2 neumorphic-shadow"
                       >
-                        <span className="font-semibold text-blue-800">
+                        <span className="font-semibold">
                           {item.key}
                         </span>
-                        <span className="text-gray-600">:</span>
-                        <span className="text-blue-600">{item.value}</span>
+                        <span>:</span>
+                        <span>{item.value}</span>
                         <button
                           onClick={() => handleDelete(item.key)}
-                          className="ml-2 text-red-500 hover:text-red-700 text-xs"
+                          className="ml-2 text-xs"
                         >
                           ×
                         </button>
@@ -197,13 +197,13 @@ const HashTableVisualizer: React.FC = () => {
                     ))}
                   </div>
                 ) : (
-                  <div className="text-gray-400 italic">空</div>
+                  <div className="italic">空</div>
                 )}
               </div>
 
               {/* コリジョン表示 */}
               {bucket && bucket.length > 1 && (
-                <div className="text-orange-600 text-sm font-semibold">
+                <div className="text-sm font-semibold">
                   コリジョン({bucket.length})
                 </div>
               )}
@@ -213,7 +213,7 @@ const HashTableVisualizer: React.FC = () => {
 
         {/* 統計情報 */}
         <div className="mt-4 text-center space-y-2">
-          <div className="text-sm text-gray-600">
+          <div className="text-sm">
             <span className="font-semibold">総要素数:</span>{" "}
             {table.reduce((sum, bucket) => sum + bucket.length, 0)}
             <span className="ml-4 font-semibold">空のバケット:</span>{" "}
@@ -221,7 +221,7 @@ const HashTableVisualizer: React.FC = () => {
             <span className="ml-4 font-semibold">コリジョン:</span>{" "}
             {table.filter((bucket) => bucket.length > 1).length}
           </div>
-          <div className="text-xs text-gray-500">
+          <div className="text-xs">
             負荷率:{" "}
             {(
               (table.reduce((sum, bucket) => sum + bucket.length, 0) /
@@ -234,7 +234,7 @@ const HashTableVisualizer: React.FC = () => {
 
         {/* 操作結果表示 */}
         {operation && (
-          <div className="mt-4 bg-blue-50 border border-blue-200 rounded p-3 text-blue-800 text-center">
+          <div className="mt-4 p-3 rounded text-center neumorphic-shadow">
             {operation}
           </div>
         )}
@@ -288,11 +288,11 @@ const HashTableVisualizer: React.FC = () => {
       </div>
 
       {/* 操作説明 */}
-      <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-        <h4 className="font-semibold mb-2 text-yellow-800">
+      <div className="p-4 rounded-lg neumorphic-shadow">
+        <h4 className="font-semibold mb-2">
           💡 ハッシュテーブルの特徴
         </h4>
-        <ul className="text-sm text-yellow-700 space-y-1">
+        <ul className="text-sm space-y-1">
           <li>
             • <strong>高速なアクセス</strong>: 平均的に O(1)
             でアクセス、挿入、削除

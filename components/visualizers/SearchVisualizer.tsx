@@ -371,7 +371,7 @@ const SearchVisualizer: React.FC<SearchVisualizerProps> = ({
   const GraphVisualization = () => (
     <div className="mb-6">
       <div
-        className="bg-white border border-gray-300 rounded-lg p-4 relative"
+        className="rounded-lg p-4 relative neumorphic-shadow-inset"
         style={{ height: "300px" }}
       >
         <svg width="400" height="270" className="mx-auto">
@@ -481,7 +481,7 @@ const SearchVisualizer: React.FC<SearchVisualizerProps> = ({
             step="100"
             value={speed}
             onChange={(e) => setSpeed(Number(e.target.value))}
-            className="w-24"
+            className="w-24 neumorphic-shadow-inset rounded-lg"
             disabled={isSearching}
           />
           <span className="text-sm text-gray-600">{speed}ms</span>
@@ -497,7 +497,7 @@ const SearchVisualizer: React.FC<SearchVisualizerProps> = ({
               type="number"
               value={target}
               onChange={(e) => setTarget(Number(e.target.value))}
-              className="w-16 px-2 py-1 border border-gray-300 rounded text-center"
+              className="w-16 px-2 py-1 rounded text-center neumorphic-shadow-inset"
               disabled={isSearching}
             />
             <span className="text-xs text-gray-500">
@@ -514,7 +514,7 @@ const SearchVisualizer: React.FC<SearchVisualizerProps> = ({
             <select
               value={targetNode}
               onChange={(e) => setTargetNode(e.target.value)}
-              className="px-2 py-1 border border-gray-300 rounded"
+              className="px-2 py-1 rounded neumorphic-shadow-inset"
               disabled={isSearching}
             >
               {Object.keys(graph).map((node) => (
@@ -538,12 +538,8 @@ const SearchVisualizer: React.FC<SearchVisualizerProps> = ({
                 <div
                   key={index}
                   className={`
-                    w-12 h-12 flex items-center justify-center border-2 rounded-lg font-bold text-sm
-                    ${
-                      index === currentIndex
-                        ? "bg-yellow-300 border-yellow-500"
-                        : "bg-white border-gray-300"
-                    }
+                    w-12 h-12 flex items-center justify-center rounded-lg font-bold text-sm neumorphic-shadow
+                    ${index === currentIndex ? "neumorphic-shadow-inset" : ""}
                     ${
                       index === foundIndex
                         ? "bg-green-300 border-green-500"
@@ -555,6 +551,7 @@ const SearchVisualizer: React.FC<SearchVisualizerProps> = ({
                         : ""
                     }
                     transition-all duration-200
+     
                   `}
                 >
                   {value}
@@ -585,15 +582,13 @@ const SearchVisualizer: React.FC<SearchVisualizerProps> = ({
 
           {/* キューとスタックの状態表示 */}
           {algorithmName === "bfs" && queue.length > 0 && (
-            <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-              <h4 className="text-sm font-semibold text-blue-800 mb-2">
-                キューの状態:
-              </h4>
+            <div className="mb-4 p-3 rounded-lg neumorphic-shadow">
+              <h4 className="text-sm font-semibold mb-2">キューの状態:</h4>
               <div className="flex gap-2">
                 {queue.map((node, index) => (
                   <div
                     key={index}
-                    className="px-2 py-1 bg-blue-100 rounded text-sm"
+                    className="px-2 py-1 rounded text-sm neumorphic-shadow-inset"
                   >
                     {node}
                   </div>
@@ -603,15 +598,13 @@ const SearchVisualizer: React.FC<SearchVisualizerProps> = ({
           )}
 
           {algorithmName === "dfs" && stack.length > 0 && (
-            <div className="mb-4 p-3 bg-purple-50 border border-purple-200 rounded-lg">
-              <h4 className="text-sm font-semibold text-purple-800 mb-2">
-                スタックの状態:
-              </h4>
+            <div className="mb-4 p-3 rounded-lg neumorphic-shadow">
+              <h4 className="text-sm font-semibold mb-2">スタックの状態:</h4>
               <div className="flex gap-2">
                 {stack.map((node, index) => (
                   <div
                     key={index}
-                    className="px-2 py-1 bg-purple-100 rounded text-sm"
+                    className="px-2 py-1 rounded text-sm neumorphic-shadow-inset"
                   >
                     {node}
                   </div>
@@ -659,7 +652,7 @@ const SearchVisualizer: React.FC<SearchVisualizerProps> = ({
       </div>
 
       {/* アルゴリズム固有の説明 */}
-      <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+      <div className="mt-6 p-4 rounded-lg neumorphic-shadow">
         <h4 className="font-semibold text-blue-800 mb-2">
           {algorithmName === "binary-search"
             ? "二分探索の特徴"

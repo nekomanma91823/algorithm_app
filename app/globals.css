@@ -44,72 +44,73 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --radius: 1.25rem;
+  --background: oklch(98.5% 0.002 247.839);
+  --foreground: #4d5b74;
+  --card: oklch(98.5% 0.002 247.839);
+  --card-foreground: #4d5b74;
+  --popover: oklch(98.5% 0.002 247.839);
+  --popover-foreground: #4d5b74;
+  --primary: #4d5b74;
+  --primary-foreground: oklch(98.5% 0.002 247.839);
+  --secondary: oklch(98.5% 0.002 247.839);
+  --secondary-foreground: #4d5b74;
+  --muted: oklch(98.5% 0.002 247.839);
+  --muted-foreground: #4d5b74;
+  --accent: oklch(98.5% 0.002 247.839);
+  --accent-foreground: #4d5b74;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: #a3b1c6;
+  --input: #a3b1c6;
+  --ring: #4d5b74;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: oklch(98.5% 0.002 247.839);
+  --sidebar-foreground: #4d5b74;
+  --sidebar-primary: #4d5b74;
+  --sidebar-primary-foreground: oklch(98.5% 0.002 247.839);
+  --sidebar-accent: oklch(98.5% 0.002 247.839);
+  --sidebar-accent-foreground: #4d5b74;
+  --sidebar-border: #a3b1c6;
+  --sidebar-ring: #4d5b74;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --radius: 1.25rem;
+  --background: #313642;
+  --foreground: #b4c1d9;
+  --card: #313642;
+  --card-foreground: #b4c1d9;
+  --popover: #313642;
+  --popover-foreground: #b4c1d9;
+  --primary: #b4c1d9;
+  --primary-foreground: #313642;
+  --secondary: #313642;
+  --secondary-foreground: #b4c1d9;
+  --muted: #313642;
+  --muted-foreground: #b4c1d9;
+  --accent: #313642;
+  --accent-foreground: #b4c1d9;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --border: #414755;
+  --input: #414755;
+  --ring: #b4c1d9;
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar: #313642;
+  --sidebar-foreground: #b4c1d9;
+  --sidebar-primary: #b4c1d9;
+  --sidebar-primary-foreground: #313642;
+  --sidebar-accent: #313642;
+  --sidebar-accent-foreground: #b4c1d9;
+  --sidebar-border: #414755;
+  --sidebar-ring: #b4c1d9;
 }
 
 @layer base {
@@ -118,5 +119,17 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  .neumorphic-shadow {
+    box-shadow: 12px 12px 24px #a3b1c6, -12px -12px 24px #ffffff;
+  }
+  .dark .neumorphic-shadow {
+    box-shadow: 12px 12px 24px #1f2229, -12px -12px 24px #414755;
+  }
+  .neumorphic-shadow-inset {
+    box-shadow: inset 12px 12px 24px #a3b1c6, inset -12px -12px 24px #ffffff;
+  }
+  .dark .neumorphic-shadow-inset {
+    box-shadow: inset 12px 12px 24px #1f2229, inset -12px -12px 24px #414755;
   }
 }

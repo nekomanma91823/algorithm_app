@@ -84,39 +84,39 @@ const QueueVisualizer: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* キューの視覚化 */}
-      <div className="bg-white p-6 rounded-lg border">
+      <div className="p-6 rounded-lg neumorphic-shadow">
         <h3 className="text-lg font-semibold mb-4 text-center">
           キュー（FIFO）の可視化
         </h3>
 
         <div className="flex flex-col items-center space-y-4">
           {/* 方向表示 */}
-          <div className="flex items-center justify-between w-full max-w-md text-sm text-gray-600">
-            <span className="text-blue-600 font-semibold">
+          <div className="flex items-center justify-between w-full max-w-md text-sm">
+            <span className="font-semibold">
               ← デキュー（取り出し）
             </span>
-            <span className="text-green-600 font-semibold">
+            <span className="font-semibold">
               エンキュー（追加） →
             </span>
           </div>
 
           {/* キューの要素表示 */}
-          <div className="flex items-center space-x-2 min-h-[80px] p-4 bg-gray-50 rounded-lg">
+          <div className="flex items-center space-x-2 min-h-[80px] p-4 rounded-lg neumorphic-shadow-inset">
             {/* フロント矢印 */}
             {queue.length > 0 && (
-              <div className="text-blue-600 font-bold">←Front</div>
+              <div className="font-bold">←Front</div>
             )}
 
             {/* キューの要素 */}
             {queue.map((value, index) => (
               <div
                 key={index}
-                className={`w-16 h-16 border-2 rounded-lg flex items-center justify-center text-lg font-bold transition-all ${
+                className={`w-16 h-16 rounded-lg flex items-center justify-center text-lg font-bold transition-all neumorphic-shadow ${
                   index === 0
-                    ? "bg-blue-100 border-blue-400 shadow-lg" // フロント要素
+                    ? "neumorphic-shadow-inset" // フロント要素
                     : index === queue.length - 1
-                    ? "bg-green-100 border-green-400" // リア要素
-                    : "bg-gray-100 border-gray-300"
+                    ? "neumorphic-shadow-inset" // リア要素
+                    : ""
                 }`}
               >
                 {value}
@@ -125,19 +125,19 @@ const QueueVisualizer: React.FC = () => {
 
             {/* 新しい要素が追加される位置 */}
             {animating && (
-              <div className="w-16 h-16 border-2 border-dashed border-green-400 rounded-lg flex items-center justify-center bg-green-50 animate-pulse">
-                <span className="text-green-600 text-xs">追加中</span>
+              <div className="w-16 h-16 border-2 border-dashed rounded-lg flex items-center justify-center animate-pulse neumorphic-shadow-inset">
+                <span className="text-xs">追加中</span>
               </div>
             )}
 
             {/* リア矢印 */}
             {queue.length > 0 && (
-              <div className="text-green-600 font-bold">Rear→</div>
+              <div className="font-bold">Rear→</div>
             )}
 
             {/* キューが空の場合 */}
             {queue.length === 0 && !animating && (
-              <div className="w-16 h-16 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center text-gray-400">
+              <div className="w-16 h-16 border-2 border-dashed rounded-lg flex items-center justify-center neumorphic-shadow-inset">
                 空
               </div>
             )}
@@ -146,29 +146,29 @@ const QueueVisualizer: React.FC = () => {
 
         {/* キュー情報 */}
         <div className="mt-4 text-center space-y-2">
-          <div className="text-sm text-gray-600">
+          <div className="text-sm">
             <span className="font-semibold">サイズ:</span> {queue.length}
             {queue.length > 0 && (
               <>
-                <span className="ml-4 font-semibold text-blue-600">
+                <span className="ml-4 font-semibold">
                   フロント:
                 </span>{" "}
                 {queue[0]}
-                <span className="ml-4 font-semibold text-green-600">
+                <span className="ml-4 font-semibold">
                   リア:
                 </span>{" "}
                 {queue[queue.length - 1]}
               </>
             )}
           </div>
-          <div className="text-xs text-gray-500">
+          <div className="text-xs">
             先頭（フロント）から取り出し、末尾（リア）に追加
           </div>
         </div>
 
         {/* 操作結果表示 */}
         {operation && (
-          <div className="mt-4 bg-blue-50 border border-blue-200 rounded p-3 text-blue-800 text-center">
+          <div className="mt-4 p-3 rounded text-center neumorphic-shadow">
             {operation}
           </div>
         )}
@@ -235,9 +235,9 @@ const QueueVisualizer: React.FC = () => {
       </div>
 
       {/* 操作説明 */}
-      <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-        <h4 className="font-semibold mb-2 text-yellow-800">💡 キューの特徴</h4>
-        <ul className="text-sm text-yellow-700 space-y-1">
+      <div className="p-4 rounded-lg neumorphic-shadow">
+        <h4 className="font-semibold mb-2">💡 キューの特徴</h4>
+        <ul className="text-sm space-y-1">
           <li>
             • <strong>FIFO（First In, First Out）</strong>:
             最初に入れたものが最初に出る

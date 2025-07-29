@@ -218,8 +218,8 @@ const MemoryHierarchyDemo: React.FC = () => {
       </div>
 
       {/* 現在の操作状況 */}
-      <div className="bg-blue-50 p-4 rounded-lg mb-6">
-        <h4 className="font-semibold text-blue-800 mb-2">現在の状況</h4>
+      <div className="p-4 rounded-lg mb-6 neumorphic-shadow">
+        <h4 className="font-semibold mb-2">現在の状況</h4>
         <div className="text-blue-700">{currentOperation}</div>
       </div>
 
@@ -227,13 +227,13 @@ const MemoryHierarchyDemo: React.FC = () => {
       <div className="space-y-4 mb-6">
         <h4 className="font-semibold text-gray-800">メモリ階層</h4>
         {memoryLevels.map((level, index) => (
-          <div key={index} className="border rounded-lg p-4">
+          <div key={index} className="rounded-lg p-4 neumorphic-shadow">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-3">
                 <div className={`w-4 h-4 rounded ${level.color}`}></div>
                 <h5 className="font-semibold">{level.name}</h5>
               </div>
-              <div className="text-sm text-gray-500 space-x-4">
+              <div className="text-sm space-x-4">
                 <span>容量: {level.size}</span>
                 <span>速度: {level.speed}</span>
                 <span>コスト: {level.cost}</span>
@@ -241,14 +241,12 @@ const MemoryHierarchyDemo: React.FC = () => {
             </div>
 
             {/* データ表示 */}
-            <div className="min-h-[60px] bg-gray-50 p-3 rounded">
+            <div className="min-h-[60px] p-3 rounded neumorphic-shadow-inset">
               <div className="flex flex-wrap gap-2">
                 {level.data.map((item, itemIndex) => (
                   <div
                     key={itemIndex}
-                    className={`px-3 py-1 rounded text-white font-medium ${
-                      level.color
-                    } ${
+                    className={`px-3 py-1 rounded text-white font-medium neumorphic-shadow ${
                       accessHistory[0] === item ? "ring-2 ring-yellow-400" : ""
                     }`}
                   >
@@ -264,14 +262,14 @@ const MemoryHierarchyDemo: React.FC = () => {
                   .map((_, emptyIndex) => (
                     <div
                       key={`empty-${emptyIndex}`}
-                      className="px-3 py-1 rounded border border-dashed border-gray-300 text-gray-400"
+                      className="px-3 py-1 rounded neumorphic-shadow-inset"
                     >
                       -
                     </div>
                   ))}
               </div>
 
-              <div className="mt-2 text-xs text-gray-500">
+              <div className="mt-2 text-xs">
                 使用: {level.data.length}/{level.maxCapacity}
               </div>
             </div>
@@ -305,15 +303,15 @@ const MemoryHierarchyDemo: React.FC = () => {
 
       {/* 統計情報 */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-green-50 p-4 rounded-lg text-center">
-          <div className="text-2xl font-bold text-green-600">
+        <div className="p-4 rounded-lg text-center neumorphic-shadow">
+          <div className="text-2xl font-bold">
             {accessHistory.length}
           </div>
-          <div className="text-sm text-green-800">総アクセス数</div>
+          <div className="text-sm">総アクセス数</div>
         </div>
 
-        <div className="bg-orange-50 p-4 rounded-lg text-center">
-          <div className="text-2xl font-bold text-orange-600">
+        <div className="p-4 rounded-lg text-center neumorphic-shadow">
+          <div className="text-2xl font-bold">
             {Math.round(
               ((memoryLevels[0].data.length + memoryLevels[1].data.length) /
                 Math.max(accessHistory.length, 1)) *
@@ -321,14 +319,14 @@ const MemoryHierarchyDemo: React.FC = () => {
             )}
             %
           </div>
-          <div className="text-sm text-orange-800">キャッシュヒット率</div>
+          <div className="text-sm">キャッシュヒット率</div>
         </div>
 
-        <div className="bg-blue-50 p-4 rounded-lg text-center">
-          <div className="text-2xl font-bold text-blue-600">
+        <div className="p-4 rounded-lg text-center neumorphic-shadow">
+          <div className="text-2xl font-bold">
             {new Set(accessHistory).size}
           </div>
-          <div className="text-sm text-blue-800">ユニークデータ数</div>
+          <div className="text-sm">ユニークデータ数</div>
         </div>
       </div>
 

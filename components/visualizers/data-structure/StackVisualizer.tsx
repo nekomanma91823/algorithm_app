@@ -72,7 +72,7 @@ const StackVisualizer: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* スタックの視覚化 */}
-      <div className="bg-white p-6 rounded-lg border">
+      <div className="p-6 rounded-lg neumorphic-shadow">
         <h3 className="text-lg font-semibold mb-4 text-center">
           スタック（LIFO）の可視化
         </h3>
@@ -80,8 +80,8 @@ const StackVisualizer: React.FC = () => {
         <div className="flex flex-col-reverse items-center space-y-reverse space-y-2 min-h-[300px] justify-end">
           {/* 新しい要素が追加される位置の表示 */}
           {animating && (
-            <div className="w-20 h-12 border-2 border-dashed border-blue-400 rounded-lg flex items-center justify-center bg-blue-50 animate-pulse">
-              <span className="text-blue-600 text-sm">追加中...</span>
+            <div className="w-20 h-12 border-2 border-dashed rounded-lg flex items-center justify-center animate-pulse neumorphic-shadow-inset">
+              <span className="text-sm">追加中...</span>
             </div>
           )}
 
@@ -89,10 +89,10 @@ const StackVisualizer: React.FC = () => {
           {stack.map((value, index) => (
             <div
               key={index}
-              className={`w-20 h-12 border-2 rounded-lg flex items-center justify-center text-lg font-bold transition-all ${
+              className={`w-20 h-12 rounded-lg flex items-center justify-center text-lg font-bold transition-all neumorphic-shadow ${
                 index === stack.length - 1
-                  ? "bg-red-100 border-red-400 shadow-lg" // トップ要素
-                  : "bg-gray-100 border-gray-300"
+                  ? "neumorphic-shadow-inset" // トップ要素
+                  : ""
               }`}
             >
               {value}
@@ -101,7 +101,7 @@ const StackVisualizer: React.FC = () => {
 
           {/* スタックが空の場合 */}
           {stack.length === 0 && !animating && (
-            <div className="w-20 h-12 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center text-gray-400">
+            <div className="w-20 h-12 border-2 border-dashed rounded-lg flex items-center justify-center neumorphic-shadow-inset">
               空
             </div>
           )}
@@ -109,7 +109,7 @@ const StackVisualizer: React.FC = () => {
 
         {/* スタック情報 */}
         <div className="mt-4 text-center space-y-2">
-          <div className="text-sm text-gray-600">
+          <div className="text-sm">
             <span className="font-semibold">サイズ:</span> {stack.length}
             {stack.length > 0 && (
               <>
@@ -118,14 +118,14 @@ const StackVisualizer: React.FC = () => {
               </>
             )}
           </div>
-          <div className="text-xs text-red-600">
+          <div className="text-xs">
             ↑ トップ（最後に追加された要素が最初に取り出される）
           </div>
         </div>
 
         {/* 操作結果表示 */}
         {operation && (
-          <div className="mt-4 bg-blue-50 border border-blue-200 rounded p-3 text-blue-800 text-center">
+          <div className="mt-4 p-3 rounded text-center neumorphic-shadow">
             {operation}
           </div>
         )}
@@ -180,11 +180,11 @@ const StackVisualizer: React.FC = () => {
       </div>
 
       {/* 操作説明 */}
-      <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-        <h4 className="font-semibold mb-2 text-yellow-800">
+      <div className="p-4 rounded-lg neumorphic-shadow">
+        <h4 className="font-semibold mb-2">
           💡 スタックの特徴
         </h4>
-        <ul className="text-sm text-yellow-700 space-y-1">
+        <ul className="text-sm space-y-1">
           <li>
             • <strong>LIFO（Last In, First Out）</strong>:
             最後に入れたものが最初に出る
