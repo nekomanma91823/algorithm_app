@@ -1,8 +1,8 @@
-## basics
-
-- visualizers/basics 消す
-
 ## 追加予定コンテンツ
+
+- basic
+
+  - gojs 使って可視化
 
 - セキュリティ
 - アンチパターン
