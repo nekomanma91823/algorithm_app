@@ -96,30 +96,22 @@ export default function Home() {
 
       {/* 特徴セクション */}
       <section className="mb-16 p-8 rounded-xl bg-card neumorphic-shadow">
-        <h2 className="text-3xl font-bold mb-6 text-center">
-          🎯 学習の特徴
-        </h2>
+        <h2 className="text-3xl font-bold mb-6 text-center">学習の特徴</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-6 rounded-lg neumorphic-shadow bg-card">
-            <h3 className="font-semibold mb-3 text-lg">
-              📊 視覚的学習
-            </h3>
+          <div className="p-6 rounded-lg  bg-card">
+            <h3 className="font-semibold mb-3 text-lg">視覚的学習</h3>
             <p className="text-sm">
               アニメーションと図解で複雑なアルゴリズムを直感的に理解できます
             </p>
           </div>
-          <div className="p-6 rounded-lg neumorphic-shadow bg-card">
-            <h3 className="font-semibold mb-3 text-lg">
-              🔧 実践的コード
-            </h3>
+          <div className="p-6 rounded-lg  bg-card">
+            <h3 className="font-semibold mb-3 text-lg">実践的コード</h3>
             <p className="text-sm">
               JavaScriptとPythonの両方でサンプルコードを提供し、実装まで学べます
             </p>
           </div>
-          <div className="p-6 rounded-lg neumorphic-shadow bg-card">
-            <h3 className="font-semibold mb-3 text-lg">
-              🎮 インタラクティブ
-            </h3>
+          <div className="p-6 rounded-lg  bg-card">
+            <h3 className="font-semibold mb-3 text-lg">インタラクティブ</h3>
             <p className="text-sm">
               実際にパラメータを変更して、アルゴリズムの動作を体験できます
             </p>
@@ -145,16 +137,12 @@ export default function Home() {
                   <h3 className="text-xl font-bold group-hover:text-blue-600 transition-colors">
                     {section.title}
                   </h3>
-                  <p className="text-sm">
-                    {section.description}
-                  </p>
+                  <p className="text-sm">{section.description}</p>
                 </div>
               </div>
 
               <div className="border-t pt-4 mb-4">
-                <h4 className="text-sm font-semibold mb-2">
-                  主なトピック:
-                </h4>
+                <h4 className="text-sm font-semibold mb-2">主なトピック:</h4>
                 <ul className="text-sm space-y-1">
                   {section.topics.map((topic, index) => (
                     <li key={index} className="flex items-center">
