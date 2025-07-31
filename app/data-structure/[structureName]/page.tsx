@@ -239,7 +239,7 @@ const DataStructurePage: React.FC<DataStructurePageProps> = ({ params }) => {
         </h2>
 
         {/* 簡単な視覚化エリア */}
-        <div className="p-6 rounded-md neumorphic-shadow-inset bg-card min-h-[400px]">
+        <div className="p-6 rounded-md  bg-card min-h-[400px]">
           {getVisualizer()}
         </div>
       </section>

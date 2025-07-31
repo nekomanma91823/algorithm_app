@@ -235,7 +235,7 @@ const AlgorithmPage: React.FC<AlgorithmPageProps> = ({ params }) => {
         <h2 className="text-2xl font-bold mb-4 text-foreground">
           プリズム・デモ
         </h2>
-        <div className="p-6 rounded-md neumorphic-shadow-inset bg-card min-h-[400px]">
+        <div className="p-6 rounded-md bg-card min-h-[400px]">
           {getVisualizer()}
         </div>
         <div className="flex space-x-4 mt-4">
