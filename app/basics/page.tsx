@@ -31,49 +31,42 @@ const BasicsPage: React.FC = () => {
       </section>
 
       {/* トピック一覧 */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {basicsTopics.map(([key, topic]) => (
-          <Link
-            key={key}
-            href={`/basics/${key}`}
-            className="block p-6 rounded-lg neumorphic-shadow hover:neumorphic-shadow-inset bg-card text-foreground transition-all duration-200"
-          >
-            <div className="mb-4">
-              <h3 className="text-xl font-bold text-foreground mb-2">
-                {topic.name}
-              </h3>
-              <p className="text-foreground text-sm leading-relaxed">
-                {topic.description}
-              </p>
-            </div>
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold mb-6 text-foreground text-center">
+          データ構造一覧
+        </h2>
 
-            <div className="border-t pt-4">
-              <p className="text-xs text-foreground mb-2">主な特徴:</p>
-              <p className="text-sm text-foreground">
-                {topic.features && topic.features.length > 100
-                  ? `${topic.features.substring(0, 100)}...`
-                  : topic.features || "特徴の情報がありません"}
-              </p>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {basicsTopics.map(([key, basic]) => (
+            <Link
+              key={key}
+              href={`/data-structure/${key}`}
+              className="group  p-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1 neumorphic-shadow hover:neumorphic-shadow-inset bg-card text-foreground flex flex-col"
+            >
+              {/* アイコンとタイトル */}
+              <div className="flex items-center mb-3">
+                <div className="w-12 h-12 bg-card rounded-lg flex items-center justify-center mr-3 neumorphic-shadow-inset">
+                  <span className="text-2xl">{basic.icon}</span>
+                </div>
+                <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
+                  {basic.name}
+                </h3>
+              </div>
 
-            <div className="mt-4 flex items-center text-primary text-sm font-medium">
-              詳しく学ぶ
-              <svg
-                className="ml-1 w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </div>
-          </Link>
-        ))}
+              {/* 説明 */}
+              <p className="text-sm mb-4 leading-relaxed">
+                {basic.description}
+              </p>
+
+              {/* ホバー時のメッセージ */}
+              <div className="mt-auto pt-4 text-center">
+                <span className="text-sm text-primary group-hover:text-primary font-medium">
+                  クリックして学習を開始 →
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
       </section>
 
       {/* 学習の進め方 */}

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import SortVisualizer from "@/components/SortVisualizer";
+import SortVisualizer from "@/components/visualizers/SortVisualizer";
 import { sortAlgorithmMap } from "@/data/sortMap";
 import CodeBlock from "@/components/CodeBlock";
 import { glossary } from "@/data/glossary";
@@ -260,7 +260,7 @@ const AlgorithmPage: React.FC<AlgorithmPageProps> = ({ params }) => {
           </button>
           <input
             type="range"
-            min="10"
+            min="3"
             max="500"
             value={speed}
             onChange={(e) => setSpeed(Number(e.target.value))}

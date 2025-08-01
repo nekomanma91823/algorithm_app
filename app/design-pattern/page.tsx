@@ -6,10 +6,7 @@ import { Layers, ArrowRight } from "lucide-react";
 import { patternMap } from "@/data/patternMap";
 
 const DesignPatternPage: React.FC = () => {
-  const designPatterns = Object.entries(patternMap).map(([id, data]) => ({
-    id,
-    ...data,
-  }));
+  const designPatterns = Object.entries(patternMap);
 
   return (
     <div className="min-h-screen bg-background text-foreground p-6">
@@ -29,32 +26,43 @@ const DesignPatternPage: React.FC = () => {
         </div>
 
         {/* パターン一覧 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {designPatterns.map((pattern) => (
-            <Link href={`/design-pattern/${pattern.id}`} key={pattern.id}>
-              <div className="p-6 rounded-xl neumorphic-shadow bg-card hover:neumorphic-shadow-inset transition-all duration-300 h-full group">
-                <div className="flex items-center mb-4">
-                  <div className="text-3xl mr-4">{pattern.icon}</div>
-                  <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-6 text-foreground text-center">
+            データ構造一覧
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {designPatterns.map(([key, pattern]) => (
+              <Link
+                key={key}
+                href={`/data-structure/${pattern.name}`}
+                className="group  p-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1 neumorphic-shadow hover:neumorphic-shadow-inset bg-card text-foreground flex flex-col"
+              >
+                {/* アイコンとタイトル */}
+                <div className="flex items-center mb-3">
+                  <div className="w-12 h-12 bg-card rounded-lg flex items-center justify-center mr-3 neumorphic-shadow-inset">
+                    <span className="text-2xl">{pattern.icon}</span>
+                  </div>
+                  <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
                     {pattern.name}
                   </h3>
                 </div>
 
-                <p className="text-foreground mb-4 leading-relaxed">
+                {/* 説明 */}
+                <p className="text-sm mb-4 leading-relaxed">
                   {pattern.description}
                 </p>
 
-                <div className="flex justify-between items-center">
-                  <span className="text-primary text-sm font-medium px-3 py-1 rounded-full neumorphic-shadow-inset bg-card">
-                    構造化
+                {/* ホバー時のメッセージ */}
+                <div className="mt-auto pt-4 text-center">
+                  <span className="text-sm text-primary group-hover:text-primary font-medium">
+                    クリックして学習を開始 →
                   </span>
-                  <ArrowRight className="w-5 h-5 text-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
                 </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-
+              </Link>
+            ))}
+          </div>
+        </section>
         {/* 学習のコツ */}
         <div className="mt-16 p-8 neumorphic-shadow bg-card">
           <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">

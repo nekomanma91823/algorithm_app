@@ -1,3 +1,6 @@
+import React from "react";
+import { Cpu, Gpu, ArchiveRestore, HardDrive, AppWindow, PcCase, GitFork, MemoryStick, Binary, Calculator, VenetianMask, Gauge } from "lucide-react";
+
 export interface BasicsContent {
   name: string;
   description: string;
@@ -9,16 +12,7 @@ export interface BasicsContent {
   realWorldExamples: string[];
   importance?: string;
   nextSteps: string[];
-  code?: {
-    javascript: string;
-    python: string;
-  };
-  timeComplexity?: {
-    best: string;
-    average: string;
-    worst: string;
-  };
-  spaceComplexity?: string;
+  icon?: React.JSX.Element;
 }
 
 export const basicsMap: { [key: string]: BasicsContent } = {
@@ -55,6 +49,7 @@ export const basicsMap: { [key: string]: BasicsContent } = {
       "並列処理とマルチスレッド",
       "キャッシュメモリの最適化",
     ],
+    icon: <Cpu />,
   },
 
   "gpu-architecture": {
@@ -89,6 +84,7 @@ export const basicsMap: { [key: string]: BasicsContent } = {
       "メモリ帯域幅と計算効率",
       "CPUとGPUのハイブリッド計算",
     ],
+    icon: <Gpu />,
   },
 
   "memory-and-storage": {
@@ -123,6 +119,7 @@ export const basicsMap: { [key: string]: BasicsContent } = {
       "SSDとHDDの仕組みの違い",
       "メモリプールとガベージコレクション",
     ],
+    icon: <HardDrive />,
   },
 
   hardware: {
@@ -160,6 +157,7 @@ export const basicsMap: { [key: string]: BasicsContent } = {
       "パフォーマンスチューニング",
       "ハードウェア選択の基準",
     ],
+    icon: <PcCase />,
   },
 
   software: {
@@ -197,6 +195,7 @@ export const basicsMap: { [key: string]: BasicsContent } = {
       "アルゴリズムとデータ構造",
       "ソフトウェアアーキテクチャ",
     ],
+    icon: <AppWindow />,
   },
 
   "os-role": {
@@ -228,6 +227,7 @@ export const basicsMap: { [key: string]: BasicsContent } = {
       "ファイルシステムの種類",
       "カーネルとユーザーモード",
     ],
+    icon: <ArchiveRestore />,
   },
 
   "process-thread": {
@@ -262,6 +262,7 @@ export const basicsMap: { [key: string]: BasicsContent } = {
       "プロセス間通信（IPC）",
       "非同期プログラミング",
     ],
+    icon: <GitFork />,
   },
 
   "memory-management": {
@@ -296,6 +297,7 @@ export const basicsMap: { [key: string]: BasicsContent } = {
       "NUMA（Non-Uniform Memory Access）",
       "メモリ最適化技術",
     ],
+    icon: <MemoryStick />,
   },
 
   "logical-operations": {
@@ -326,6 +328,7 @@ export const basicsMap: { [key: string]: BasicsContent } = {
       "ビット演算との関係",
       "ブール代数と論理回路",
     ],
+    icon: <Calculator />,
   },
 
   "number-systems": {
@@ -361,6 +364,7 @@ export const basicsMap: { [key: string]: BasicsContent } = {
       "文字コード（ASCII、Unicode）",
       "データ型とメモリサイズ",
     ],
+    icon: <Binary />,
   },
 
   "set-theory": {
@@ -395,6 +399,7 @@ export const basicsMap: { [key: string]: BasicsContent } = {
       "集合を使ったアルゴリズム",
       "データベースの関係代数",
     ],
+    icon: <VenetianMask />,
   },
 
   complexity: {
@@ -431,5 +436,6 @@ export const basicsMap: { [key: string]: BasicsContent } = {
       "アルゴリズムの最適化技法",
       "実装とベンチマーク測定",
     ],
+    icon: <Gauge />,
   },
 };

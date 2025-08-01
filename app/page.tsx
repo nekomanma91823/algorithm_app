@@ -153,9 +153,10 @@ export default function Home() {
                 </ul>
               </div>
 
-              <div className="flex items-center text-blue-600 font-medium text-sm group-hover:text-blue-700">
-                学習を始める
-                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              <div className=" mt-auto pt-4 text-center">
+                <span className="text-sm text-primary group-hover:text-primary font-medium">
+                  クリックして学習を開始 →
+                </span>
               </div>
             </Link>
           );

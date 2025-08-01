@@ -651,6 +651,32 @@ const SearchVisualizer: React.FC<SearchVisualizerProps> = ({
         )}
       </div>
 
+      {/* 計算量の表示 */}
+      {searchComplete && (
+        <div className="mt-6 p-4 rounded-lg neumorphic-shadow bg-gray-100">
+          <h4 className="font-semibold text-blue-800 mb-2">計算量</h4>
+          <div className="text-sm text-blue-700">
+            {algorithmName === "linear-search" && (
+              <p>
+                <strong>O(n)</strong> -
+                最悪の場合、配列のすべての要素をチェックします。
+              </p>
+            )}
+            {algorithmName === "binary-search" && (
+              <p>
+                <strong>O(log n)</strong> -
+                探索範囲を毎回半分に絞り込むため、非常に高速です。
+              </p>
+            )}
+            {(algorithmName === "bfs" || algorithmName === "dfs") && (
+              <p>
+                <strong>O(V + E)</strong> - Vは頂点数(Nodes)、Eは辺数(Edges)です。
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* アルゴリズム固有の説明 */}
       <div className="mt-6 p-4 rounded-lg neumorphic-shadow">
         <h4 className="font-semibold text-blue-800 mb-2">
