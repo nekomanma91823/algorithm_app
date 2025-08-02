@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { basicsMap } from "@/data/basicsMap";
 import { glossary } from "@/data/glossary";
-import CodeBlock from "@/components/CodeBlock";
 
 export const runtime = "edge";
 
@@ -224,84 +223,7 @@ const BasicsPage: React.FC<BasicsPageProps> = ({ params }) => {
             </ul>
           </div>
         </div>
-
-        {/* 計算量（「計算量」トピックのみ表示） */}
-        {currentTopic.timeComplexity && (
-          <div className="p-4 rounded-md bg-card">
-            <h3 className="text-lg font-medium mb-3 text-foreground">計算量</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-              <div className="text-center">
-                <p className="font-medium text-foreground">最良の場合</p>
-                <p className="text-lg font-bold">
-                  {currentTopic.timeComplexity.best}
-                </p>
-              </div>
-              <div className="text-center">
-                <p className="font-medium text-foreground">平均的な場合</p>
-                <p className="text-lg font-bold">
-                  {currentTopic.timeComplexity.average}
-                </p>
-              </div>
-              <div className="text-center">
-                <p className="font-medium text-foreground">最悪の場合</p>
-                <p className="text-lg font-bold">
-                  {currentTopic.timeComplexity.worst}
-                </p>
-              </div>
-            </div>
-            <div className="mt-4 text-center">
-              <p className="text-sm text-foreground">
-                空間計算量:{" "}
-                <span className="font-bold">
-                  {currentTopic.spaceComplexity}
-                </span>
-              </p>
-            </div>
-            <div className="mt-2 text-xs text-foreground">
-              <p>
-                {renderTextWithTerms(
-                  "💡 計算量とは、データ量が増えた時の処理時間やメモリ使用量の増加率を表します。O(1)は常に一定、O(n)はデータ量に比例、O(log n)はデータ量の対数に比例して増加します。"
-                )}
-              </p>
-            </div>
-          </div>
-        )}
       </section>
-
-      {/* コード例 */}
-      <div className="mt-8">
-        <h2 className="text-2xl font-semibold mb-2 text-foreground">
-          コード例
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="rounded-md">
-            {currentTopic.code?.javascript ? (
-              <CodeBlock>
-                <code className="language-javascript">
-                  {currentTopic.code.javascript}
-                </code>
-              </CodeBlock>
-            ) : (
-              <div className="text-center text-gray-500 py-8">
-                JavaScriptのコード例は準備中です
-              </div>
-            )}
-          </div>
-          <div className="rounded-md">
-            {currentTopic.code?.python ? (
-              <CodeBlock>
-                <code className="language-python">
-                  {currentTopic.code.python}
-                </code>
-              </CodeBlock>
-            ) : (
-              <div className="text-center text-gray-500 py-8">
-                Pythonのコード例は準備中です
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

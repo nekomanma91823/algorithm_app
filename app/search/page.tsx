@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Search, ArrowRight } from "lucide-react";
+import { Search } from "lucide-react";
 import { searchAlgorithmMap } from "@/data/searchMap";
 
 const SearchPage: React.FC = () => {

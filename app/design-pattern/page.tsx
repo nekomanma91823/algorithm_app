@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Layers, ArrowRight } from "lucide-react";
+import { Layers } from "lucide-react";
 import { patternMap } from "@/data/patternMap";
 
 const DesignPatternPage: React.FC = () => {

@@ -32,12 +32,15 @@ export interface PatternDetails {
   pros: string[];
   cons: string[];
   structure: string[];
-
   code: {
     javascript: string;
     python: string;
   };
   icon: React.JSX.Element;
+  visual?: {
+    nodes: { key: string; text: string }[];
+    links: { from: string; to: string }[];
+  };
 }
 export const patternMap: { [key: string]: PatternDetails } = {
   singleton: {
@@ -65,6 +68,16 @@ export const patternMap: { [key: string]: PatternDetails } = {
       python: "/codes/design-pattern/creational/singleton.py",
     },
     icon: <BoxSelect />,
+    // visual: {
+    //   nodes: [
+    //     { key: "Client", text: "Client\n(インスタンスを要求)", color: "lightblue" },
+    //     { key: "Singleton", text: "Singleton\n(唯一のインスタンスを保持)", color: "lightgreen" },
+    //   ],
+    //   links: [
+    //     { key: "link1", from: "Client", to: "Singleton", text: "getInstance()" },
+    //     { key: "link2", from: "Singleton", to: "Singleton", text: "instance" },
+    //   ],
+    // },
   },
   "factory-method": {
     name: "Factory Method",
